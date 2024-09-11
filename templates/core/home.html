@@ -1,0 +1,159 @@
+{% extends "layouts/base.html" %}
+{% load account %}
+{% load static %}
+{% load i18n %}
+{% load custome_filters %}
+
+
+{% block content %}
+
+<div class="container-fluid p-0">
+    <div class="row">
+        {% comment %} nav bar mobile {% endcomment %}
+        <div id="nav-bar-wrapper">
+            {% include "includes/nav.html" %}
+        </div>
+        {% comment %} end of navbar mobile {% endcomment %}
+        <div class="col-lg-3 col">
+            {% comment %} Sidebar {% endcomment %}
+            <div id="sidebar-wrapper">
+                <div class="sidebar-heading text-white text-center mt-3 pb-4 d-none d-lg-block">
+                    <a href="{% url "home" %}"><img src="{% static "images/logo.png" %}" style="width: 210px; height: 40px;"></a>
+                </div>
+                <div class="list-group list-group-flush pt-3 pt-lg-0 mt-lg-0">
+                    <a hx-get="{% url "all_properties" %}" hx-target="#main-content" hx-swap="innerHTML" class="list-group-item list-group-item-action p-3"><i class="bi bi-buildings px-2"></i>{% trans "Propereties" %}</a>
+                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-people px-2"></i>{% trans "Tenants" %}</a>
+                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-cash-coin px-2"></i>{% trans "Rent Payments" %}</a>
+                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-tools px-2"></i>{% trans "Maintenance" %}</a>
+                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-file-text px-2"></i>{% trans "Reports" %}</a>
+                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-sliders px-2"></i>{% trans "Settings" %}</a>
+                    <a href="{% url "account_logout" %}" class="logout list-group-item list-group-item-action p-3"><i class="bi bi-box-arrow-right px-2"></i>{% trans "Sign out" %}</a>
+                </div>
+            </div>
+            {% comment %} end of sidebar {% endcomment %}
+        </div>
+        <div class="content col-lg-9" style="height: 100vh">
+            <div class="row">
+                <div class="p-3 pb-0 d-flex justify-content-end">
+                    <div class="d-flex align-items-center">
+                        <div class="d-lg-block d-none">
+                            {% include "includes/language_menu.html" %}
+                        </div>
+                        <div class="ms-1 d-lg-block d-none" style="border-radius: 50%; width: 35px; height: 35px; background-color: #0f3054;">
+                            {% comment %} image {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="main-content" class="p-3">
+                <div>
+                    <h2>{% trans "Overview" %}</h2>
+                </div>
+                <div class="mt-lg-3 row row-cols-2 row-cols-md-2">
+                    <div class="col p-3">
+                        <div class="card card-overview p-3 border-0" style="height: 130px">
+                            <i class="fas fa-building icon-lg"></i>
+                            <h5 class="card-title">{% trans "Available Properties" %}</h5>
+                            <h3 class="card-value pt-3">{{ available_properties.count }}</h3>
+                        </div>
+                    </div>
+                    <div class="col p-3">
+                        <div class="card card-overview p-3 border-0 text-white" style="height: 130px; background-color: #0f3054">
+                            <i class="fas fa-building icon-lg"></i>
+                            <h5 class="card-title">{% trans "Occupied Properties" %}</h5>
+                            <h3 class="card-value text-white pt-3">{{ rented_properties.count }}</h3>
+                        </div>
+                    </div>
+                    <div class="col p-3">
+                        <div class="card card-overview p-3 border-0 text-white" style="height: 130px; background-color: #0f3054">
+                            <i class="fas fa-building icon-lg"></i>
+                            <h5 class="card-title">{% trans "Next Payment" %}</h5>
+                            <h3 class="card-value text-white pt-3">{% trans "25 Sept" %}</h3>
+                        </div>
+                    </div>
+                    {% comment %} <div class="col p-3">
+                        <div class="card card-overview p-3 border-0" style="height: 130px">
+                            <i class="fas fa-building icon-lg"></i>
+                            <h5 class="card-title">Total Properties</h5>
+                            <h3 class="card-value pt-3">25</h3>
+                        </div>
+                    </div> {% endcomment %}
+                    {% comment %} <div class="col-12 col-lg-6 p-3">
+                        <div class="card card-overview p-3 bg-primary border-0" style="height: 230px; width: 100%;">
+                            <i class="fas fa-building icon-lg"></i>
+                            <h5 class="card-title">Total Properties</h5>
+                            <p class="card-value">25</p>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+</divs>
+
+
+
+
+
+
+
+
+
+
+{% comment %} <div class="container main-container">
+    <h3>Welcome Back {{ request.user.username|title }}</h3>
+
+    <div>
+        <h3></h3>
+        {% if available_properties %}
+            {% for item in available_properties %}
+                <h5>Name: {{ item.name }}</h5>
+                <a href={% url "rent_property" item.id %}>Rent Now</a>
+            {% endfor %}
+        {% else %}
+            <p>No Properties to rent</p>
+            <a href="{% url "add_property" %}">Add a property</a>
+        {% endif %}
+    </div>
+
+    <div>
+        <h3>Rented Properties</h3>
+        {% if rented_properties %}
+            {% for item in rented_properties %}
+                <p>
+                    Name: <a href="#">{{ item.name }}</a>
+                    {% for rental in item.rentals.all %} Rented to
+                        <a href="#">{{ rental.t_name }}</a> - 
+                        <a href="tel:{{ rental.t_phone_number }}">Call</a>
+                        <a href="sms:{{ rental.t_phone_number }}">Text</a>
+                        by {{ rental.property.user }}
+                        <p>
+                            {{ rental.start_date }} - 
+                            {{ rental.end_date }}
+                            <p>
+                                Next payment is {{ rental.price|format_numbers }} in {{ rental.get_next_payment }} days
+                            </p>
+                            <p>
+                                expected income = {{ rental.expected_income: }}
+                            </p>
+                        </p>
+                    {% endfor %}
+                </p>
+            {% endfor %}
+        {% else %}
+            <p>No Rented Properties</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <a href="{% url "add_property" %}">Add a property</a>
+    </div>
+</div> {% endcomment %}
+
+
+
+
+{% comment %} Javascript {% endcomment %}
+<script src="{% static "js/main.js" %}"></script>
+
+{% endblock content %}

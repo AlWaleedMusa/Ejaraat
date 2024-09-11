@@ -1,0 +1,31 @@
+{% load i18n %}
+{% load custome_filters %}
+
+
+<div>
+    <div class="d-flex justify-content-between">
+        <h2>{% trans "My Properties" %}</h2>
+        <a href="#" class="btn btn-success align-self-center">{% trans "+ Add" %}</a>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for property in all_properties %}
+          <div class="col p-3">
+            <div class="card property-card position-relative">
+                <!-- Ribbon -->
+                {% if not property.is_rented %}
+                    <div class="{% if LANGUAGE_CODE == 'ar' %}property-status-ribbon-rtl{% else %}property-status-ribbon-ltr{% endif %} ribbon-available">
+                        {% trans "Available" %}
+                    </div>
+                {% endif %}
+                <div class="card-body property-details">
+                    <h5 class="card-title">{{ property.name }}</h5>
+                    <p class="property-location"><i class="fas fa-map-marker-alt"></i> {{ property.location }}</p>
+                    <p class="property-price">{{ property.price|format_numbers }}/{% trans "month" %}</p>
+                    <a href="#" class="btn btn-primary">{% trans "View Details" %}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+

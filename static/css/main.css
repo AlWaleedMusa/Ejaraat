@@ -1,0 +1,31 @@
+body {
+    overflow-x: hidden;
+}
+
+/* General RTL styles */
+body[dir="rtl"] {
+    text-align: right;
+}
+
+
+
+/* General LTR styles */
+body[dir="ltr"] {
+    text-align: left;
+}
+
+
+
+/* For English (lang-en) */
+.lang-en body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* For Arabic (lang-ar) */
+.lang-ar body {
+    font-family: "Cairo", sans-serif;
+}
+
+h2 {
+    color: #464646;;
+}
