@@ -26,6 +26,6 @@ body[dir="ltr"] {
     font-family: "Cairo", sans-serif;
 }
 
-h2 {
+h2, h5{
     color: #464646;;
 }
