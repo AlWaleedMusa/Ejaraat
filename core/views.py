@@ -40,7 +40,7 @@ def add_property(request):
     else:
         form = PropertyForm()
 
-    return render(request, "core/add_form.html", {"form": form})
+    return render(request, "forms/add_property_form.html", {"form": form})
 
 
 @login_required
