@@ -80,3 +80,28 @@ def all_properties(request):
     my_properties = Property.objects.filter(user=request.user)
     context = {"all_properties": my_properties}
     return render(request, 'includes/all_properties.html', context)
+
+def delete_property(request, pk):
+    """
+    """
+    instance = get_object_or_404(Property, id=pk)
+    instance.delete()
+
+    all_properties = Property.objects.filter(user=request.user)
+    return render(request, "includes/all_properties.html", {"all_properties": all_properties})
+
+def edit_property(request, pk):
+    instance = get_object_or_404(Property, id=pk)
+    if request.method == "POST":
+        form = PropertyForm(request.POST ,instance=instance)
+        if form.is_valid():
+            try:
+                form.save()
+                all_properties = Property.objects.filter(user=request.user)    
+                return render(request, "includes/all_properties.html", {"all_properties": all_properties})
+            except Exception as e:
+                form.add_error(None, str(e))
+    else:
+        form = PropertyForm(instance=instance)
+
+    return render(request, "forms/edit_property_form.html", {"form": form, "property": instance})

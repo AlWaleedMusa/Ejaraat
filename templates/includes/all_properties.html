@@ -5,7 +5,7 @@
 <div>
     <div class="d-flex justify-content-between">
         <h2 class="px-1">{% trans "My Properties" %}</h2>
-        <a hx-get="{% url "add_property" %}" hx-target="#main-content" class="btn align-self-center"><i class="bi bi-plus-circle-fill fs-2 align-self-center d-flex" style="color: #28a745"></i></a>
+        <a hx-get="{% url "add_property" %}" hx-target="#main-content" class="btn align-self-center"><i class="bi bi-plus-circle-fill fs-3 align-self-center d-flex" style="color: #28a745"></i></a>
     </div>
     <div class="row row-cols-1 row-cols-md-3">
         {% for property in all_properties %}
