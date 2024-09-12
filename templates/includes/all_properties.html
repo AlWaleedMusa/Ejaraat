@@ -21,7 +21,18 @@
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="property-location"><i class="fas fa-map-marker-alt"></i> {{ property.location }}</p>
                     <p class="property-price">{{ property.price|format_numbers }}/{% trans "month" %}</p>
-                    <a href="#" class="btn text-white" style="background-color: #0f3054">{% trans "View Details" %}</a>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="#" class="btn text-white" style="background-color: #0f3054">{% trans "View Details" %}</a>
+                        <div>
+                            <div class="dropdown">
+                                <i class="dropdown bi bi-three-dots fs-3" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content">Edit</a></li>
+                                  <li><a class="dropdown-item text-danger" hx-delete="{% url "delete_property" property.id %}" hx-target="#main-content">Delete</a></li>
+                                </ul>
+                              </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
