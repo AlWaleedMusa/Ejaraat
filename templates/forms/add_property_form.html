@@ -9,7 +9,7 @@
         }
     </style>
 
-    <div>
+    <div class="col-lg-6">
         <h2>{% trans "Add Property" %}</h2>
         <div class="pt-2">
             <form hx-post="{% url "add_property" %}" hx-target="#main-content">
@@ -18,7 +18,6 @@
                 {{ form | crispy}}
                 <button type="submit" class="btn text-white" style="background-color: #0f3054;">{% trans "Save" %}</button>
             </form>
-            {% comment %} <a href="{% url "home" %}" hx-trigger="success" hx-target="#main-content" style="display:none"></a> {% endcomment %}
         </div>
     </div>
 
