@@ -1947,7 +1947,7 @@ msgstr "عقاراتي"
 
 #: templates/includes/all_properties.html:17
 msgid "Available"
-msgstr "متوفرة"
+msgstr "متوفر"
 
 #: templates/includes/all_properties.html:23
 msgid "month"
