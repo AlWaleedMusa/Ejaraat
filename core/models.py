@@ -30,13 +30,11 @@ class Property(models.Model):
         verbose_name="Landlord",
         related_name="properties",
     )
-    name = models.CharField("Property Name", max_length=250)
-    property_type = models.CharField(
-        "Property Type", max_length=50, choices=TYPE_CHOICES
-    )
-    address = models.CharField("Property Address", max_length=200)
-    price = models.IntegerField("Price/Month")
-    is_rented = models.BooleanField("Is this property rented?", default=False)
+    name = models.CharField(max_length=250)
+    property_type = models.CharField(max_length=50, choices=TYPE_CHOICES)
+    address = models.CharField(max_length=200)
+    price = models.IntegerField()
+    is_rented = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name} - {self.property_type}"
