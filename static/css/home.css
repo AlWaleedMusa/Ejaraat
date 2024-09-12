@@ -8,16 +8,12 @@
 }
 
 #sidebar-wrapper {
-    min-width: 290px;
-    max-width: 290px;
     background-color: #ffffff;
-    position: fixed;
     height: 100%;
 }
 
 #nav-bar-wrapper {
     width: 100%;
-    padding-left: 290px;
 }
 
 /* Sidebar links */
@@ -37,12 +33,6 @@
 .list-group-item:focus {
     color: #ffffff;
     background-color: #1960ab;
-}
-
-.logout {
-    width: 290px;
-    position: fixed;
-    bottom: 0;
 }
 
 .card-overview {
@@ -68,10 +58,12 @@
 
 
 /* Mobile Responsive */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     #sidebar-wrapper {
         display: none;
         z-index: 500;
+        position: fixed;
+        width: 230px;
     }
 
     #nav-bar-wrapper {
