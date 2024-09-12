@@ -34,7 +34,8 @@ def add_property(request):
                 instance = form.save(commit=False)
                 instance.user = request.user
                 instance.save()
-                return redirect("home")
+                all_properties = Property.objects.filter(user=request.user)
+                return render(request, "includes/all_properties.html", {"all_properties": all_properties})
         except Exception as e:
             form.add_error(None, str(e))
     else:
