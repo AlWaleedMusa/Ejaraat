@@ -35,7 +35,7 @@ class Property(models.Model):
         "Property Type", max_length=50, choices=TYPE_CHOICES
     )
     address = models.CharField("Property Address", max_length=200)
-    price = models.IntegerField("Price per Month")
+    price = models.IntegerField("Price/Month")
     is_rented = models.BooleanField("Is this property rented?", default=False)
 
     def __str__(self):
