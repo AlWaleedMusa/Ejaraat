@@ -34,8 +34,7 @@ def add_property(request):
                 instance = form.save(commit=False)
                 instance.user = request.user
                 instance.save()
-                all_properties = Property.objects.filter(user=request.user)
-                return render(request, "includes/all_properties.html", {"all_properties": all_properties})
+                return redirect("all_properties")
         except Exception as e:
             form.add_error(None, str(e))
     else:
@@ -98,8 +97,7 @@ def edit_property(request, pk):
         if form.is_valid():
             try:
                 form.save()
-                all_properties = Property.objects.filter(user=request.user)    
-                return render(request, "includes/all_properties.html", {"all_properties": all_properties})
+                return redirect("all_properties")
             except Exception as e:
                 form.add_error(None, str(e))
     else:
