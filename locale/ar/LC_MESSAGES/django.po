@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 03:54+0300\n"
+"POT-Creation-Date: 2024-09-13 02:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -658,8 +658,9 @@ msgid "Order"
 msgstr ""
 
 #: env/lib/python3.10/site-packages/django/forms/formsets.py:499
+#: templates/includes/all_properties.html:31
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 #: env/lib/python3.10/site-packages/django/forms/models.py:901
 #, python-format
@@ -1913,23 +1914,23 @@ msgstr "الإعدادات"
 msgid "Sign out"
 msgstr "تسجيل الخروج"
 
-#: templates/core/home.html:61
+#: templates/core/home.html:65
 msgid "Overview"
 msgstr "المُلخص"
 
-#: templates/core/home.html:67
+#: templates/core/home.html:72
 msgid "Available Properties"
 msgstr "العقارات الشاغرة"
 
-#: templates/core/home.html:74
+#: templates/core/home.html:80
 msgid "Occupied Properties"
 msgstr "العقارات المشغولة"
 
-#: templates/core/home.html:81
+#: templates/core/home.html:87
 msgid "Next Payment"
 msgstr "الإيجار القادم"
 
-#: templates/core/home.html:82
+#: templates/core/home.html:88
 msgid "25 Sept"
 msgstr "25 سبتمير"
 
@@ -1940,6 +1941,20 @@ msgstr "إضافة عقار"
 #: templates/forms/add_property_form.html:19
 msgid "Save"
 msgstr "حفظ"
+
+#: templates/forms/add_property_form.html:20
+#: templates/forms/edit_property_form.html:20
+msgid "Cancle"
+msgstr "إلغاء"
+
+#: templates/forms/edit_property_form.html:13
+msgid "Edit Property"
+msgstr "تعديل عقار"
+
+#: templates/forms/edit_property_form.html:19
+#: templates/includes/all_properties.html:30
+msgid "Edit"
+msgstr "تعديل"
 
 #: templates/includes/all_properties.html:7
 msgid "My Properties"
@@ -1953,7 +1968,7 @@ msgstr "متوفر"
 msgid "month"
 msgstr "شهرياً"
 
-#: templates/includes/all_properties.html:24
+#: templates/includes/all_properties.html:25
 msgid "View Details"
 msgstr "التفاصيل"
 
