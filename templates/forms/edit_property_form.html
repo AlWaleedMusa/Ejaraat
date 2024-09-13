@@ -16,7 +16,8 @@
                 {% csrf_token %}
                 {{ form.media }}
                 {{ form | crispy}}
-                <button type="submit" class="btn text-white" style="background-color: #0f3054;">{% trans "Edit" %}</button>
+                <button type="submit" class="btn text-white" style="background-color: #0f3054;">{% trans "Submit" %}</button>
+                <a hx-get="{% url "all_properties" %}" hx-target="#main-content" class="btn text-white" style="background-color: gray;">{% trans "Cancle" %}</a>
             </form>
         </div>
     </div>
