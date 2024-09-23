@@ -14,6 +14,9 @@ class PropertyForm(forms.ModelForm):
             'property_type': _("Property Type"),
             'address': _("Property Address"),
             'price': _("Price/Month"),
+            'country': _("Country"),
+            'city': _("City"),
+            'currency': _("Currency"),
         }
 
 
