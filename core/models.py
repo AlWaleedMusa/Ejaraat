@@ -25,6 +25,14 @@ class Property(models.Model):
         ("S", _("Store")),
     )
 
+    CURRENCY_CHOICES = (
+        ("", _("Select Currency")),
+        ("USD", _("US Dollars")),
+        ("EUR", _("European Euro")),
+        ("SDG", _("Sudanese Pound")),
+        ("EGP", _("Egyptian Pound")),
+    )
+
     # property data
     user = models.ForeignKey(
         User,
@@ -33,11 +41,11 @@ class Property(models.Model):
     )
     name = models.CharField(max_length=250)
     property_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default=TYPE_CHOICES[1])
-    country = CountryField()
+    country = CountryField(blank_label="Select Country")
     city = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
     price = models.IntegerField()
-    currency = models.CharField(max_length=3, null=True, blank=True)
+    currency = models.CharField(max_length=3, null=True, blank=True, choices=CURRENCY_CHOICES)
     is_rented = models.BooleanField(default=False)
 
     def __str__(self):
