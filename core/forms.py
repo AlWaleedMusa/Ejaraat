@@ -18,6 +18,15 @@ class PropertyForm(forms.ModelForm):
             'city': _("City"),
             'currency': _("Currency"),
         }
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': _('Enter property name')}),
+            'address': forms.TextInput(attrs={'placeholder': _('Enter property address')}),
+            'price': forms.NumberInput(attrs={'placeholder': _('Enter price per month')}),
+            'city': forms.TextInput(attrs={'placeholder': _('Enter city')}),
+        }
+
+        
+
 
 
 class RentPropertyForm(forms.ModelForm):
