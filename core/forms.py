@@ -2,7 +2,8 @@ from .models import Property, RentProperty
 from django import forms
 from bootstrap_datepicker_plus.widgets import DatePickerInput
 from django.utils.translation import gettext_lazy as _
-
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Row, Column, Submit, HTML
 
 class PropertyForm(forms.ModelForm):
 
@@ -24,6 +25,33 @@ class PropertyForm(forms.ModelForm):
             'price': forms.NumberInput(attrs={'placeholder': _('Enter price per month')}),
             'city': forms.TextInput(attrs={'placeholder': _('Enter city')}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+
+        self.helper.layout = Layout(
+            Row(
+                Column(
+                    'name',
+                    'property_type',
+                    'country',
+                    'city',
+                    'address',
+                    css_class="col-lg-7"
+                ),
+                Column(
+                    'price',
+                    'currency',
+                    css_class='col-lg-5'
+                ),
+                css_class="form-row"
+            ),
+            Submit('submit', 'Save', css_class="btn property-button border-0 d-inline"),
+            HTML(
+                '<a onclick="window.history.back();" class="btn text-white" style="background-color: gray;">Cancel</a>'
+            )
+        )
 
         
 
