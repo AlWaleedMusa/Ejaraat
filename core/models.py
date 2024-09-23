@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from datetime import timedelta, date
 from dateutil.relativedelta import relativedelta
 from babel.numbers import format_number
+from django_countries.fields import CountryField
+from django.utils.translation import gettext_lazy as _
 
 
 class Property(models.Model):
@@ -15,12 +17,12 @@ class Property(models.Model):
         verbose_name_plural = "Properties"
 
     TYPE_CHOICES = (
-        ("R", "Room"),
-        ("A", "Apartment"),
-        ("H", "House"),
-        ("V", "Villa"),
-        ("O", "Office"),
-        ("S", "Store"),
+        ("R", _("Room")),
+        ("A", _("Apartment")),
+        ("H", _("House")),
+        ("V", _("Villa")),
+        ("O", _("Office")),
+        ("S", _("Store")),
     )
 
     # property data
@@ -83,10 +85,10 @@ class RentProperty(models.Model):
         verbose_name_plural = "Rent Properties"
 
     PAYMENT_OPTIONS = (
-        ("1", "Daily"),
-        ("7", "Weekly"),
-        ("30", "Monthly"),
-        ("365", "Yearly"),
+        ("1", _("Daily")),
+        ("7", _("Weekly")),
+        ("30", _("Monthly")),
+        ("365", _("Yearly")),
     )
 
     # tenant data
