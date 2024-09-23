@@ -19,8 +19,8 @@
                 {% endif %}
                 <div class="card-body property-details">
                     <h5 class="card-title">{{ property.name }}</h5>
-                    <p class="property-location"><i class="fas fa-map-marker-alt"></i> {{ property.location }}</p>
-                    <p class="property-price">{{ property.price|format_numbers }}/{% trans "month" %}</p>
+                    <p class="property-location"><i class="bi bi-geo-alt-fill pe-1"></i>{{ property.get_country_display }}, {{ property.city }}</p>
+                    <p class="property-price text-success">{{ property.price|format_numbers }} {{ property.currency }}/{% trans "month" %}</p>
                     <div class="d-flex align-items-center justify-content-between">
                         <a href="#" class="btn text-white" style="background-color: #0f3054">{% trans "View Details" %}</a>
                         <div>

@@ -31,9 +31,12 @@ class Property(models.Model):
         related_name="properties",
     )
     name = models.CharField(max_length=250)
-    property_type = models.CharField(max_length=50, choices=TYPE_CHOICES)
+    property_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default=TYPE_CHOICES[1])
+    country = CountryField()
+    city = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
     price = models.IntegerField()
+    currency = models.CharField(max_length=3, null=True, blank=True)
     is_rented = models.BooleanField(default=False)
 
     def __str__(self):
