@@ -41,6 +41,36 @@ class Property(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.property_type}"
+    
+    def save(self, *args, **kwargs):
+        country_currency_map = {
+            'US': 'USD',
+            'EU': 'EUR',
+            'SD': 'SDG',
+            'EG': 'EGP',
+        }
+        if not self.currency:
+            self.currency = country_currency_map.get(self.country, 'USD')
+        super().save(*args, **kwargs)
+
+
+
+class Tenant(models.Model):
+    """
+    A tenant model
+    """
+
+    name = models.CharField(max_length=150)
+    phone_number = models.CharField(max_length=14, help_text="Format: +249912345678")
+    id_image = models.ImageField(
+        upload_to="tenants_ID",
+        null=True,
+        blank=True,
+        help_text="[Passport, National ID]"
+    )
+
+    def __str__(self):
+        return self.name
 
 
 class RentProperty(models.Model):
@@ -60,39 +90,19 @@ class RentProperty(models.Model):
     )
 
     # tenant data
-    t_name = models.CharField("Tenant's Name", max_length=150)
-    t_phone_number = models.CharField(
-        "Tenant's phone number",
-        max_length=14,
-        help_text="Phone number must be in this format +249912345678",
-    )
-    t_id = models.ImageField(
-        "Tenant's ID Image [Passport, National ID]",
-        upload_to="tenants_ID",
-        null=True,
-        blank=True,
-    )
+    tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE, related_name="tenant_rentals")
 
     # property data
     property = models.ForeignKey(
         Property,
         verbose_name="Property to Rent",
         on_delete=models.CASCADE,
-        related_name="rentals",
+        related_name="property_rentals",
     )
-    # owner = models.ForeignKey(
-    #     User,
-    #     on_delete=models.CASCADE,
-    #     verbose_name="Owner",
-    #     null=True,
-    #     related_name="owned_rentals",
-    # )
-    down_payment = models.DecimalField("Down Payment", max_digits=10, decimal_places=3)
-    payment = models.CharField(
-        "Payment Type", choices=PAYMENT_OPTIONS, max_length=10, null=True
-    )
-    start_date = models.DateField("Start Rent", default=date.today)
-    end_date = models.DateField("End Rent", default=date.today() + timedelta(days=30))
+    payment = models.CharField(choices=PAYMENT_OPTIONS, max_length=10, default=PAYMENT_OPTIONS[2])
+    damage_deposit = models.IntegerField(null=True, blank=True)
+    start_date = models.DateField(default=date.today)
+    end_date = models.DateField(default=date.today() + timedelta(days=30))
 
     contract = models.ImageField(
         "Contract Image", upload_to="contracts", null=True, blank=True
