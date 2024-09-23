@@ -30,7 +30,6 @@ class Property(models.Model):
         User,
         on_delete=models.CASCADE,
         verbose_name="Landlord",
-        related_name="properties",
     )
     name = models.CharField(max_length=250)
     property_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default=TYPE_CHOICES[1])
@@ -107,11 +106,11 @@ class RentProperty(models.Model):
     end_date = models.DateField(default=date.today() + timedelta(days=30))
 
     contract = models.ImageField(
-        "Contract Image", upload_to="contracts", null=True, blank=True
+        upload_to="contracts", null=True, blank=True
     )
 
     def __str__(self):
-        return f"{self.property.name} - Rented to {self.t_name}"
+        return f"{self.property.name} - Rented to {self.tenant.name}"
 
     def get_next_payment(self):
         interval_days = int(self.payment)
@@ -126,7 +125,9 @@ class RentProperty(models.Model):
             if interval_days == 30:
                 current_payment_date += relativedelta(months=1)  # Move by 1 month
             else:
-                current_payment_date += timedelta(days=interval_days)  # For other intervals
+                current_payment_date += timedelta(
+                    days=interval_days
+                )  # For other intervals
 
         if current_payment_date >= end_date:
             return (
@@ -135,13 +136,12 @@ class RentProperty(models.Model):
 
         return (current_payment_date - today).days
 
-    def expected_income(self, obj):
+    def expected_income(self):
         interval_days = int(self.payment)
-        price = obj.price
+        price = self.property.price
         expected_income = 0
         end_date = self.end_date
         start_date = self.start_date
-        today = date.today()
 
         current_date = start_date
 
@@ -155,4 +155,4 @@ class RentProperty(models.Model):
             else:
                 current_date += timedelta(days=interval_days)  # For other intervals
 
-        return format_number(expected_income - price, locale='en_US')
+        return format_number(expected_income - price, locale="en_US")
