@@ -12,12 +12,12 @@
     <div class="col-lg-6">
         <h2>{% trans "Edit Property" %}</h2>
         <div class="pt-2">
-            <form hx-post="{% url "edit_property" property.id %}" hx-target="#main-content">
+            <form hx-post="{% url "edit_property" property.id %}" hx-target="#main-content" hx-push-url="true">
                 {% csrf_token %}
                 {{ form.media }}
                 {{ form | crispy}}
-                <button type="submit" class="btn text-white" style="background-color: #0f3054;">{% trans "Submit" %}</button>
-                <a hx-get="{% url "all_properties" %}" hx-target="#main-content" class="btn text-white" style="background-color: gray;">{% trans "Cancle" %}</a>
+                <button type="submit" class="btn text-white" style="background-color: #0f3054;">{% trans "Save" %}</button>
+                <a onclick="window.history.back();" class="btn btn-secondary text-white">{% trans "Cancle" %}</a>
             </form>
         </div>
     </div>
