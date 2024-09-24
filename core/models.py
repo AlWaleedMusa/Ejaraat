@@ -27,10 +27,10 @@ class Property(models.Model):
 
     CURRENCY_CHOICES = (
         ("", _("Select Currency")),
-        ("USD", _("US Dollars")),
-        ("EUR", _("European Euro")),
-        ("SDG", _("Sudanese Pound")),
-        ("EGP", _("Egyptian Pound")),
+        (_("USD"), _("US Dollars")),
+        (_("EUR"), _("European Euro")),
+        (_("SDG"), _("Sudanese Pound")),
+        (_("EGP"), _("Egyptian Pound")),
     )
 
     # property data
@@ -53,10 +53,10 @@ class Property(models.Model):
     
     def save(self, *args, **kwargs):
         country_currency_map = {
-            'US': 'USD',
-            'EU': 'EUR',
-            'SD': 'SDG',
-            'EG': 'EGP',
+            'US': _('USD'),
+            'EU': _('EUR'),
+            'SD': _('SDG'),
+            'EG': _('EGP'),
         }
         if not self.currency:
             self.currency = country_currency_map.get(self.country, 'USD')
