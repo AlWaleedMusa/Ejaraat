@@ -27,10 +27,10 @@ class Property(models.Model):
 
     CURRENCY_CHOICES = (
         ("", _("Select Currency")),
-        (_("USD"), _("US Dollars")),
-        (_("EUR"), _("European Euro")),
-        (_("SDG"), _("Sudanese Pound")),
-        (_("EGP"), _("Egyptian Pound")),
+        ("USD", _("US Dollars")),
+        ("EUR", _("European Euro")),
+        ("SDG", _("Sudanese Pound")),
+        ("EGP", _("Egyptian Pound")),
     )
 
     # property data
@@ -41,7 +41,7 @@ class Property(models.Model):
     )
     name = models.CharField(max_length=250)
     property_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default=TYPE_CHOICES[1])
-    country = CountryField(blank_label="Select Country")
+    country = CountryField(blank_label=_("Select Country"))
     city = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
     price = models.IntegerField()
@@ -51,12 +51,21 @@ class Property(models.Model):
     def __str__(self):
         return f"{self.name} - {self.property_type}"
     
+    def get_translated_currency(self):
+        currency_map = {
+            "USD": _("USD"),
+            "EUR": _("EUR"),
+            "SDG": _("SDG"),
+            "EGP": _("EGP"),
+        }
+        return currency_map.get(self.currency, self.currency)
+    
     def save(self, *args, **kwargs):
         country_currency_map = {
-            'US': _('USD'),
-            'EU': _('EUR'),
-            'SD': _('SDG'),
-            'EG': _('EGP'),
+            'US': 'USD',
+            'EU': 'EUR',
+            'SD': 'SDG',
+            'EG': 'EGP',
         }
         if not self.currency:
             self.currency = country_currency_map.get(self.country, 'USD')
@@ -156,6 +165,7 @@ class RentProperty(models.Model):
         # Use relativedelta for better handling of monthly or yearly intervals
         while current_date <= end_date:
             expected_income += price
+            print(expected_income)
 
             # Check if it's a monthly interval, for example 30 days
             if interval_days == 30:
@@ -163,4 +173,4 @@ class RentProperty(models.Model):
             else:
                 current_date += timedelta(days=interval_days)  # For other intervals
 
-        return format_number(expected_income - price, locale="en_US")
+        return format_number(expected_income, locale="en_US")
