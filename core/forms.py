@@ -47,9 +47,9 @@ class PropertyForm(forms.ModelForm):
                 ),
                 css_class="form-row"
             ),
-            Submit('submit', 'Save', css_class="btn property-button border-0 d-inline"),
+            Submit('submit', _('Save'), css_class="btn property-button border-0 d-inline"),
             HTML(
-                '<a onclick="window.history.back();" class="btn text-white" style="background-color: gray;">Cancel</a>'
+                f'<a onclick="window.history.back();" class="btn text-white" style="background-color: gray;">{_("Cancel")}</a>'
             )
         )
 

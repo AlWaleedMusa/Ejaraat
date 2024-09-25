@@ -20,7 +20,7 @@
     <div>
         <h2>{{ property.name }} - {{ property.get_property_type_display }}</h2>
         <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }}</p>
-        <h4 class="text-success">{{ property.price|format_numbers }} {{ property.currency }}/{% trans "month" %}</h4>
+        <h4 class="text-success">{{ property.price|format_numbers }} {{ property.get_translated_currency }}/{% trans "month" %}</h4>
         <hr>
         
         <!-- Tabs for different sections -->
@@ -68,7 +68,7 @@
                         <div class="col-md-6 mb-3">
                             <p><strong>{% trans "Damage deposit" %}:</strong> 
                                 {% if rent_property.damage_deposit %}
-                                    {{ rent_property.damage_deposit|format_numbers }} {{ property.currency }}
+                                    {{ rent_property.damage_deposit|format_numbers }} {{ property.get_translated_currency }}
                                 {% else %}
                                     {% trans "N/A" %}
                                 {% endif %}
@@ -84,7 +84,7 @@
                             </p>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <p><strong>{% trans "Expected income" %}:</strong> {{ rent_property.expected_income }} {{ property.currency }}</p>
+                            <p><strong>{% trans "Expected income" %}:</strong> {{ rent_property.expected_income }} {{ property.get_translated_currency }}</p>
                         </div>
                         <div class="col-md-6">
                             <p><strong>{% trans "Contract image" %}:</strong>
