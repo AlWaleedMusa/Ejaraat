@@ -922,171 +922,171 @@ msgstr ""
 
 #: env/lib/python3.10/site-packages/django/utils/dateformat.py:80
 msgid "PM"
-msgstr ""
+msgstr "مساءً"
 
 #: env/lib/python3.10/site-packages/django/utils/dateformat.py:81
 msgid "AM"
-msgstr ""
+msgstr "صباحاً"
 
 #: env/lib/python3.10/site-packages/django/utils/dateformat.py:153
 msgid "midnight"
-msgstr ""
+msgstr "منتصف الليل"
 
 #: env/lib/python3.10/site-packages/django/utils/dateformat.py:155
 msgid "noon"
-msgstr ""
+msgstr "ظهراً"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:7
 msgid "Monday"
-msgstr ""
+msgstr "الإثنين"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:8
 msgid "Tuesday"
-msgstr ""
+msgstr "الثلاثاء"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:9
 msgid "Wednesday"
-msgstr ""
+msgstr "الأربعاء"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:10
 msgid "Thursday"
-msgstr ""
+msgstr "الخميس"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:11
 msgid "Friday"
-msgstr ""
+msgstr "الجمعه"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:12
 msgid "Saturday"
-msgstr ""
+msgstr "السبت"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:13
 msgid "Sunday"
-msgstr ""
+msgstr "الاحد"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:16
 msgid "Mon"
-msgstr ""
+msgstr "الأثنين"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:17
 msgid "Tue"
-msgstr ""
+msgstr "الثلاثاء"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:18
 msgid "Wed"
-msgstr ""
+msgstr "الأربعاء"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:19
 msgid "Thu"
-msgstr ""
+msgstr "الخميس"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:20
 msgid "Fri"
-msgstr ""
+msgstr "الجمعه"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:21
 msgid "Sat"
-msgstr ""
+msgstr "السبت"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:22
 msgid "Sun"
-msgstr ""
+msgstr "الاحد"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:25
 msgid "January"
-msgstr ""
+msgstr "يناير"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:26
 msgid "February"
-msgstr ""
+msgstr "فبراير"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:27
 msgid "March"
-msgstr ""
+msgstr "مارس"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:28
 msgid "April"
-msgstr ""
+msgstr "ابريل"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:29
 msgid "May"
-msgstr ""
+msgstr "مايو"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:30
 msgid "June"
-msgstr ""
+msgstr "يونيو"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:31
 msgid "July"
-msgstr ""
+msgstr "يوليو"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:32
 msgid "August"
-msgstr ""
+msgstr "اغسطس"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:33
 msgid "September"
-msgstr ""
+msgstr "سبتمبر"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:34
 msgid "October"
-msgstr ""
+msgstr "نوفمبر"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:35
 msgid "November"
-msgstr ""
+msgstr "اكتوير"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:36
 msgid "December"
-msgstr ""
+msgstr "ديسمبر"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:39
 msgid "jan"
-msgstr ""
+msgstr "يناير"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:40
 msgid "feb"
-msgstr ""
+msgstr "فبراير"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:41
 msgid "mar"
-msgstr ""
+msgstr "مارس"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:42
 msgid "apr"
-msgstr ""
+msgstr "ابريل"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:43
 msgid "may"
-msgstr ""
+msgstr "مايو"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:44
 msgid "jun"
-msgstr ""
+msgstr "يونيو"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:45
 msgid "jul"
-msgstr ""
+msgstr "يوليو"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:46
 msgid "aug"
-msgstr ""
+msgstr "اغسطس"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:47
 msgid "sep"
-msgstr ""
+msgstr "سبتمبر"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:48
 msgid "oct"
-msgstr ""
+msgstr "اكتوير"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:49
 msgid "nov"
-msgstr ""
+msgstr "نوفمبر"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:50
 msgid "dec"
-msgstr ""
+msgstr "ديسمبر"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:53
 msgctxt "abbrev. month"
@@ -1131,7 +1131,7 @@ msgstr "اغسطس"
 #: env/lib/python3.10/site-packages/django/utils/dates.py:61
 msgctxt "abbrev. month"
 msgid "Sept."
-msgstr "سبتمير"
+msgstr "سبتمبر"
 
 #: env/lib/python3.10/site-packages/django/utils/dates.py:62
 msgctxt "abbrev. month"
