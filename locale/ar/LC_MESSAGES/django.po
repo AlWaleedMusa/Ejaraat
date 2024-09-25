@@ -2079,7 +2079,7 @@ msgstr "إضافة عقار"
 #: templates/forms/edit_property_form.html:13
 #: templates/includes/all_properties.html:38
 msgid "Edit Property"
-msgstr "تعديل عقار"
+msgstr "تعديل"
 
 #: templates/forms/rent_property_form.html:15
 msgid "Rent Property"
