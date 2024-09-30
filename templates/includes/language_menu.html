@@ -2,10 +2,9 @@
 
 <form action="{% url 'set_language' %}" method="post">
     {% csrf_token %}
-    <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #464646;">
-            <i class="bi bi-translate"></i><span class="p-2">{% trans "Language" %}</span>
-        </button>
+    <input type="hidden" name="next" value="{% url 'home' %}">
+    <div class="p-2">
+        <h4 class="dropdown m-0 p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-translate" style="color: #1960ab;"></i></h4>
         <ul class="dropdown-menu">
             <button type="submit" class="dropdown-item" name="language" value="en">
                 {% trans "English" %}
