@@ -11,8 +11,8 @@
                     <path d="M5 17H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
                 </svg>                    
             </a>
-            {% comment %} {% include "includes/language_menu.html" %} {% endcomment %}
-            <a href="#" class="ms-1" style="color:#1960ab;"><h4 class="p-0 m-0"><i class="bi bi-moon"></i></h4></a>
+            {% include "includes/language_menu.html" %}
+            {% comment %} <a href="#" class="ms-1" style="color:#1960ab;"><h4 class="p-0 m-0"><i class="bi bi-moon"></i></h4></a> {% endcomment %}
         </div>
         <a href="{% url "home" %}">
             <img src="{% static "images/logo.png" %}" style="width: 170px; height: 35px;">
