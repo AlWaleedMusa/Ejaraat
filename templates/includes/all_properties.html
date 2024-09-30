@@ -5,7 +5,7 @@
 <div>
     <div class="d-flex justify-content-between">
         <h2 class="px-1">{% trans "My Properties" %}</h2>
-        <a hx-get="{% url "add_property" %}" hx-target="#main-content" hx-push-url="true" class="btn align-self-center"><i class="bi bi-plus-circle-fill fs-3 align-self-center d-flex" style="color: #28a745"></i></a>
+        <a hx-get="{% url "add_property" %}" hx-target="#main-content" class="btn align-self-center"><i class="bi bi-plus-circle-fill fs-3 align-self-center d-flex" style="color: #28a745"></i></a>
     </div>
     <div class="row row-cols-1 row-cols-md-3">
         {% for property in all_properties %}
@@ -24,10 +24,10 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             {% if not property.is_rented %}
-                              <a hx-get="{% url "view_property" property.id %}" hx-push-url="true" hx-target="#main-content" class="btn property-button">{% trans "View Details" %}</a>
-                              <a hx-get="{% url "rent_property" property.id %}" hx-push-url="true" hx-target="#main-content" class="btn px-3 btn-success">{% trans "Rent" %}</a>
+                              <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn property-button">{% trans "View Details" %}</a>
+                              <a hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" class="btn px-3 btn-success">{% trans "Rent" %}</a>
                             {% else %}
-                                <a hx-get="{% url "view_property" property.id %}" hx-push-url="true" hx-target="#main-content" class="btn property-button">{% trans "View Details" %}</a>
+                                <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn property-button">{% trans "View Details" %}</a>
                             {% endif %}
                         </div>
                         <div>
@@ -35,11 +35,11 @@
                                 <i class="dropdown bi bi-three-dots fs-3" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                 <ul class="dropdown-menu">
                                   <li>
-                                    <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content" hx-push-url="true">{% trans "Edit Property" %}</a>
+                                    <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content">{% trans "Edit Property" %}</a>
                                   </li>
                                   {% if property.is_rented %}
                                     <li>
-                                      {% comment %} <a class="dropdown-item" hx-get="{% url "edit_rental" property.id %}" hx-target="#main-content" hx-push-url="true">{% trans "Edit Rental" %}</a> {% endcomment %}
+                                      {% comment %} <a class="dropdown-item" hx-get="{% url "edit_rental" property.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a> {% endcomment %}
                                     </li>
                                   {% endif %}
                                   <li>
