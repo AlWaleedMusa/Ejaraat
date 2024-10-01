@@ -2171,10 +2171,8 @@ msgid "Days"
 msgstr "أيام"
 
 #: templates/includes/view_property.html:83
-#, fuzzy
-#| msgid "Next payment"
 msgid "No more payments"
-msgstr "الإيجار القادم"
+msgstr "لا توجد مزيد من الدفعات"
 
 #: templates/includes/view_property.html:88
 msgid "Expected income"
