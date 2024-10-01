@@ -35,7 +35,7 @@
                                 <i class="dropdown bi bi-three-dots fs-3" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                 <ul class="dropdown-menu">
                                   <li>
-                                    <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content">{% trans "Edit Property" %}</a>
+                                    <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content">{% trans "Edit" %}</a>
                                   </li>
                                   {% if property.is_rented %}
                                     <li>
