@@ -29,15 +29,14 @@ class PropertyForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         action = kwargs.pop('action', 'add')
+
         super().__init__(*args, **kwargs)
-        
         self.helper = FormHelper(self)
-
-        if action == 'edit':
-            self.helper.form_action = reverse_lazy('edit_property', args=[self.instance.id])
-        else:
-            self.helper.form_action = reverse_lazy('add_property')
-
+        self.helper.attrs = {
+            'hx-post': reverse_lazy('edit_property', args=[self.instance.id]) if action == 'edit' else reverse_lazy('add_property'),
+            'hx-target': '#main-content',
+            'hx-swap': 'innerHTML',
+        }
         self.helper.add_input(Submit('submit', 'Save'))
 
         self.helper.layout = Layout(
@@ -86,15 +85,26 @@ class RentPropertyForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        action = kwargs.pop('action', 'rent')
         property = kwargs.pop("property", None)
+        tenant = kwargs.pop("tenant", None)
 
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-        self.helper.form_action = reverse_lazy("rent_property", args=[property.id])
+        self.helper.attrs = {
+            'hx-post': reverse_lazy('edit_rental', args=[self.instance.id]) if action == 'edit' else reverse_lazy('rent_property', args=[property.id]),
+            'hx-target': '#main-content',
+            'hx-swap': 'innerHTML',
+        }
         self.helper.add_input(Submit('submit', 'Rent'))
 
         if property:
             self.fields['damage_deposit'].initial = property.price
+
+        if tenant:
+            self.fields["tenant_name"].initial = tenant.name
+            self.fields["tenant_phone_number"].initial = tenant.phone_number
+            self.fields["tenant_image"].initial = tenant.id_image
 
         self.helper.layout = Layout(
             Row(
@@ -114,4 +124,3 @@ class RentPropertyForm(forms.ModelForm):
                 )
             )
         )
-        

@@ -67,6 +67,24 @@ def rent_property(request, pk):
 
     return render(request, "forms/rent_property_form.html", {"form": form, "property": instance})
 
+def edit_rental(request, pk):
+    rental = get_object_or_404(RentProperty, id=pk)
+    tenant = rental.tenant
+
+    if request.method == "POST":
+        form = RentPropertyForm(request.POST, request.FILES, instance=rental, tenant=tenant, action="edit")
+        if form.is_valid():
+            tenant.name = form.cleaned_data.get("tenant_name")
+            tenant.phone_number = form.cleaned_data.get("tenant_phone_number")
+            tenant.id_image = form.cleaned_data.get("tenant_image")
+            tenant.save()
+            form.save()
+            return redirect("all_properties")
+    else:
+        form = RentPropertyForm(instance=rental, tenant=tenant, action="edit")
+
+    return render(request, "forms/edit_rental_form.html", {"form": form, "rental": rental})
+
 
 def all_properties(request):
     """
