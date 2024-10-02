@@ -37,7 +37,7 @@ class PropertyForm(forms.ModelForm):
             'hx-target': '#main-content',
             'hx-swap': 'innerHTML',
         }
-        self.helper.add_input(Submit('submit', 'Save'))
+        self.helper.add_input(Submit('submit', _('Save') if action == "edit" else _('Add')))
 
         self.helper.layout = Layout(
             Row(
@@ -66,7 +66,7 @@ class RentPropertyForm(forms.ModelForm):
     """
     """
     tenant_name = forms.CharField(max_length=100, label=_("Tenant Name"))
-    tenant_phone_number = forms.CharField(max_length=14, label=_("Tenant Phone Number"),  help_text="Format: +249912345678")
+    tenant_phone_number = forms.CharField(max_length=14, label=_("Tenant Phone Number"),  help_text=_("Format: +249912345678"))
     tenant_image = forms.ImageField(label=_("Tenant ID Image"), required=False)
 
     class Meta:
@@ -96,7 +96,7 @@ class RentPropertyForm(forms.ModelForm):
             'hx-target': '#main-content',
             'hx-swap': 'innerHTML',
         }
-        self.helper.add_input(Submit('submit', 'Rent'))
+        self.helper.add_input(Submit('submit', _('Save') if action == "edit" else _('Rent')))
 
         if property:
             self.fields['damage_deposit'].initial = property.price

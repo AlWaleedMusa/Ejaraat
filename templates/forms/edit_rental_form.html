@@ -16,7 +16,6 @@
                     {% csrf_token %}
                     {{ form.media }}
                     {% crispy form %}
-                    {% comment %} <button type="submit" class="btn text-white" style="background-color: #0f3054;">{% trans "Save" %}</button> {% endcomment %}
                     {% comment %} <a onclick="window.history.back();" class="btn text-white" style="background-color: gray;">{% trans "Cancel" %}</a> {% endcomment %}
                 </form>
             </div>
