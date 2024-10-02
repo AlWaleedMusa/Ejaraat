@@ -7,18 +7,14 @@ body[dir="rtl"] {
     text-align: right;
 }
 
-
-
 /* General LTR styles */
 body[dir="ltr"] {
     text-align: left;
 }
 
-
-
 /* For English (lang-en) */
 .lang-en body {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 /* For Arabic (lang-ar) */
@@ -26,8 +22,9 @@ body[dir="ltr"] {
     font-family: "Cairo", sans-serif;
 }
 
-h2, h5{
-    color: #464646;;
+h2,
+h5 {
+    color: #464646;
 }
 
 a {

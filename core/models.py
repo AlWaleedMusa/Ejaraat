@@ -40,17 +40,21 @@ class Property(models.Model):
         verbose_name="Landlord",
     )
     name = models.CharField(max_length=250)
-    property_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default=TYPE_CHOICES[1])
+    property_type = models.CharField(
+        max_length=50, choices=TYPE_CHOICES, default=TYPE_CHOICES[1]
+    )
     country = CountryField(blank_label=_("Select Country"))
     city = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
     price = models.IntegerField()
-    currency = models.CharField(max_length=3, null=True, blank=True, choices=CURRENCY_CHOICES)
+    currency = models.CharField(
+        max_length=3, null=True, blank=True, choices=CURRENCY_CHOICES
+    )
     is_rented = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name} - {self.property_type}"
-    
+
     def get_translated_currency(self):
         currency_map = {
             "USD": _("USD"),
@@ -59,18 +63,17 @@ class Property(models.Model):
             "EGP": _("EGP"),
         }
         return currency_map.get(self.currency, self.currency)
-    
+
     def save(self, *args, **kwargs):
         country_currency_map = {
-            'US': 'USD',
-            'EU': 'EUR',
-            'SD': 'SDG',
-            'EG': 'EGP',
+            "US": "USD",
+            "EU": "EUR",
+            "SD": "SDG",
+            "EG": "EGP",
         }
         if not self.currency:
-            self.currency = country_currency_map.get(self.country, 'USD')
+            self.currency = country_currency_map.get(self.country, "USD")
         super().save(*args, **kwargs)
-
 
 
 class Tenant(models.Model):
@@ -84,7 +87,7 @@ class Tenant(models.Model):
         upload_to="tenants_ID",
         null=True,
         blank=True,
-        help_text="[Passport, National ID]"
+        help_text="[Passport, National ID]",
     )
 
     def __str__(self):
@@ -108,7 +111,9 @@ class RentProperty(models.Model):
     )
 
     # tenant data
-    tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE, related_name="tenant_rentals")
+    tenant = models.ForeignKey(
+        Tenant, on_delete=models.CASCADE, related_name="tenant_rentals"
+    )
 
     # property data
     property = models.ForeignKey(
@@ -117,14 +122,14 @@ class RentProperty(models.Model):
         on_delete=models.CASCADE,
         related_name="property_rentals",
     )
-    payment = models.CharField(choices=PAYMENT_OPTIONS, max_length=10, default=PAYMENT_OPTIONS[2])
+    payment = models.CharField(
+        choices=PAYMENT_OPTIONS, max_length=10, default=PAYMENT_OPTIONS[2]
+    )
     damage_deposit = models.IntegerField(null=True, blank=True)
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(default=date.today() + timedelta(days=30))
 
-    contract = models.ImageField(
-        upload_to="contracts", null=True, blank=True
-    )
+    contract = models.ImageField(upload_to="contracts", null=True, blank=True)
 
     def __str__(self):
         return f"{self.property.name} - Rented to {self.tenant.name}"

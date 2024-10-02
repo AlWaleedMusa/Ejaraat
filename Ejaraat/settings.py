@@ -47,7 +47,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'django.middleware.locale.LocaleMiddleware',  # Enables language switching
+    "django.middleware.locale.LocaleMiddleware",  # Enables language switching
     # third party middlewares
     "allauth.account.middleware.AccountMiddleware",
 ]
@@ -65,7 +65,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'django.template.context_processors.i18n'
+                "django.template.context_processors.i18n",
             ],
         },
     },
@@ -130,9 +130,7 @@ LANGUAGES = [
     ("ar", "Arabic"),
 ]
 
-LOCALE_PATHS = [
-    BASE_DIR / 'locale'
-]
+LOCALE_PATHS = [BASE_DIR / "locale"]
 
 
 TIME_ZONE = "UTC"
@@ -148,8 +146,8 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
 # Media files
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # Default primary key field type
@@ -162,4 +160,4 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"

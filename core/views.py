@@ -3,30 +3,31 @@ from django.contrib.auth.decorators import login_required
 from .models import Property, Tenant, RentProperty
 from django.shortcuts import get_object_or_404
 from .forms import PropertyForm, RentPropertyForm
+
 # from django.utils.translation import gettext as _
 
 
 def landing(request):
-    """
-    """
+    """ """
     return render(request, "core/landing.html")
 
 
 @login_required
 def home(request):
-    """
-    """
-    available_properties = Property.objects.filter(user=request.user ,is_rented=False)
-    rented_properties = Property.objects.filter(user=request.user ,is_rented=True)
-    context = {"available_properties": available_properties, "rented_properties": rented_properties}
+    """ """
+    available_properties = Property.objects.filter(user=request.user, is_rented=False)
+    rented_properties = Property.objects.filter(user=request.user, is_rented=True)
+    context = {
+        "available_properties": available_properties,
+        "rented_properties": rented_properties,
+    }
 
     return render(request, "core/home.html", context)
 
 
 @login_required
 def add_property(request):
-    """
-    """
+    """ """
     if request.method == "POST":
         try:
             form = PropertyForm(request.POST, action="add")
@@ -42,6 +43,7 @@ def add_property(request):
 
     return render(request, "forms/add_property_form.html", {"form": form})
 
+
 def rent_property(request, pk):
     instance = get_object_or_404(Property, id=pk)
 
@@ -51,9 +53,7 @@ def rent_property(request, pk):
             tenant, created = Tenant.objects.get_or_create(
                 name=form.cleaned_data.get("tenant_name"),
                 phone_number=form.cleaned_data.get("tenant_phone_number"),
-                defaults={
-                    'id_image': form.cleaned_data.get("tenant_image")
-                }
+                defaults={"id_image": form.cleaned_data.get("tenant_image")},
             )
             rent_property = form.save(commit=False)
             rent_property.property = instance
@@ -65,14 +65,19 @@ def rent_property(request, pk):
 
     form = RentPropertyForm(property=instance)
 
-    return render(request, "forms/rent_property_form.html", {"form": form, "property": instance})
+    return render(
+        request, "forms/rent_property_form.html", {"form": form, "property": instance}
+    )
+
 
 def edit_rental(request, pk):
     rental = get_object_or_404(RentProperty, id=pk)
     tenant = rental.tenant
 
     if request.method == "POST":
-        form = RentPropertyForm(request.POST, request.FILES, instance=rental, tenant=tenant, action="edit")
+        form = RentPropertyForm(
+            request.POST, request.FILES, instance=rental, tenant=tenant, action="edit"
+        )
         if form.is_valid():
             tenant.name = form.cleaned_data.get("tenant_name")
             tenant.phone_number = form.cleaned_data.get("tenant_phone_number")
@@ -83,30 +88,34 @@ def edit_rental(request, pk):
     else:
         form = RentPropertyForm(instance=rental, tenant=tenant, action="edit")
 
-    return render(request, "forms/edit_rental_form.html", {"form": form, "rental": rental})
+    return render(
+        request, "forms/edit_rental_form.html", {"form": form, "rental": rental}
+    )
 
 
 def all_properties(request):
-    """
-    """
+    """ """
     my_properties = Property.objects.filter(user=request.user)
     context = {"all_properties": my_properties}
-    return render(request, 'includes/all_properties.html', context)
+    return render(request, "includes/all_properties.html", context)
+
 
 def delete_property(request, pk):
-    """
-    """
+    """ """
     instance = get_object_or_404(Property, id=pk)
     instance.delete()
 
     all_properties = Property.objects.filter(user=request.user)
-    return render(request, "includes/all_properties.html", {"all_properties": all_properties})
+    return render(
+        request, "includes/all_properties.html", {"all_properties": all_properties}
+    )
+
 
 def edit_property(request, pk):
     instance = get_object_or_404(Property, id=pk)
 
     if request.method == "POST":
-        form = PropertyForm(request.POST, instance=instance,action="edit")
+        form = PropertyForm(request.POST, instance=instance, action="edit")
         if form.is_valid():
             try:
                 form.save()
@@ -114,9 +123,11 @@ def edit_property(request, pk):
             except Exception as e:
                 form.add_error(None, str(e))
     else:
-        form = PropertyForm(instance=instance,action="edit")
+        form = PropertyForm(instance=instance, action="edit")
 
-    return render(request, "forms/edit_property_form.html", {"form": form, "property": instance})
+    return render(
+        request, "forms/edit_property_form.html", {"form": form, "property": instance}
+    )
 
 
 def view_property(request, pk):

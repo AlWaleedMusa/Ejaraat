@@ -11,7 +11,7 @@ urlpatterns = [
     path("", include("core.urls")),
 ]
 urlpatterns += i18n_patterns(
-    path('set-language/', set_language, name='set_language'),
+    path("set-language/", set_language, name="set_language"),
 )
 
 if settings.DEBUG:

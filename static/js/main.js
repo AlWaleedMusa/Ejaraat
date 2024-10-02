@@ -3,9 +3,7 @@ const links = document.querySelectorAll(".list-group-item");
 
 links.forEach((link) => {
     link.addEventListener("click", () => {
-        document
-            .getElementById("sidebar-wrapper")
-            .classList.toggle("d-block");
+        document.getElementById("sidebar-wrapper").classList.toggle("d-block");
     });
 });
 
