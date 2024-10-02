@@ -45,6 +45,24 @@ def add_property(request):
 def rent_property(request, pk):
     instance = get_object_or_404(Property, id=pk)
 
+    if request.method == "POST":
+        form = RentPropertyForm(request.POST, request.FILES, property=instance)
+        if form.is_valid():
+            tenant, created = Tenant.objects.get_or_create(
+                name=form.cleaned_data.get("tenant_name"),
+                phone_number=form.cleaned_data.get("tenant_phone_number"),
+                defaults={
+                    'id_image': form.cleaned_data.get("tenant_image")
+                }
+            )
+            rent_property = form.save(commit=False)
+            rent_property.property = instance
+            rent_property.tenant = tenant
+            instance.is_rented = True
+            instance.save()
+            rent_property.save()
+            return redirect("all_properties")
+
     form = RentPropertyForm(property=instance)
 
     return render(request, "forms/rent_property_form.html", {"form": form, "property": instance})

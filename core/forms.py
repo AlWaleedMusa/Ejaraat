@@ -4,6 +4,7 @@ from bootstrap_datepicker_plus.widgets import DatePickerInput
 from django.utils.translation import gettext_lazy as _
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Row, Column, Submit, HTML
+from django.urls import reverse_lazy
 
 class PropertyForm(forms.ModelForm):
 
@@ -63,17 +64,21 @@ class PropertyForm(forms.ModelForm):
 
 
 class RentPropertyForm(forms.ModelForm):
+    """
+    """
+    tenant_name = forms.CharField(max_length=100, label=_("Tenant Name"))
+    tenant_phone_number = forms.CharField(max_length=14, label=_("Tenant Phone Number"),  help_text="Format: +249912345678")
+    tenant_image = forms.ImageField(label=_("Tenant ID Image"), required=False)
 
     class Meta:
         model = RentProperty
         exclude = ["property", "tenant"]
         widgets = {
-            "start_date": DatePickerInput(options={"format": "DD/MM/YYYY"}),
-            "end_date": DatePickerInput(options={"format": "DD/MM/YYYY"}),
+            "start_date": forms.DateInput(attrs={'type': 'date'}),
+            "end_date": forms.DateInput(attrs={'type': 'date'}),
         }
         labels = {
             'payment': _("Rent Payment Type"),
-            'down_payment': _("Down Payment"),
             'start_date': _("Start Rent"),
             'end_date': _("End Rent"),
             'contract': _("Contract Image"),
@@ -84,6 +89,29 @@ class RentPropertyForm(forms.ModelForm):
         property = kwargs.pop("property", None)
 
         super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_action = reverse_lazy("rent_property", args=[property.id])
+        self.helper.add_input(Submit('submit', 'Rent'))
 
         if property:
             self.fields['damage_deposit'].initial = property.price
+
+        self.helper.layout = Layout(
+            Row(
+                Column(
+                    'tenant_name',
+                    'tenant_phone_number',
+                    'tenant_image',
+                    'payment',
+                    css_class="col-lg-7",
+                ),
+                Column(
+                    'start_date',
+                    'end_date',
+                    'damage_deposit',
+                    'contract',
+                    css_class="col-lg-5",
+                )
+            )
+        )
+        
