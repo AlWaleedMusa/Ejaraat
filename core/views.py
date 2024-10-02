@@ -29,7 +29,7 @@ def add_property(request):
     """
     if request.method == "POST":
         try:
-            form = PropertyForm(request.POST)
+            form = PropertyForm(request.POST, action="add")
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.user = request.user
@@ -38,7 +38,7 @@ def add_property(request):
         except Exception as e:
             form.add_error(None, str(e))
     else:
-        form = PropertyForm()
+        form = PropertyForm(action="add")
 
     return render(request, "forms/add_property_form.html", {"form": form})
 
@@ -70,7 +70,7 @@ def edit_property(request, pk):
     instance = get_object_or_404(Property, id=pk)
 
     if request.method == "POST":
-        form = PropertyForm(request.POST, instance=instance)
+        form = PropertyForm(request.POST, instance=instance,action="edit")
         if form.is_valid():
             try:
                 form.save()
@@ -78,7 +78,7 @@ def edit_property(request, pk):
             except Exception as e:
                 form.add_error(None, str(e))
     else:
-        form = PropertyForm(instance=instance)
+        form = PropertyForm(instance=instance,action="edit")
 
     return render(request, "forms/edit_property_form.html", {"form": form, "property": instance})
 

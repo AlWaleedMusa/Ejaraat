@@ -27,8 +27,17 @@ class PropertyForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        action = kwargs.pop('action', 'add')
         super().__init__(*args, **kwargs)
+        
         self.helper = FormHelper(self)
+
+        if action == 'edit':
+            self.helper.form_action = reverse_lazy('edit_property', args=[self.instance.id])
+        else:
+            self.helper.form_action = reverse_lazy('add_property')
+
+        self.helper.add_input(Submit('submit', 'Save'))
 
         self.helper.layout = Layout(
             Row(
@@ -46,10 +55,6 @@ class PropertyForm(forms.ModelForm):
                     css_class='col-lg-5'
                 ),
                 css_class="form-row"
-            ),
-            Submit('submit', _('Save'), css_class="btn property-button border-0 d-inline"),
-            HTML(
-                f'<a onclick="window.history.back();" class="btn text-white" style="background-color: gray;">{_("Cancel")}</a>'
             )
         )
 
