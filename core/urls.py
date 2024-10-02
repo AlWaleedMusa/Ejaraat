@@ -7,6 +7,8 @@ urlpatterns = [
     path("add/", views.add_property, name="add_property"),
     
     path("rent_property/<int:pk>/", views.rent_property, name="rent_property"),
+    path("edit_rental/<int:pk>/", views.edit_rental, name="edit_rental"),
+
 
     path("all_properties/", views.all_properties, name="all_properties"),
     path("delete_property/<int:pk>", views.delete_property, name="delete_property"),

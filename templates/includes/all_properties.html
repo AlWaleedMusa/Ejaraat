@@ -37,9 +37,11 @@
                                     <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content">{% trans "Edit" %}</a>
                                   </li>
                                   {% if property.is_rented %}
-                                    <li>
-                                      {% comment %} <a class="dropdown-item" hx-get="{% url "edit_rental" property.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a> {% endcomment %}
-                                    </li>
+                                    {% for rental in property.property_rentals.all %}
+                                      <li>
+                                        <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a>
+                                      </li>
+                                    {% endfor %}
                                   {% endif %}
                                   <li>
                                       <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ property.id }}">{% trans "Delete" %}</a>

@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block content %}
+    <style>
+        .asteriskField {
+            color: red;
+        }
+    </style>
+
+    <div class="col-lg-10">
+        <div class="row">
+            <h2>{% trans "Edit Rental" %}</h2>
+            <div class="pt-2">
+                <form hx-post="{% url "edit_rental" rental.id %}" hx-target="#main-content" hx-swap="innerHTML" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {% crispy form %}
+                    {% comment %} <button type="submit" class="btn text-white" style="background-color: #0f3054;">{% trans "Save" %}</button> {% endcomment %}
+                    {% comment %} <a onclick="window.history.back();" class="btn text-white" style="background-color: gray;">{% trans "Cancel" %}</a> {% endcomment %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
