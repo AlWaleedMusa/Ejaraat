@@ -79,7 +79,7 @@ class Tenant(models.Model):
     """
 
     name = models.CharField(max_length=150)
-    phone_number = models.CharField(max_length=14, help_text="Format: +249912345678")
+    phone_number = models.CharField(max_length=14)
     id_image = models.ImageField(
         upload_to="tenants_ID",
         null=True,
