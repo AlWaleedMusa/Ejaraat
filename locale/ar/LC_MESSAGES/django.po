@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 06:23+0300\n"
+"POT-Creation-Date: 2024-10-03 07:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,95 +19,95 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: core/forms.py:15
+#: core/forms.py:16
 msgid "Property Name"
 msgstr "إسم العقار"
 
-#: core/forms.py:16
+#: core/forms.py:17
 msgid "Property Type"
 msgstr "نوع العقار"
 
-#: core/forms.py:17
+#: core/forms.py:18
 msgid "Property Address"
 msgstr "عنوان العقار"
 
-#: core/forms.py:18
+#: core/forms.py:19
 msgid "Price/Month"
 msgstr "السعر/شهرياً"
 
-#: core/forms.py:19
+#: core/forms.py:20
 msgid "Country"
 msgstr "البلد"
 
-#: core/forms.py:20
+#: core/forms.py:21
 msgid "City"
 msgstr "المدينه"
 
-#: core/forms.py:21
+#: core/forms.py:22
 msgid "Currency"
 msgstr "العُمله"
 
-#: core/forms.py:24
+#: core/forms.py:25
 msgid "Enter property name"
 msgstr "إسم العقار"
 
-#: core/forms.py:25
+#: core/forms.py:27
 msgid "Enter property address"
 msgstr "عنوان العقار"
 
-#: core/forms.py:26
+#: core/forms.py:30
 msgid "Enter price per month"
 msgstr "الإيجار الشهري"
 
-#: core/forms.py:27
+#: core/forms.py:32
 msgid "Enter city"
 msgstr "المدينه"
 
-#: core/forms.py:40 core/forms.py:99
+#: core/forms.py:50 core/forms.py:112
 msgid "Save"
 msgstr "حفظ"
 
-#: core/forms.py:40
+#: core/forms.py:50
 msgid "Add"
 msgstr ""
 
-#: core/forms.py:68
+#: core/forms.py:72
 msgid "Tenant Name"
 msgstr "إسم المستأجر"
 
-#: core/forms.py:69
+#: core/forms.py:75
 msgid "Tenant Phone Number"
 msgstr "رقم الهاتف"
 
-#: core/forms.py:69
+#: core/forms.py:76
 msgid "Format: +249912345678"
 msgstr "الصيغه: +249912345678"
 
-#: core/forms.py:70
+#: core/forms.py:78
 msgid "Tenant ID Image"
 msgstr "صورة الهوية"
 
-#: core/forms.py:80
+#: core/forms.py:88
 msgid "Rent Payment Type"
 msgstr "دفعات الإيجار"
 
-#: core/forms.py:81
+#: core/forms.py:89
 msgid "Start Rent"
 msgstr "تاريخ بدء الإيجار"
 
-#: core/forms.py:82
+#: core/forms.py:90
 msgid "End Rent"
 msgstr "تاريخ انتهاء الإيجار"
 
-#: core/forms.py:83
+#: core/forms.py:91
 msgid "Contract Image"
 msgstr "صورة عقد الإيجار"
 
-#: core/forms.py:84
+#: core/forms.py:92
 msgid "Damage Deposit"
 msgstr "رسوم تأمين"
 
-#: core/forms.py:99 templates/includes/all_properties.html:27
+#: core/forms.py:112 templates/includes/all_properties.html:27
 msgid "Rent"
 msgstr "أجّر"
 
@@ -155,39 +155,39 @@ msgstr "جنيه سوداني"
 msgid "Egyptian Pound"
 msgstr "جنيه مصري"
 
-#: core/models.py:44
+#: core/models.py:46
 msgid "Select Country"
 msgstr "إختر البلد"
 
-#: core/models.py:56
+#: core/models.py:60
 msgid "USD"
 msgstr "دولار"
 
-#: core/models.py:57
+#: core/models.py:61
 msgid "EUR"
 msgstr "يورو"
 
-#: core/models.py:58
+#: core/models.py:62
 msgid "SDG"
 msgstr "جنيه"
 
-#: core/models.py:59
+#: core/models.py:63
 msgid "EGP"
 msgstr "جنيه"
 
-#: core/models.py:104
+#: core/models.py:107
 msgid "Daily"
 msgstr "يومي"
 
-#: core/models.py:105
+#: core/models.py:108
 msgid "Weekly"
 msgstr "إسبوعي"
 
-#: core/models.py:106
+#: core/models.py:109
 msgid "Monthly"
 msgstr "شهري"
 
-#: core/models.py:107
+#: core/models.py:110
 msgid "Yearly"
 msgstr "سنوي"
 
@@ -1517,12 +1517,12 @@ msgstr ""
 
 #: templates/account/confirm_email_verification_code.html:27
 #: templates/account/email_confirm.html:24
-#: templates/account/reauthenticate.html:18
+#: templates/account/reauthenticate.html:18 templates/core/home.html:115
 msgid "Confirm"
-msgstr ""
+msgstr "تأكيد"
 
 #: templates/account/confirm_email_verification_code.html:33
-#: templates/includes/all_properties.html:67
+#: templates/core/home.html:114 templates/includes/all_properties.html:67
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -2082,14 +2082,90 @@ msgstr "العقارات الشاغرة"
 msgid "Occupied Properties"
 msgstr "العقارات المشغولة"
 
-#: templates/core/home.html:73
-msgid "Next Payment"
-msgstr "الإيجار القادم"
+#: templates/core/home.html:76
+msgid "Upcoming Payments"
+msgstr "دفعات قادمة"
 
-#: templates/core/home.html:74
-#, fuzzy
-msgid "25 Sep"
-msgstr "25 سبتمبر"
+#: templates/core/home.html:78
+msgid "Upcoming payments"
+msgstr "دفعات إيجار قادمة خلال 7 ايام او اقل"
+
+#: templates/core/home.html:82 templates/core/home.html:141
+msgid "Property"
+msgstr "العقار"
+
+#: templates/core/home.html:83
+msgid "Due in"
+msgstr "مستحق خلال"
+
+#: templates/core/home.html:84
+msgid "Amount"
+msgstr "القيمة"
+
+#: templates/core/home.html:85
+msgid "Status"
+msgstr "الحالة"
+
+#: templates/core/home.html:93 templates/core/home.html:150
+msgid "Day"
+msgstr "يوم"
+
+#: templates/core/home.html:93 templates/core/home.html:150
+#: templates/includes/view_property.html:81
+msgid "Days"
+msgstr "أيام"
+
+#: templates/core/home.html:97
+msgid "Paid"
+msgstr "مدفوع"
+
+#: templates/core/home.html:99
+msgid "Unpaid"
+msgstr "غير مدفوع"
+
+#: templates/core/home.html:107
+msgid "Confirm Payment"
+msgstr "تأكيد الدفع"
+
+#: templates/core/home.html:111
+msgid "Confirm this action ?"
+msgstr "تأكيد العملية"
+
+#: templates/core/home.html:125
+msgid "No payments"
+msgstr "لا توجد دفعات"
+
+#: templates/core/home.html:135
+msgid "Contracts to expire"
+msgstr "عقود علي إنتهاء"
+
+#: templates/core/home.html:137
+msgid "Contracts expiring in 3 days or less"
+msgstr "عقود تنتهي خلال 3 أيام او اقل"
+
+#: templates/core/home.html:142
+msgid "Expiring in"
+msgstr "إنتهاء بعد"
+
+#: templates/core/home.html:143
+msgid "Options"
+msgstr "خيارات"
+
+#: templates/core/home.html:156
+msgid "view"
+msgstr "عرض"
+
+#: templates/core/home.html:159
+msgid "Contact Tenant"
+msgstr "تواصل مع المستأجر"
+
+#: templates/core/home.html:162
+msgid "Extend Contract"
+msgstr "تمديد العقد"
+
+#: templates/core/home.html:172
+msgid "No ending contracts"
+msgstr "لا توجد عقود علي إنتهاء"
 
 #: templates/forms/add_property_form.html:12
 msgid "Add Property"
@@ -2180,12 +2256,8 @@ msgid "Next payment"
 msgstr "الإيجار القادم"
 
 #: templates/includes/view_property.html:81
-msgid "After"
-msgstr "بعد"
-
-#: templates/includes/view_property.html:81
-msgid "Days"
-msgstr "أيام"
+msgid "in"
+msgstr "خلال"
 
 #: templates/includes/view_property.html:83
 msgid "No more payments"
@@ -2224,12 +2296,10 @@ msgid "Phone Number"
 msgstr "رقم الهاتف"
 
 #: templates/includes/view_property.html:136
-msgid "Call"
-msgstr "إتصل"
+msgid "Phone Call"
+msgstr "مكالمة هاتفية"
 
 #: templates/includes/view_property.html:137
 msgid "Text Message"
 msgstr "رساله نصيه"
 
-#~ msgid "Edit"
-#~ msgstr "تعديل"
