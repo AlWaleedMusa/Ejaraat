@@ -56,20 +56,35 @@ def rent_property(request, pk):
     if request.method == "POST":
         form = RentPropertyForm(request.POST, request.FILES, property=instance)
         if form.is_valid():
-            tenant, created = Tenant.objects.get_or_create(
-                name=form.cleaned_data.get("tenant_name"),
-                phone_number=form.cleaned_data.get("tenant_phone_number"),
-                defaults={"id_image": form.cleaned_data.get("tenant_image")},
-            )
-            rent_property = form.save(commit=False)
-            rent_property.property = instance
-            rent_property.tenant = tenant
-            instance.is_rented = True
-            instance.save()
-            rent_property.save()
-            return redirect("all_properties")
-
-    form = RentPropertyForm(property=instance)
+            name = form.cleaned_data.get("tenant_name")
+            phone_number = form.cleaned_data.get("tenant_phone_number")
+            try:
+                if phone_number.startswith("+"):
+                    tenant, created = Tenant.objects.get_or_create(
+                        name=name.title(),
+                        phone_number=phone_number,
+                        defaults={"id_image": form.cleaned_data.get("tenant_image")},
+                    )
+                    rent_property = form.save(commit=False)
+                    rent_property.property = instance
+                    rent_property.tenant = tenant
+                    instance.is_rented = True
+                    instance.save()
+                    rent_property.save()
+                    return redirect("all_properties")
+                else:
+                    raise ValueError(
+                        "Phone number must start with '+', Format: +249912345678"
+                    )
+            except Exception as e:
+                form.add_error(None, str(e))
+                return render(
+                    request,
+                    "forms/rent_property_form.html",
+                    {"form": form, "property": instance},
+                )
+    else:
+        form = RentPropertyForm(property=instance)
 
     return render(
         request, "forms/rent_property_form.html", {"form": form, "property": instance}
@@ -85,12 +100,28 @@ def edit_rental(request, pk):
             request.POST, request.FILES, instance=rental, tenant=tenant, action="edit"
         )
         if form.is_valid():
-            tenant.name = form.cleaned_data.get("tenant_name")
-            tenant.phone_number = form.cleaned_data.get("tenant_phone_number")
-            tenant.id_image = form.cleaned_data.get("tenant_image")
-            tenant.save()
-            form.save()
-            return redirect("all_properties")
+            name = form.cleaned_data.get("tenant_name")
+            phone_number = form.cleaned_data.get("tenant_phone_number")
+
+            try:
+                if phone_number.startswith("+"):
+                    tenant.name = name
+                    tenant.phone_number = phone_number
+                    tenant.id_image = form.cleaned_data.get("tenant_image")
+                    tenant.save()
+                    form.save()
+                    return redirect("all_properties")
+                else:
+                    raise ValueError(
+                        "Phone number must start with '+', Format: +249912345678"
+                    )
+            except Exception as e:
+                form.add_error(None, str(e))
+                return render(
+                    request,
+                    "forms/edit_rental_form.html",
+                    {"form": form, "rental": rental},
+                )
     else:
         form = RentPropertyForm(instance=rental, tenant=tenant, action="edit")
 
