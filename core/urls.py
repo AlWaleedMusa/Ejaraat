@@ -11,4 +11,5 @@ urlpatterns = [
     path("delete_property/<int:pk>", views.delete_property, name="delete_property"),
     path("edit_property/<int:pk>", views.edit_property, name="edit_property"),
     path("view_property/<int:pk>", views.view_property, name="view_property"),
+    path("mark_as_paid/<int:pk>", views.mark_as_paid, name="mark_as_paid")
 ]

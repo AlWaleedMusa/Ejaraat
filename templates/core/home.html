@@ -32,7 +32,7 @@
             </div>
             {% comment %} end of sidebar {% endcomment %}
         </div>
-        <div class="content col-lg-10 px-2" style="height: 100vh">
+        <div class="content col-lg-10 px-2">
             <div class="row">
                 <div class="p-3 pb-0 d-flex justify-content-end">
                     <div class="d-flex align-items-center gap-3">
@@ -49,41 +49,128 @@
                 <div class="mt-lg-3 row row-cols-2 row-cols-md-3">
                     <div class="col-lg-3 p-3">
                         <a href="#" style="text-decoration: none">
-                            <div class="card card-overview p-3 border-0" style="height: 130px">
+                            <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px">
                                 <i class="fas fa-building icon-lg"></i>
-                                <h5 class="card-title">{% trans "Available Properties" %}</h5>
+                                <h5>{% trans "Available Properties" %}</h5>
                                 <h3 class="card-value pt-3">{{ available_properties.count }}</h3>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-3 p-3">
-                        <div class="card card-overview p-3 border-0" style="height: 130px;">
+                        <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px;">
                             <i class="fas fa-building icon-lg"></i>
-                            <h5 class="card-title">{% trans "Occupied Properties" %}</h5>
+                            <h5>{% trans "Occupied Properties" %}</h5>
                             <h3 class="card-value pt-3">{{ rented_properties.count }}</h3>
                         </div>
                     </div>
-                    <div class="col p-3">
-                        <div class="card card-overview p-3 border-0 text-white" style="height: 130px; background-color: #0f3054">
-                            <i class="fas fa-building icon-lg"></i>
-                            <h5 class="card-title">{% trans "Next Payment" %}</h5>
-                            <h3 class="card-value text-white pt-3">{% trans "25 Sep" %}</h3>
+                </div>
+                <div class="mt-lg-3 row row-cols-1 row-cols-md-2 d-flex">
+                    <div class="col d-flex">
+                        <div class="card card-overview shadow-sm border-0 flex-fill">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5>{% trans "Upcoming Payments" %}</h5>
+                                    {% if upcoming_payments %}
+                                        <p class="text-muted" style="font-size: 14px;">{% trans "Upcoming payments" %}</p>
+                                        <table class="table table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">{% trans "Property" %}</th>
+                                                    <th class="d-lg-block d-none" scope="col">{% trans "Due in" %}</th>
+                                                    <th scope="col">{% trans "Amount" %}</th>
+                                                    <th scope="col">{% trans "Status" %}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for rental in upcoming_payments %}
+                                                    {% if rental.get_next_payment %}
+                                                        <tr>
+                                                            <td><a hx-get="{% url "view_property" rental.property.id %}" hx-target="#main-content">{{ rental.property.name }}</a></td>
+                                                            <td class="d-lg-block d-none">{{ rental.get_next_payment }} {% if rental.get_next_payment == 1%} {% trans "Day" %} {% else %} {% trans "Days" %}{% endif %}</td>
+                                                            <td class="text-success">{{ rental.property.price|format_numbers }}</td>
+                                                            <td id="paid-btn-container{{ rental.property.id }}">
+                                                                {% if rental.paid %}
+                                                                <a class="property-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Paid" %}</a>
+                                                                {% else %}
+                                                                <a class="btn btn-sm btn-danger rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Unpaid" %}</a>
+                                                                {% endif %}
+                                                            </td>
+                                                        </tr>
+                                                        <div class="modal fade" id="confirmPaymentModal{{ rental.property.id }}" tabindex="-1" aria-labelledby="confirmPaymentModalLabel{{ rental.property.id }}" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                <h5 class="modal-title" id="confirmPaymentModalLabel{{ rental.property.id }}">{% trans "Confirm Payment" %}</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    {% trans "Confirm this action ?" %}
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                                                                <a hx-get="{% url "mark_as_paid" rental.id %}" hx-target="#paid-btn-container{{ rental.property.id }}" class="property-button btn" data-bs-dismiss="modal">{% trans "Confirm" %}</a>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    {% else %}
+                                        <p class="text-muted" style="font-size: 14px;">{% trans "No payments" %}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    {% comment %} <div class="col p-3">
-                        <div class="card card-overview p-3 border-0" style="height: 130px">
-                            <i class="fas fa-building icon-lg"></i>
-                            <h5 class="card-title">Total Properties</h5>
-                            <h3 class="card-value pt-3">25</h3>
-                        </div>
-                    </div> {% endcomment %}
-                    {% comment %} <div class="col-12 col-lg-6 p-3">
-                        <div class="card card-overview p-3 bg-primary border-0" style="height: 230px; width: 100%;">
-                            <i class="fas fa-building icon-lg"></i>
-                            <h5 class="card-title">Total Properties</h5>
-                            <p class="card-value">25</p>
-                        </div>
-                    </div> {% endcomment %}
+                    <div class="col d-flex mt-lg-0 mt-3">
+                        <div class="card card-overview shadow-sm border-0 flex-fill">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5>{% trans "Contracts to expire" %}</h5>
+                                    {% if expiring_contracts %}
+                                        <p class="text-muted" style="font-size: 14px;">{% trans "Contracts expiring in 3 days or less" %}</p>
+                                        <table class="table table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">{% trans "Property" %}</th>
+                                                    <th scope="col">{% trans "Expiring in" %}</th>
+                                                    <th scope="col">{% trans "Options" %}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for property in expiring_contracts %}
+                                                    <tr>
+                                                        <td>{{ property.property.name }}</td>
+                                                        <td class="text-danger">{{ property.expiring_contracts.1 }} {% if property.expiring_contracts.1 == 1 %} {% trans "Day" %} {% else %} {% trans "Days" %} {% endif %}</td>
+                                                        <td class="text-center">
+                                                            <div class="dropdown">
+                                                                <h3 class="dropdown p-0 m-0" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer"><i class="bi bi-three-dots"></i></h3>
+                                                                <ul class="dropdown-menu">
+                                                                    <li>
+                                                                        <a hx-get="{% url "view_property" property.property.id %}" hx-target="#main-content" class="dropdown-item">{% trans "View" %}</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="dropdown-item">{% trans "Contact Tenant" %}</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="dropdown-item">{% trans "Extend Contract" %}</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    {% else %}
+                                        <p class="text-muted" style="font-size: 14px;">{% trans "No ending contracts" %}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        <div>
+                    </div>
                 </div>
             </div>
         </div>

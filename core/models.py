@@ -128,11 +128,18 @@ class RentProperty(models.Model):
     damage_deposit = models.IntegerField(null=True, blank=True)
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(default=date.today() + timedelta(days=30))
-
+    paid = models.BooleanField(default=False)
     contract = models.ImageField(upload_to="contracts", null=True, blank=True)
 
     def __str__(self):
         return f"{self.property.name} - Rented to {self.tenant.name}"
+
+    def expiring_contracts(self):
+        end_date = self.end_date
+        today = date.today()
+
+        if today >= end_date - timedelta(days=3):
+            return True, (end_date - today).days
 
     def get_next_payment(self):
         interval_days = int(self.payment)
@@ -140,16 +147,11 @@ class RentProperty(models.Model):
         current_payment_date = self.start_date
         end_date = self.end_date
 
-        if today >= end_date - timedelta(days=3):
-            return None  # rent ending in 3 days or less check with tenant
-
         while current_payment_date <= today and current_payment_date < end_date:
             if interval_days == 30:
                 current_payment_date += relativedelta(months=1)  # Move by 1 month
             else:
-                current_payment_date += timedelta(
-                    days=interval_days
-                )  # For other intervals
+                current_payment_date += timedelta(days=interval_days)
 
         if current_payment_date >= end_date:
             return (
@@ -170,7 +172,6 @@ class RentProperty(models.Model):
         # Use relativedelta for better handling of monthly or yearly intervals
         while current_date <= end_date:
             expected_income += price
-            print(expected_income)
 
             # Check if it's a monthly interval, for example 30 days
             if interval_days == 30:
@@ -178,4 +179,4 @@ class RentProperty(models.Model):
             else:
                 current_date += timedelta(days=interval_days)  # For other intervals
 
-        return format_number(expected_income, locale="en_US")
+        return format_number(expected_income - price, locale="en_US")

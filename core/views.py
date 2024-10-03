@@ -3,8 +3,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Property, Tenant, RentProperty
 from django.shortcuts import get_object_or_404
 from .forms import PropertyForm, RentPropertyForm
-
-# from django.utils.translation import gettext as _
+from django.http import HttpResponse
+from django.utils.translation import gettext as _
+from .utils import *
 
 
 def landing(request):
@@ -17,9 +18,14 @@ def home(request):
     """ """
     available_properties = Property.objects.filter(user=request.user, is_rented=False)
     rented_properties = Property.objects.filter(user=request.user, is_rented=True)
+    expiring_contracts = get_expiring_contracts(rented_properties)
+    upcoming_payments = get_upcoming_payments(rented_properties)
+
     context = {
         "available_properties": available_properties,
         "rented_properties": rented_properties,
+        "expiring_contracts": expiring_contracts,
+        "upcoming_payments": upcoming_payments,
     }
 
     return render(request, "core/home.html", context)
@@ -139,3 +145,20 @@ def view_property(request, pk):
     context["property"] = property
 
     return render(request, "includes/view_property.html", context)
+
+
+def mark_as_paid(request, pk):
+    instance = get_object_or_404(RentProperty, id=pk)
+
+    if instance.paid:
+        instance.paid = False
+        instance.save()
+        return HttpResponse(
+            f'<a class="btn btn-danger btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{instance.property.id }">Unpaid</a>'
+        )
+    else:
+        instance.paid = True
+        instance.save()
+        return HttpResponse(
+            f'<a class="property-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{instance.property.id }">Paid</a>'
+        )
