@@ -14,7 +14,7 @@
             {% include "includes/nav.html" %}
         </div>
         {% comment %} end of navbar mobile {% endcomment %}
-        <div class="col-lg-2 col">
+        <div class="col-lg-2 col mt-5">
             {% comment %} Sidebar {% endcomment %}
             <div id="sidebar-wrapper">
                 <div class="sidebar-heading d-none d-lg-block p-4">
@@ -149,7 +149,7 @@
                                                                 <h3 class="dropdown p-0 m-0" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer"><i class="bi bi-three-dots"></i></h3>
                                                                 <ul class="dropdown-menu">
                                                                     <li>
-                                                                        <a hx-get="{% url "view_property" property.property.id %}" hx-target="#main-content" class="dropdown-item">{% trans "View" %}</a>
+                                                                        <a hx-get="{% url "view_property" property.property.id %}" hx-target="#main-content" class="dropdown-item">{% trans "view" %}</a>
                                                                     </li>
                                                                     <li>
                                                                         <a class="dropdown-item">{% trans "Contact Tenant" %}</a>
