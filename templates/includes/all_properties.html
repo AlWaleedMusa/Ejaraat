@@ -6,10 +6,10 @@
         <h2 class="px-1">{% trans "My Properties" %}</h2>
         <a hx-get="{% url "add_property" %}" hx-target="#main-content" class="btn align-self-center"><i class="bi bi-plus-circle-fill fs-3 align-self-center d-flex" style="color: #28a745"></i></a>
     </div>
-    <div class="row row-cols-1 row-cols-md-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         {% for property in all_properties %}
           <div class="col p-3">
-            <div class="card property-card position-relative">
+            <div class="card border-0 shadow-sm property-card position-relative">
                 <!-- Ribbon -->
                 {% if not property.is_rented %}
                     <div class="{% if LANGUAGE_CODE == 'ar' %}property-status-ribbon-rtl{% else %}property-status-ribbon-ltr{% endif %} ribbon-available">
@@ -19,7 +19,7 @@
                 <div class="card-body property-details">
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="property-location"><i class="bi bi-geo-alt-fill pe-1"></i>{{ property.get_country_display }}, {{ property.city }}</p>
-                    <p class="property-price text-success">{{ property.price|format_numbers }} {{ property.get_translated_currency }}/{% trans "month" %}</p>
+                    <h5 class="text-success py-2">{{ property.price|format_numbers }} {{ property.get_translated_currency }}/{% trans "month" %}</h5>
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             {% if not property.is_rented %}
@@ -69,7 +69,7 @@
                 </div>
               </div>
             </div>
-          </div>
+        </div>
         {% endfor %}
     </div>
 </div>
