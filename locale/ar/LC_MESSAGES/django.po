@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 07:06+0300\n"
+"POT-Creation-Date: 2024-10-04 13:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,82 +32,78 @@ msgid "Property Address"
 msgstr "عنوان العقار"
 
 #: core/forms.py:19
-msgid "Price/Month"
-msgstr "السعر/شهرياً"
-
-#: core/forms.py:20
 msgid "Country"
 msgstr "البلد"
 
-#: core/forms.py:21
+#: core/forms.py:20
 msgid "City"
 msgstr "المدينه"
 
-#: core/forms.py:22
+#: core/forms.py:21
 msgid "Currency"
 msgstr "العُمله"
 
-#: core/forms.py:25
+#: core/forms.py:24
 msgid "Enter property name"
 msgstr "إسم العقار"
 
-#: core/forms.py:27
+#: core/forms.py:26
 msgid "Enter property address"
 msgstr "عنوان العقار"
 
-#: core/forms.py:30
-msgid "Enter price per month"
-msgstr "الإيجار الشهري"
-
-#: core/forms.py:32
+#: core/forms.py:28
 msgid "Enter city"
 msgstr "المدينه"
 
-#: core/forms.py:50 core/forms.py:112
+#: core/forms.py:46 core/forms.py:109
 msgid "Save"
 msgstr "حفظ"
 
-#: core/forms.py:50
+#: core/forms.py:46
 msgid "Add"
 msgstr ""
 
-#: core/forms.py:72
+#: core/forms.py:68
 msgid "Tenant Name"
 msgstr "إسم المستأجر"
 
-#: core/forms.py:75
+#: core/forms.py:71
 msgid "Tenant Phone Number"
 msgstr "رقم الهاتف"
 
-#: core/forms.py:76
+#: core/forms.py:72
 msgid "Format: +249912345678"
 msgstr "الصيغه: +249912345678"
 
-#: core/forms.py:78
+#: core/forms.py:74
 msgid "Tenant ID Image"
 msgstr "صورة الهوية"
 
-#: core/forms.py:88
+#: core/forms.py:84
 msgid "Rent Payment Type"
 msgstr "دفعات الإيجار"
 
-#: core/forms.py:89
+#: core/forms.py:85
+msgid "Price"
+msgstr "السعر"
+
+#: core/forms.py:86
 msgid "Start Rent"
 msgstr "تاريخ بدء الإيجار"
 
-#: core/forms.py:90
+#: core/forms.py:87
 msgid "End Rent"
 msgstr "تاريخ انتهاء الإيجار"
 
-#: core/forms.py:91
+#: core/forms.py:88
 msgid "Contract Image"
 msgstr "صورة عقد الإيجار"
 
-#: core/forms.py:92
+#: core/forms.py:89
 msgid "Damage Deposit"
 msgstr "رسوم تأمين"
 
-#: core/forms.py:112 templates/includes/all_properties.html:27
+#: core/forms.py:109 templates/includes/all_properties.html:29
 msgid "Rent"
 msgstr "أجّر"
 
@@ -159,37 +155,57 @@ msgstr "جنيه مصري"
 msgid "Select Country"
 msgstr "إختر البلد"
 
-#: core/models.py:60
+#: core/models.py:59
 msgid "USD"
 msgstr "دولار"
 
-#: core/models.py:61
+#: core/models.py:60
 msgid "EUR"
 msgstr "يورو"
 
-#: core/models.py:62
+#: core/models.py:61
 msgid "SDG"
 msgstr "جنيه"
 
-#: core/models.py:63
+#: core/models.py:62
 msgid "EGP"
 msgstr "جنيه"
 
-#: core/models.py:107
+#: core/models.py:106
 msgid "Daily"
 msgstr "يومي"
 
-#: core/models.py:108
+#: core/models.py:107
 msgid "Weekly"
 msgstr "إسبوعي"
 
-#: core/models.py:109
+#: core/models.py:108
 msgid "Monthly"
 msgstr "شهري"
 
-#: core/models.py:110
+#: core/models.py:109
 msgid "Yearly"
 msgstr "سنوي"
+
+#: core/models.py:127
+msgid "Format: 12500"
+msgstr "الصيغه: 12500"
+
+#: core/models.py:142
+msgid "week"
+msgstr "اسبوعياً"
+
+#: core/models.py:144
+msgid "month"
+msgstr "شهرياً"
+
+#: core/models.py:146
+msgid "year"
+msgstr "سنوياً"
+
+#: core/models.py:148
+msgid "day"
+msgstr "يومياً"
 
 #: env/lib/python3.10/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"
@@ -814,8 +830,8 @@ msgid "Order"
 msgstr ""
 
 #: env/lib/python3.10/site-packages/django/forms/formsets.py:499
-#: templates/includes/all_properties.html:47
-#: templates/includes/all_properties.html:68
+#: templates/includes/all_properties.html:49
+#: templates/includes/all_properties.html:70
 msgid "Delete"
 msgstr "حذف"
 
@@ -1522,7 +1538,7 @@ msgid "Confirm"
 msgstr "تأكيد"
 
 #: templates/account/confirm_email_verification_code.html:33
-#: templates/core/home.html:114 templates/includes/all_properties.html:67
+#: templates/core/home.html:114 templates/includes/all_properties.html:69
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -2070,7 +2086,7 @@ msgstr "الإعدادات"
 msgid "Sign out"
 msgstr "تسجيل الخروج"
 
-#: templates/core/home.html:51 templates/includes/view_property.html:32
+#: templates/core/home.html:51 templates/includes/view_property.html:34
 msgid "Overview"
 msgstr "المُلخص"
 
@@ -2111,7 +2127,7 @@ msgid "Day"
 msgstr "يوم"
 
 #: templates/core/home.html:93 templates/core/home.html:150
-#: templates/includes/view_property.html:81
+#: templates/includes/view_property.html:83
 msgid "Days"
 msgstr "أيام"
 
@@ -2164,7 +2180,9 @@ msgid "Extend Contract"
 msgstr "تمديد العقد"
 
 #: templates/core/home.html:172
-msgid "No ending contracts"
+#, fuzzy
+#| msgid "No ending contracts"
+msgid "No expiring contracts"
 msgstr "لا توجد عقود علي إنتهاء"
 
 #: templates/forms/add_property_form.html:12
@@ -2172,12 +2190,12 @@ msgid "Add Property"
 msgstr "إضافة عقار"
 
 #: templates/forms/edit_property_form.html:12
-#: templates/includes/all_properties.html:37
+#: templates/includes/all_properties.html:39
 msgid "Edit Property"
 msgstr "تعديل العقار"
 
 #: templates/forms/edit_rental_form.html:13
-#: templates/includes/all_properties.html:42
+#: templates/includes/all_properties.html:44
 msgid "Edit Rental"
 msgstr "تعديل الإيجار"
 
@@ -2193,21 +2211,16 @@ msgstr "عقاراتي"
 msgid "Available"
 msgstr "متوفر"
 
-#: templates/includes/all_properties.html:22
-#: templates/includes/view_property.html:24
-msgid "month"
-msgstr "شهرياً"
-
-#: templates/includes/all_properties.html:26
-#: templates/includes/all_properties.html:29
+#: templates/includes/all_properties.html:28
+#: templates/includes/all_properties.html:31
 msgid "View Details"
 msgstr "التفاصيل"
 
-#: templates/includes/all_properties.html:60
+#: templates/includes/all_properties.html:62
 msgid "Confirm Delete"
 msgstr "تأكيد الحذف"
 
-#: templates/includes/all_properties.html:64
+#: templates/includes/all_properties.html:66
 msgid "Are you sure you wish to delete this property?"
 msgstr "هل انت متاكد من حذف هذا العقار ؟"
 
@@ -2219,87 +2232,86 @@ msgstr ""
 msgid "Arabic"
 msgstr ""
 
-#: templates/includes/view_property.html:37
+#: templates/includes/view_property.html:39
 msgid "Tenant Info"
 msgstr "تفاصيل المستأجر"
 
-#: templates/includes/view_property.html:42
-#: templates/includes/view_property.html:48
-#: templates/includes/view_property.html:147
+#: templates/includes/view_property.html:44
+#: templates/includes/view_property.html:50
+#: templates/includes/view_property.html:149
 msgid "Rental History"
 msgstr "تاريخ الإيجارات"
 
-#: templates/includes/view_property.html:57
+#: templates/includes/view_property.html:59
 msgid "Property Overview"
 msgstr "ملخص العقار"
 
-#: templates/includes/view_property.html:64
+#: templates/includes/view_property.html:66
 msgid "Rent start date"
 msgstr "تاريخ بدء الإيجار"
 
-#: templates/includes/view_property.html:67
+#: templates/includes/view_property.html:69
 msgid "Rent end date"
 msgstr "تاريخ إنتهاء الإيجار"
 
-#: templates/includes/view_property.html:70
+#: templates/includes/view_property.html:72
 msgid "Damage deposit"
 msgstr "تأمين"
 
-#: templates/includes/view_property.html:74
-#: templates/includes/view_property.html:95
-#: templates/includes/view_property.html:126
+#: templates/includes/view_property.html:76
+#: templates/includes/view_property.html:97
+#: templates/includes/view_property.html:128
 msgid "N/A"
 msgstr "لا يوجد"
 
-#: templates/includes/view_property.html:79
+#: templates/includes/view_property.html:81
 msgid "Next payment"
 msgstr "الإيجار القادم"
 
-#: templates/includes/view_property.html:81
+#: templates/includes/view_property.html:83
 msgid "in"
 msgstr "خلال"
 
-#: templates/includes/view_property.html:83
+#: templates/includes/view_property.html:85
 msgid "No more payments"
 msgstr "لا توجد مزيد من الدفعات"
 
-#: templates/includes/view_property.html:88
+#: templates/includes/view_property.html:90
 msgid "Expected income"
 msgstr "الدخل المتوقع"
 
-#: templates/includes/view_property.html:91
+#: templates/includes/view_property.html:93
 msgid "Contract image"
 msgstr "صورة عقد الإيجار"
 
-#: templates/includes/view_property.html:93
+#: templates/includes/view_property.html:95
 msgid "View contract"
 msgstr "عرض"
 
-#: templates/includes/view_property.html:106
+#: templates/includes/view_property.html:108
 msgid "Current Tenant"
 msgstr "المستأجر الحالي"
 
-#: templates/includes/view_property.html:115
+#: templates/includes/view_property.html:117
 msgid "Name"
 msgstr "الإسم"
 
-#: templates/includes/view_property.html:122
+#: templates/includes/view_property.html:124
 msgid "ID image"
 msgstr "صورة الهوية"
 
-#: templates/includes/view_property.html:124
+#: templates/includes/view_property.html:126
 msgid "View ID Image"
 msgstr "عرض"
 
-#: templates/includes/view_property.html:134
+#: templates/includes/view_property.html:136
 msgid "Phone Number"
 msgstr "رقم الهاتف"
 
-#: templates/includes/view_property.html:136
+#: templates/includes/view_property.html:138
 msgid "Phone Call"
 msgstr "مكالمة هاتفية"
 
-#: templates/includes/view_property.html:137
+#: templates/includes/view_property.html:139
 msgid "Text Message"
 msgstr "رساله نصيه"
-
