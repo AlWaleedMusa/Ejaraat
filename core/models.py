@@ -124,7 +124,7 @@ class RentProperty(models.Model):
     payment = models.CharField(
         choices=PAYMENT_OPTIONS, max_length=10, default=PAYMENT_OPTIONS[2]
     )
-    price = models.IntegerField()
+    price = models.IntegerField(help_text=_("Format: 12500"))
     damage_deposit = models.IntegerField(null=True, blank=True)
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(default=date.today() + timedelta(days=30))
