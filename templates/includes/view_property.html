@@ -18,7 +18,20 @@
 <div class="property-details-container">
     <!-- Property Details -->
     <div>
-        <h2>{{ property.name }} - {{ property.get_property_type_display }}</h2>
+        {% for rental in property.property_rentals.all %}
+        <div class="d-flex justify-content-between">
+            <h2>{{ property.name }} - {{ property.get_property_type_display }}</h2>
+            <i class="dropdown bi bi-three-dots fs-3" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a>
+                </li>
+                <li>
+                    <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#emptyPropertyModal{{ property.id }}">{% trans "Empty" %}</a>
+                </li>
+            </ul>
+        </div>
+        {% endfor %}
         <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }}<br> <span class="ms-4">{{ property.address }}</span></br>
         {% for rental in property.property_rentals.all %}
             <h4 class="text-success">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h4>
@@ -54,95 +67,94 @@
         
         <div class="tab-content mt-3" id="propertyDetailsTabContent">
         <!-- Overview Tab -->
-        <div class="tab-pane fade show {% if property.is_rented %}active{% endif %}" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-            <h5 class="pb-2">{% trans "Property Overview" %}</h5>
-            
-            <!-- Card for Property Overview -->
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <p><strong>{% trans "Rent start date" %}:</strong> {{ rent_property.start_date|date:"d M Y" }}</p>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <p><strong>{% trans "Rent end date" %}:</strong> {{ rent_property.end_date|date:"d M Y" }}</p>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <p><strong>{% trans "Damage deposit" %}:</strong> 
-                                {% if rent_property.damage_deposit %}
-                                    {{ rent_property.damage_deposit|format_numbers }} {{ property.get_translated_currency }}
-                                {% else %}
-                                    {% trans "N/A" %}
-                                {% endif %}
-                            </p>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <p><strong>{% trans "Next payment" %}:</strong>
-                                {% if rent_property.get_next_payment %}
-                                    {% trans "in" %} {{ rent_property.get_next_payment }} {% trans "Days" %}
-                                {% else %}
-                                    {% trans "No more payments" %}
-                                {% endif %}
-                            </p>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <p><strong>{% trans "Expected income" %}:</strong> {{ rent_property.expected_income }} {{ property.get_translated_currency }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p><strong>{% trans "Contract image" %}:</strong>
-                                {% if rent_property.contract %}
-                                    <a href="{{ rent_property.contract.url }}" target="_blank" class="btn btn-dark btn-sm">{% trans "View contract" %}</a>
-                                {% else %}
-                                    {% trans "N/A" %}
-                                {% endif %}
-                            </p>
+            <div class="tab-pane fade show {% if property.is_rented %}active{% endif %}" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                <h5 class="pb-2">{% trans "Property Overview" %}</h5>
+                
+                <!-- Card for Property Overview -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <p><strong>{% trans "Rent start date" %}:</strong> {{ rent_property.start_date|date:"d M Y" }}</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p><strong>{% trans "Rent end date" %}:</strong> {{ rent_property.end_date|date:"d M Y" }}</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p><strong>{% trans "Damage deposit" %}:</strong> 
+                                    {% if rent_property.damage_deposit %}
+                                        {{ rent_property.damage_deposit|format_numbers }} {{ property.get_translated_currency }}
+                                    {% else %}
+                                        {% trans "N/A" %}
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p><strong>{% trans "Next payment" %}:</strong>
+                                    {% if rent_property.get_next_payment %}
+                                        {% trans "in" %} {{ rent_property.get_next_payment }} {% trans "Days" %}
+                                    {% else %}
+                                        {% trans "No more payments" %}
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p><strong>{% trans "Expected income" %}:</strong> {{ rent_property.expected_income }} {{ property.get_translated_currency }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>{% trans "Contract image" %}:</strong>
+                                    {% if rent_property.contract %}
+                                        <a href="{{ rent_property.contract.url }}" target="_blank" class="btn btn-dark btn-sm">{% trans "View contract" %}</a>
+                                    {% else %}
+                                        {% trans "N/A" %}
+                                    {% endif %}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
         <!-- Tenant Info Tab -->
-        <div class="tab-pane fade" id="tenant" role="tabpanel" aria-labelledby="tenant-tab">
-            <h5 class="pb-2">{% trans "Current Tenant" %}</h5>
-        
-            <!-- Card for Tenant Info -->
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <div class="row">
-                        <!-- Tenant Name -->
-                        <div class="col-md-6 mb-3">
-                            <p>
-                                <strong>{% trans "Name" %}:</strong> {{ rent_property.tenant.name }}
-                            </p>
-                        </div>
-        
-                        <!-- Tenant ID Image -->
-                        <div class="col-md-6 mb-3">
-                            <p>
-                                <strong>{% trans "ID image" %}:</strong>
-                                {% if rent_property.tenant.id_image %}
-                                    <a href="{{ rent_property.tenant.id_image.url }}" target="_blank" class="btn btn-dark btn-sm">{% trans "View ID Image" %}</a>
-                                {% else %}
-                                    {% trans "N/A" %}
-                                {% endif %}
-                            </p>
-                        </div>
-                        
-                        <!-- Tenant Phone Number with Mobile Buttons -->
-                        <div class="col-md-6 mb-3">
-                            <p>
-                                <strong>{% trans "Phone Number" %}:</strong> {{ rent_property.tenant.phone_number }}
-                                <div id="mobile-buttons" class="d-none">
-                                    <a href="tel:{{ rent_property.tenant.phone_number }}" class="btn btn-success btn-sm">{% trans "Phone Call" %}</a>
-                                    <a href="sms:{{ rent_property.tenant.phone_number }}" class="btn btn-warning btn-sm">{% trans "Text Message" %}</a>
-                                </div>
-                            </p>
+            <div class="tab-pane fade" id="tenant" role="tabpanel" aria-labelledby="tenant-tab">
+                <h5 class="pb-2">{% trans "Current Tenant" %}</h5>
+            
+                <!-- Card for Tenant Info -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Tenant Name -->
+                            <div class="col-md-6 mb-3">
+                                <p>
+                                    <strong>{% trans "Name" %}:</strong> {{ rent_property.tenant.name }}
+                                </p>
+                            </div>
+            
+                            <!-- Tenant ID Image -->
+                            <div class="col-md-6 mb-3">
+                                <p>
+                                    <strong>{% trans "ID image" %}:</strong>
+                                    {% if rent_property.tenant.id_image %}
+                                        <a href="{{ rent_property.tenant.id_image.url }}" target="_blank" class="btn btn-dark btn-sm">{% trans "View ID Image" %}</a>
+                                    {% else %}
+                                        {% trans "N/A" %}
+                                    {% endif %}
+                                </p>
+                            </div>
+                            
+                            <!-- Tenant Phone Number with Mobile Buttons -->
+                            <div class="col-md-6 mb-3">
+                                <p>
+                                    <strong>{% trans "Phone Number" %}:</strong> {{ rent_property.tenant.phone_number }}
+                                    <div id="mobile-buttons" class="d-none">
+                                        <a href="tel:{{ rent_property.tenant.phone_number }}" class="btn btn-success btn-sm">{% trans "Phone Call" %}</a>
+                                        <a href="sms:{{ rent_property.tenant.phone_number }}" class="btn btn-warning btn-sm">{% trans "Text Message" %}</a>
+                                    </div>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <!-- Rental History Tab -->
             <div class="tab-pane {% if not property.is_rented %}active{% endif %}" id="rental-history" role="tabpanel" aria-labelledby="rental-history-tab">
                 <h5 class="pb-2">{% trans "Rental History" %}</h5>
