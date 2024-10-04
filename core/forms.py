@@ -60,7 +60,7 @@ class PropertyForm(forms.ModelForm):
                     "address",
                     css_class="col-lg-7",
                 ),
-                Column("price", "currency", css_class="col-lg-5"),
+                Column("currency", css_class="col-lg-5"),
                 css_class="form-row",
             )
         )
@@ -112,9 +112,6 @@ class RentPropertyForm(forms.ModelForm):
             Submit("submit", _("Save") if action == "edit" else _("Rent"))
         )
 
-        if property:
-            self.fields["damage_deposit"].initial = property.price
-
         if tenant:
             self.fields["tenant_name"].initial = tenant.name
             self.fields["tenant_phone_number"].initial = tenant.phone_number
@@ -127,14 +124,23 @@ class RentPropertyForm(forms.ModelForm):
                     "tenant_phone_number",
                     "tenant_image",
                     "payment",
-                    css_class="col-lg-7",
+                    Row(
+                        Column(
+                            "start_date",
+                            css_class="col-lg-6",
+                        ),
+                        Column(
+                            "end_date",
+                            css_class="col-lg-6",
+                        )
+                ),
+                    css_class="col-lg-6",
                 ),
                 Column(
-                    "start_date",
-                    "end_date",
+                    "price",
                     "damage_deposit",
                     "contract",
-                    css_class="col-lg-5",
+                    css_class="col-lg-6",
                 ),
             )
         )

@@ -46,7 +46,6 @@ class Property(models.Model):
     country = CountryField(blank_label=_("Select Country"))
     city = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
-    price = models.IntegerField()
     currency = models.CharField(
         max_length=3, null=True, blank=True, choices=CURRENCY_CHOICES
     )
@@ -125,6 +124,7 @@ class RentProperty(models.Model):
     payment = models.CharField(
         choices=PAYMENT_OPTIONS, max_length=10, default=PAYMENT_OPTIONS[2]
     )
+    price = models.IntegerField()
     damage_deposit = models.IntegerField(null=True, blank=True)
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(default=date.today() + timedelta(days=30))
@@ -133,6 +133,19 @@ class RentProperty(models.Model):
 
     def __str__(self):
         return f"{self.property.name} - Rented to {self.tenant.name}"
+    
+    def get_payment_period(self):
+        """
+        """
+        payment = int(self.payment)
+        if payment == 7:
+            return _("week")
+        elif payment == 30:
+            return _("month")
+        elif payment == 365:
+            return _("year")
+        else:
+            return _("day")
 
     def expiring_contracts(self):
         end_date = self.end_date
@@ -164,7 +177,7 @@ class RentProperty(models.Model):
 
     def expected_income(self):
         interval_days = int(self.payment)
-        price = self.property.price
+        price = self.price
         expected_income = 0
         end_date = self.end_date
         start_date = self.start_date
@@ -181,4 +194,8 @@ class RentProperty(models.Model):
             else:
                 current_date += timedelta(days=interval_days)  # For other intervals
 
-        return format_number(expected_income - price, locale="en_US")
+        return (
+            format_number(expected_income, locale="en_US")
+            if expected_income == price
+            else format_number(expected_income - price, locale="en_US")
+        )

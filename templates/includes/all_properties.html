@@ -19,7 +19,9 @@
                 <div class="card-body property-details">
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="property-location"><i class="bi bi-geo-alt-fill pe-1"></i>{{ property.get_country_display }}, {{ property.city }}</p>
-                    <h5 class="text-success py-2">{{ property.price|format_numbers }} {{ property.get_translated_currency }}/{% trans "month" %}</h5>
+                    {% for rental in property.property_rentals.all %}
+                      <h5 class="text-success py-2">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h5>
+                    {% endfor %}
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             {% if not property.is_rented %}
