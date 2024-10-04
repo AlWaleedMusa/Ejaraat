@@ -19,7 +19,7 @@
     <!-- Property Details -->
     <div>
         <h2>{{ property.name }} - {{ property.get_property_type_display }}</h2>
-        <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }}</p>
+        <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }}<br> <span class="ms-4">{{ property.address }}</span></br>
         {% for rental in property.property_rentals.all %}
             <h4 class="text-success">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h4>
         {% endfor %}
