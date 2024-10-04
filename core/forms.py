@@ -16,7 +16,6 @@ class PropertyForm(forms.ModelForm):
             "name": _("Property Name"),
             "property_type": _("Property Type"),
             "address": _("Property Address"),
-            "price": _("Price/Month"),
             "country": _("Country"),
             "city": _("City"),
             "currency": _("Currency"),
@@ -25,9 +24,6 @@ class PropertyForm(forms.ModelForm):
             "name": forms.TextInput(attrs={"placeholder": _("Enter property name")}),
             "address": forms.TextInput(
                 attrs={"placeholder": _("Enter property address")}
-            ),
-            "price": forms.NumberInput(
-                attrs={"placeholder": _("Enter price per month")}
             ),
             "city": forms.TextInput(attrs={"placeholder": _("Enter city")}),
         }
@@ -83,9 +79,11 @@ class RentPropertyForm(forms.ModelForm):
         widgets = {
             "start_date": forms.DateInput(attrs={"type": "date"}),
             "end_date": forms.DateInput(attrs={"type": "date"}),
+            "damage_deposit": forms.NumberInput(attrs={"placeholder": "0"})
         }
         labels = {
             "payment": _("Rent Payment Type"),
+            "price": _("Price"),
             "start_date": _("Start Rent"),
             "end_date": _("End Rent"),
             "contract": _("Contract Image"),
