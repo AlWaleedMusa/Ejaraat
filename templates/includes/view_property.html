@@ -30,6 +30,23 @@
                     <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#emptyPropertyModal{{ property.id }}">{% trans "Empty" %}</a>
                 </li>
             </ul>
+            <div class="modal fade" id="emptyPropertyModal{{ property.id }}" tabindex="-1" aria-labelledby="emptyPropertyModalLabel{{ property.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="emptyPropertyModalLabel{{ property.id }}">{% trans "Confirm Action" %}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      {% trans "Are you sure you wish to empty this property" %} <span class="text-danger">{{ property.name }}.</span> {% trans "All current data will be saved as Rental history" %}
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                      <a hx-get="{% url "empty_property" rental.id %}" hx-target="#main-content" class="btn btn-danger" data-bs-dismiss="modal">{% trans "Empty" %}</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
         </div>
         {% endfor %}
         <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }}<br> <span class="ms-4">{{ property.address }}</span></br>
@@ -71,7 +88,7 @@
                 <h5 class="pb-2">{% trans "Property Overview" %}</h5>
                 
                 <!-- Card for Property Overview -->
-                <div class="card shadow-sm mb-4">
+                <div class="card card-overview shadow-sm border-0 mb-4">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -119,7 +136,7 @@
                 <h5 class="pb-2">{% trans "Current Tenant" %}</h5>
             
                 <!-- Card for Tenant Info -->
-                <div class="card shadow-sm mb-4">
+                <div class="card card-overview shadow-sm border-0 mb-4">
                     <div class="card-body">
                         <div class="row">
                             <!-- Tenant Name -->
@@ -158,11 +175,54 @@
         <!-- Rental History Tab -->
             <div class="tab-pane {% if not property.is_rented %}active{% endif %}" id="rental-history" role="tabpanel" aria-labelledby="rental-history-tab">
                 <h5 class="pb-2">{% trans "Rental History" %}</h5>
-                <ul>
-                    {% for rental in property.rental_history %}
-                        <li><strong>{{ rental.start_date }} - {{ rental.end_date }}:</strong> {{ rental.tenant_name }}</li>
+                {% if rental_histories %}
+                    <div class="card card-overview shadow-sm border-0">
+                        <div class="card-body table-responsive" style="overflow-x: auto">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">{% trans "Tenant" %}</th>
+                                        <th scope="col">{% trans "From" %}</th>
+                                        <th scope="col">{% trans "To" %}</th>
+                                        <th scope="col">{% trans "Option" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for rental_history in rental_histories %}
+                                        <tr>
+                                            <td>
+                                                {% if rental_history.tenant.name %}
+                                                    <a href="#">{{ rental_history.tenant.name }}</a>
+                                                {% else %}
+                                                    {% trans "Unknown" %}
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ rental_history.start_date }}</td>
+                                            <td>{{ rental_history.end_date }}</td>
+                                            <td><a href="#">{% trans "More" %}</a></td> 
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="text-muted" style="font-size: 14px;">{% trans "No rental history available." %}</p>
+                {% endif %}
+                {% comment %} <ul>
+                    {% for rental in rental_history %}
+                        <li>
+                            {% if rental.tenant.name %}
+                                {{ rental.tenant.name }}
+                            {% else %}
+                                {% trans "Unknown" %}
+                            {% endif %}: 
+                            <strong>
+                                {{ rental.start_date }} - {{ rental.end_date }} - {{ rental.price }} {{ rental.property.get_translated_currency }}/{{ rental.payment_type }}
+                            </strong>
+                        </li>
                     {% endfor %}
-                </ul>
+                </ul> {% endcomment %}
             </div>
         </div>
     </div>

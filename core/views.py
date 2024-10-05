@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Property, Tenant, RentProperty
+from .models import Property, Tenant, RentProperty, RentHistory
 from django.shortcuts import get_object_or_404
 from .forms import PropertyForm, RentPropertyForm
 from django.http import HttpResponse
 from django.utils.translation import gettext as _
 from .utils import *
+from datetime import datetime
 
 
 def landing(request):
@@ -110,7 +111,7 @@ def edit_rental(request, pk):
                     tenant.id_image = form.cleaned_data.get("tenant_image")
                     tenant.save()
                     form.save()
-                    return redirect("all_properties")
+                    return redirect("view_property", pk=pk)
                 else:
                     raise ValueError(
                         "Phone number must start with '+', Format: +249912345678"
@@ -169,11 +170,14 @@ def edit_property(request, pk):
 
 def view_property(request, pk):
     property = get_object_or_404(Property, id=pk)
+    rental_histories = RentHistory.objects.filter(property_id=pk)
+
     context = {}
     if property.is_rented:
         instance = get_object_or_404(RentProperty, property=property)
         context["rent_property"] = instance
     context["property"] = property
+    context["rental_histories"] = rental_histories
 
     return render(request, "includes/view_property.html", context)
 
@@ -193,3 +197,30 @@ def mark_as_paid(request, pk):
         return HttpResponse(
             f'<a class="property-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{instance.property.id }">Paid</a>'
         )
+
+
+def empty_property(request, pk):
+    rental = get_object_or_404(RentProperty, id=pk)
+    property = rental.property
+    tenant = rental.tenant
+    contract_url = rental.contract.url if rental.contract else None
+
+    property.is_rented = False
+    property.save()
+
+    RentHistory.objects.create(
+        property=property,
+        tenant=tenant,
+        price=rental.price,
+        damage_deposit=rental.damage_deposit,
+        start_date=rental.start_date,
+        payment_type=rental.get_payment_period(),
+        end_date=(
+            rental.end_date if rental.end_date == datetime.today().date() else datetime.today().date()
+        ),
+        contract=contract_url
+    )
+
+    rental.delete()
+
+    return redirect("view_property", pk=property.id)

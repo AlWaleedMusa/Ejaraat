@@ -199,3 +199,24 @@ class RentProperty(models.Model):
             if expected_income == price
             else format_number(expected_income - price, locale="en_US")
         )
+
+
+class RentHistory(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    tenant = models.ForeignKey(Tenant, on_delete=models.SET_NULL, null=True, blank=True)
+    price = models.IntegerField()
+    damage_deposit = models.IntegerField(null=True, blank=True)
+    payment_type = models.CharField(max_length=50)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    contract = models.ImageField(upload_to="rent_history_contracts", null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Rent History"
+        verbose_name_plural = "Rent Histories"
+        ordering = ['-end_date']
+
+    def __str__(self):
+        property_name = self.property.name
+        tenant_name = self.tenant.name if self.tenant else "Unknown Tenant"
+        return f"RentHistory for {property_name} by {tenant_name}"
