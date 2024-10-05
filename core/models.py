@@ -162,8 +162,8 @@ class RentProperty(models.Model):
 
         while current_payment_date <= today and current_payment_date < end_date:
             if interval_days == 365:
-                current_payment_date += relativedelta(months=12)
-            if interval_days == 30:
+                current_payment_date += relativedelta(years=1)
+            elif interval_days == 30:
                 current_payment_date += relativedelta(months=1)
             else:
                 current_payment_date += timedelta(days=interval_days)
