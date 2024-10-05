@@ -2151,11 +2151,11 @@ msgstr "تأكيد العملية"
 
 #: templates/core/home.html:125
 msgid "No payments"
-msgstr "لا توجد دفعات"
+msgstr "لا توجد دفعات خلال ال 7 ايام القادمة"
 
 #: templates/core/home.html:135
 msgid "Contracts to expire"
-msgstr "عقود علي إنتهاء"
+msgstr "عقودات علي إنتهاء"
 
 #: templates/core/home.html:137
 msgid "Contracts expiring in 3 days or less"
@@ -2183,7 +2183,7 @@ msgstr "تمديد العقد"
 
 #: templates/core/home.html:172
 msgid "No expiring contracts"
-msgstr "لا توجد عقود علي إنتهاء"
+msgstr "لا توجد عقودات علي وشك الإنتهاء"
 
 #: templates/forms/add_property_form.html:12
 msgid "Add Property"
