@@ -111,7 +111,7 @@ def edit_rental(request, pk):
                     tenant.id_image = form.cleaned_data.get("tenant_image")
                     tenant.save()
                     form.save()
-                    return redirect("view_property", pk=pk)
+                    return redirect("view_property", pk=rental.property.id)
                 else:
                     raise ValueError(
                         "Phone number must start with '+', Format: +249912345678"

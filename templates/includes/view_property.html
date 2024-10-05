@@ -184,7 +184,7 @@
                                         <th scope="col">{% trans "Tenant" %}</th>
                                         <th scope="col">{% trans "From" %}</th>
                                         <th scope="col">{% trans "To" %}</th>
-                                        <th scope="col">{% trans "Option" %}</th>
+                                        <th scope="col">{% trans "Options" %}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -209,20 +209,6 @@
                 {% else %}
                     <p class="text-muted" style="font-size: 14px;">{% trans "No rental history available." %}</p>
                 {% endif %}
-                {% comment %} <ul>
-                    {% for rental in rental_history %}
-                        <li>
-                            {% if rental.tenant.name %}
-                                {{ rental.tenant.name }}
-                            {% else %}
-                                {% trans "Unknown" %}
-                            {% endif %}: 
-                            <strong>
-                                {{ rental.start_date }} - {{ rental.end_date }} - {{ rental.price }} {{ rental.property.get_translated_currency }}/{{ rental.payment_type }}
-                            </strong>
-                        </li>
-                    {% endfor %}
-                </ul> {% endcomment %}
             </div>
         </div>
     </div>
