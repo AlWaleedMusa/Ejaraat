@@ -1,0 +1,88 @@
+{% extends "layouts/base.html" %}
+{% load allauth i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+    {% trans "Sign Up" %}
+{% endblock head_title %}
+
+{% block content %}
+{% include "includes/language_menu.html" %}
+    <div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: -40px;">
+        <div class="row justify-content-center w-100">
+            <!-- Card layout for large screens -->
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="card shadow-sm p-4">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-4" style="width: 200px; height: 45px;">
+                        </div>
+                        {% comment %} <h1 class="h4 mb-3 text-primary">{% trans "Sign Up" %}</h1> {% endcomment %}
+                        {% if not SOCIALACCOUNT_ONLY %}
+                            {% url 'account_signup' as action_url %}
+                            <form method="post" action="{{ action_url }}" class="w-100">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                {{ redirect_field }}
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn login-btn btn-block">
+                                        {% trans "Sign Up" %}
+                                    </button>
+                                </div>
+                            </form>
+                        {% endif %}
+                        {% if SOCIALACCOUNT_ENABLED %}
+                            <hr class="w-100">
+                            <div class="text-center my-3">
+                                <span class="px-3 bg-white text-muted">{% trans "or" %}</span>
+                            </div>
+                            <div class="d-grid gap-2 w-100">
+                                <a href="#" class="btn btn-danger btn-block">
+                                    <i class="bi bi-google me-2"></i> {% trans "Sign up with Google" %}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <p class="mb-4 text-center">
+                        {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}" style="color: #1960ab;">sign in</a>.{% endblocktranslate %}
+                    </p>
+                </div>
+            </div>
+            <!-- Simple layout for smaller screens -->
+            <div class="col-11 d-lg-none" style="margin-top: -40px;">
+                <div class="d-flex justify-content-center flex-column align-items-center">
+                    <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-5" style="width: 200px; height: 45px;">
+                    {% comment %} <h1 class="h4 mb-3 text-primary">{% trans "Sign Up" %}</h1> {% endcomment %}
+                    {% if not SOCIALACCOUNT_ONLY %}
+                        {% url 'account_signup' as action_url %}
+                        <form method="post" action="{{ action_url }}" class="w-100">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            {{ redirect_field }}
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn login-btn btn-block">
+                                    {% trans "Sign Up" %}
+                                </button>
+                            </div>
+                        </form>
+                    {% endif %}
+                    {% if SOCIALACCOUNT_ENABLED %}
+                        <hr class="w-100">
+                        <div class="text-center my-3">
+                            <span class="px-3 bg-white text-muted">{% trans "or" %}</span>
+                        </div>
+                        <div class="d-grid gap-2 w-100">
+                            <a href="#" class="btn btn-danger btn-block">
+                                <i class="bi bi-google me-2"></i> {% trans "Sign up with Google" %}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <p class="mt-4 text-center">
+                    {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}" style="color: #1960ab;">sign in</a>.{% endblocktranslate %}
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
