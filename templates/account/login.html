@@ -9,6 +9,13 @@
 {% endblock head_title %}
 
 {% block content %}
+
+<style>
+    body {
+        background-color: #f7f7f7;
+    }
+</style>
+
 {% include "includes/language_menu.html" %}
     <div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: -60px">
         <div class="row justify-content-center w-100 gap-5">
@@ -62,7 +69,7 @@
                 </div>
             </div>
             <div class="col-lg-5 d-none d-lg-flex d-flex align-items-center justify-content-center" style="margin-top: -60px">
-                <img src="{% static 'images/login-img.png' %}" alt="">
+                <img src="{% static 'images/signin-img.png' %}" alt="">
             </div>
             <!-- Simple layout for smaller screens -->
             <div class="col-11 d-lg-none" style="margin-top: -30px">

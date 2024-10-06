@@ -8,11 +8,18 @@
 {% endblock head_title %}
 
 {% block content %}
+
+<style>
+    body {
+        background-color: #f7f7f7;
+    }
+</style>
+
 {% include "includes/language_menu.html" %}
-    <div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: -40px;">
-        <div class="row justify-content-center w-100">
+    <div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: -45px;">
+        <div class="row justify-content-center w-100 gap-5">
             <!-- Card layout for large screens -->
-            <div class="col-lg-6 d-none d-lg-block">
+            <div class="col-lg-5 d-none d-lg-block">
                 <div class="card shadow-sm p-4">
                     <div class="card-body">
                         <div class="text-center">
@@ -44,10 +51,13 @@
                             </div>
                         {% endif %}
                     </div>
-                    <p class="mb-4 text-center">
+                    <p class="mb-4 text-muted text-center">
                         {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}" style="color: #1960ab;">sign in</a>.{% endblocktranslate %}
                     </p>
                 </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-flex d-flex align-items-center justify-content-center" style="margin-top: -90px">
+                <img src="{% static 'images/signup-img.png' %}" alt="">
             </div>
             <!-- Simple layout for smaller screens -->
             <div class="col-11 d-lg-none" style="margin-top: -40px;">
@@ -79,7 +89,7 @@
                         </div>
                     {% endif %}
                 </div>
-                <p class="mt-4 text-center">
+                <p class="mt-4 text-muted text-center">
                     {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}" style="color: #1960ab;">sign in</a>.{% endblocktranslate %}
                 </p>
             </div>
