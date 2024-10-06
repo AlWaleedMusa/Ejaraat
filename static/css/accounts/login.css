@@ -1,0 +1,35 @@
+.container {
+    max-width: 1200px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.text-muted {
+    font-size: 0.875rem;
+}
+
+.asteriskField {
+    display: none;
+}
+
+.login-btn {
+    background-color: #1960ab;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: rgb(22, 88, 158);
+    color: white;
+}
+
+#id_password_helptext a {
+    color: #1960ab;
+}

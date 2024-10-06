@@ -1,0 +1,123 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% load static %}
+{% load allauth account %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+
+{% block content %}
+{% include "includes/language_menu.html" %}
+    <div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: -60px">
+        <div class="row justify-content-center w-100 gap-5">
+            <!-- Card layout for large screens -->
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="card shadow-sm p-4">
+                    <div class="card-body d-flex justify-content-center flex-column align-items-center">
+                        <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-4" style="width: 200px; height: 45px;">
+                        {% if not SOCIALACCOUNT_ONLY %}
+                            {% url 'account_login' as login_url %}
+                            <form method="post" action="{{ login_url }}" class="w-100">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                {{ redirect_field }}
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn login-btn btn-block">
+                                        {% trans "Sign In" %}
+                                    </button>
+                                </div>
+                            </form>
+                        {% endif %}
+                        {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
+                            <hr class="w-100">
+                            <div class="d-grid gap-2 w-100">
+                                {% if PASSKEY_LOGIN_ENABLED %}
+                                    <button type="submit" form="mfa_login" id="passkey_login" class="btn btn-outline-primary btn-block">
+                                        {% trans "Sign in with a passkey" %}
+                                    </button>
+                                {% endif %}
+                                {% if LOGIN_BY_CODE_ENABLED %}
+                                    <a href="{{ request_login_code_url }}" class="btn btn-outline-primary btn-block">
+                                        {% trans "Mail me a sign-in code" %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        {% comment %} {% if SOCIALACCOUNT_ENABLED %} {% endcomment %}
+                            <div class="text-muted my-3">
+                                {% trans "or" %}
+                            </div>
+                            <div class="d-grid gap-2 w-100">
+                                <a href="#" class="btn btn-danger btn-block">
+                                    <i class="bi bi-google me-2"></i> {% trans "Sign in with Google" %}
+                                </a>
+                            </div>
+                            <p class="mt-4 text-muted text-center">
+                                {% blocktranslate %} You dont have an account? <a href="{{ signup_url }}" style="color: #1960ab;">Sign Up</a>{% endblocktranslate %}
+                            </p>
+                        {% comment %} {% endif %} {% endcomment %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-flex d-flex align-items-center justify-content-center" style="margin-top: -60px">
+                <img src="{% static 'images/login-img.png' %}" alt="">
+            </div>
+            <!-- Simple layout for smaller screens -->
+            <div class="col-11 d-lg-none" style="margin-top: -30px">
+                <div class="d-flex justify-content-center flex-column align-items-center">
+                    <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-5" style="width: 200px; height: 45px;">
+                    {% if not SOCIALACCOUNT_ONLY %}
+                        {% url 'account_login' as login_url %}
+                        <form method="post" action="{{ login_url }}" class="w-100">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            {{ redirect_field }}
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn login-btn btn-block">
+                                    {% trans "Sign In" %}
+                                </button>
+                            </div>
+                        </form>
+                    {% endif %}
+                    {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
+                        <hr class="w-100">
+                        <div class="d-grid gap-2 w-100">
+                            {% if PASSKEY_LOGIN_ENABLED %}
+                                <button type="submit" form="mfa_login" id="passkey_login" class="btn btn-outline-primary btn-block">
+                                    {% trans "Sign in with a passkey" %}
+                                </button>
+                            {% endif %}
+                            {% if LOGIN_BY_CODE_ENABLED %}
+                                <a href="{{ request_login_code_url }}" class="btn btn-outline-primary btn-block">
+                                    {% trans "Mail me a sign-in code" %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    {% comment %} {% if SOCIALACCOUNT_ENABLED %} {% endcomment %}
+                        <div class="text-muted my-3">
+                            {% trans "or" %}
+                        </div>
+                        <div class="d-grid gap-2 w-100">
+                            <a href="#" class="btn btn-danger btn-block">
+                                <i class="bi bi-google me-2"></i> {% trans "Sign in with Google" %}
+                            </a>
+                        </div>
+                        <p class="mt-4 text-muted text-center">
+                            {% blocktranslate %} You dont have an account? <a href="{{ signup_url }}" style="color: #1960ab;">Sign Up</a> {% endblocktranslate %}
+                        </p>
+                    {% comment %} {% endif %} {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block extra_body %}
+    {{ block.super }}
+    {% if PASSKEY_LOGIN_ENABLED %}
+        {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}
+    {% endif %}
+{% endblock %}
