@@ -1,0 +1,36 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% load static %}
+{% load allauth %}
+{% block head_title %}
+    {% trans "Verify Your Email Address" %}
+{% endblock head_title %}
+
+{% block content %}
+    <div class="container d-flex align-items-center justify-content-center min-vh-100">
+        <div class="row justify-content-center w-100">
+            <!-- Card layout for large screens -->
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="card shadow-sm p-4">
+                    <div class="card-body text-center">
+                        <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-4" style="width: 200px; height: 45px;">
+                        <h1 class="h4 mb-3" style="color: #1960ab">{% trans "Verify Your Email Address" %}</h1>
+                        <p class="mb-4 text-muted">
+                            {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Simple layout for smaller screens -->
+            <div class="col-11 d-lg-none" style="margin-top: -160px;">
+                <div class="d-flex justify-content-center flex-column align-items-center">
+                    <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-5" style="width: 200px; height: 45px;">
+                    <h1 class="h4 mb-3 text-primary">{% trans "Verify Your Email Address" %}</h1>
+                    <p class="mb-4 text-center">
+                        {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

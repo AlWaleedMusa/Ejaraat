@@ -1,0 +1,31 @@
+{% extends "layouts/base.html" %}
+{% load allauth i18n %}
+{% load static %}
+{% block head_title %}
+    {% trans "Sign Out" %}
+{% endblock head_title %}
+
+{% block content %}
+    <div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: -60px">
+        <div class="row justify-content-center w-100">
+            <div class="col-lg-6">
+                <div class="card shadow-sm p-4">
+                    <div class="card-body text-center">
+                        <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-4" style="width: 200px; height: 45px;">
+                        <p class="mb-4">{% trans 'Are you sure you want to sign out?' %}</p>
+                        {% url 'account_logout' as action_url %}
+                        <form method="post" action="{{ action_url }}">
+                            {% csrf_token %}
+                            {{ redirect_field }}
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn login-btn btn-block">
+                                    {% trans 'Sign Out' %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
