@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-05 09:08+0300\n"
+"POT-Creation-Date: 2024-10-06 03:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1250,8 +1250,10 @@ msgid "%(truncated_text)s…"
 msgstr ""
 
 #: env/lib/python3.10/site-packages/django/utils/text.py:286
+#: templates/account/login.html:51 templates/account/login.html:104
+#: templates/account/signup.html:39 templates/account/signup.html:75
 msgid "or"
-msgstr ""
+msgstr "أو"
 
 #. Translators: This string is used as a separator between list elements
 #: env/lib/python3.10/site-packages/django/utils/text.py:305
@@ -1533,7 +1535,8 @@ msgid ""
 msgstr ""
 
 #: templates/account/confirm_email_verification_code.html:27
-#: templates/account/email_confirm.html:24
+#: templates/account/email_confirm.html:30
+#: templates/account/email_confirm.html:64
 #: templates/account/reauthenticate.html:18 templates/core/home.html:115
 msgid "Confirm"
 msgstr "تأكيد"
@@ -1545,8 +1548,8 @@ msgid "Cancel"
 msgstr "إلغاء"
 
 #: templates/account/confirm_login_code.html:5
-#: templates/account/confirm_login_code.html:27 templates/account/login.html:5
-#: templates/account/login.html:9 templates/account/login.html:31
+#: templates/account/confirm_login_code.html:27 templates/account/login.html:8
+#: templates/account/login.html:28 templates/account/login.html:81
 #: templates/account/request_login_code.html:5
 msgid "Sign In"
 msgstr ""
@@ -1715,10 +1718,8 @@ msgid "This mail can be safely ignored if you did not initiate this action."
 msgstr ""
 
 #: templates/account/email/login_code_subject.txt:3
-#, fuzzy
-#| msgid "Sign out"
 msgid "Sign-In Code"
-msgstr "تسجيل الخروج"
+msgstr "كود تسجيل الدخول"
 
 #: templates/account/email/password_changed_message.txt:4
 msgid "Your password has been changed."
@@ -1750,10 +1751,8 @@ msgid "Your password has been reset."
 msgstr ""
 
 #: templates/account/email/password_reset_subject.txt:3
-#: templates/account/password_reset.html:4
-#: templates/account/password_reset.html:8
-#: templates/account/password_reset_done.html:6
-#: templates/account/password_reset_done.html:10
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset_done.html:7
 msgid "Password Reset"
 msgstr ""
 
@@ -1810,19 +1809,20 @@ msgstr ""
 msgid "Change Email"
 msgstr ""
 
-#: templates/account/email_confirm.html:6
-#: templates/account/email_confirm.html:10
+#: templates/account/email_confirm.html:7
 msgid "Confirm Email Address"
 msgstr ""
 
-#: templates/account/email_confirm.html:16
+#: templates/account/email_confirm.html:22
+#: templates/account/email_confirm.html:56
 #, python-format
 msgid ""
 "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
 "address for user %(user_display)s."
 msgstr ""
 
-#: templates/account/email_confirm.html:30
+#: templates/account/email_confirm.html:36
+#: templates/account/email_confirm.html:70
 #: templates/account/messages/email_confirmation_failed.txt:2
 #, python-format
 msgid ""
@@ -1830,34 +1830,50 @@ msgid ""
 "account."
 msgstr ""
 
-#: templates/account/email_confirm.html:36
+#: templates/account/email_confirm.html:42
+#: templates/account/email_confirm.html:76
 #, python-format
 msgid ""
 "This email confirmation link expired or is invalid. Please <a "
 "href=\"%(email_url)s\">issue a new email confirmation request</a>."
 msgstr ""
 
-#: templates/account/login.html:19
-#, python-format
-msgid ""
-"If you have not created an account yet, then please %(link)ssign "
-"up%(end_link)s first."
-msgstr ""
-
-#: templates/account/login.html:42
+#: templates/account/login.html:38 templates/account/login.html:91
 msgid "Sign in with a passkey"
 msgstr ""
 
-#: templates/account/login.html:47 templates/account/request_login_code.html:9
+#: templates/account/login.html:43 templates/account/login.html:96
+#: templates/account/request_login_code.html:9
 msgid "Mail me a sign-in code"
 msgstr ""
 
-#: templates/account/logout.html:5 templates/account/logout.html:9
-#: templates/account/logout.html:22
+#: templates/account/login.html:55 templates/account/login.html:108
+msgid "Sign in with Google"
+msgstr "تسجيل الدخول باستخدام جوجل"
+
+#: templates/account/login.html:59
+#, python-format
+msgid ""
+" You dont have an account? <a href=\"%(signup_url)s\" style=\"color: #1960ab;"
+"\">Sign Up</a>"
+msgstr ""
+"لا تملك حساب؟ <a href=\"%(signup_url)s\" style=\"color: #1960ab;\">سجل الآن</"
+"a>"
+
+#: templates/account/login.html:112
+#, python-format
+msgid ""
+" You dont have an account? <a href=\"%(signup_url)s\" style=\"color: #1960ab;"
+"\">Sign Up</a> "
+msgstr ""
+"لا تملك حساب؟ <a href=\"%(signup_url)s\" style=\"color: #1960ab;\">سجل الآن</"
+"a>"
+
+#: templates/account/logout.html:5 templates/account/logout.html:22
 msgid "Sign Out"
 msgstr ""
 
-#: templates/account/logout.html:12
+#: templates/account/logout.html:15
 msgid "Are you sure you want to sign out?"
 msgstr ""
 
@@ -1924,23 +1940,27 @@ msgstr ""
 
 #: templates/account/password_change.html:22
 msgid "Forgot Password?"
-msgstr ""
+msgstr "نسيت كلمة المرور؟"
 
-#: templates/account/password_reset.html:14
+#: templates/account/password_reset.html:22
+#: templates/account/password_reset.html:49
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll send you "
 "an email allowing you to reset it."
 msgstr ""
 
-#: templates/account/password_reset.html:25
+#: templates/account/password_reset.html:30
+#: templates/account/password_reset.html:57
 msgid "Reset My Password"
 msgstr ""
 
-#: templates/account/password_reset.html:30
+#: templates/account/password_reset.html:35
+#: templates/account/password_reset.html:62
 msgid "Please contact us if you have any trouble resetting your password."
 msgstr ""
 
-#: templates/account/password_reset_done.html:16
+#: templates/account/password_reset_done.html:22
+#: templates/account/password_reset_done.html:35
 msgid ""
 "We have sent you an email. If you have not received it please check your "
 "spam folder. Otherwise contact us if you do not receive it in a few minutes."
@@ -1981,18 +2001,23 @@ msgstr ""
 msgid "Request Code"
 msgstr ""
 
-#: templates/account/signup.html:4
-msgid "Signup"
-msgstr ""
-
-#: templates/account/signup.html:8 templates/account/signup.html:30
+#: templates/account/signup.html:7 templates/account/signup.html:31
+#: templates/account/signup.html:67
 msgid "Sign Up"
 msgstr ""
 
-#: templates/account/signup.html:17
-#, python-format
-msgid "Already have an account? Then please %(link)ssign in%(end_link)s."
+#: templates/account/signup.html:43 templates/account/signup.html:79
+#, fuzzy
+#| msgid "Sign in with Google"
+msgid "Sign up with Google"
+msgstr "تسجيل الدخول باستخدام جوجل"
+
+#: templates/account/signup.html:49 templates/account/signup.html:85
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\" "
+"style=\"color: #1960ab;\">sign in</a>."
 msgstr ""
+"لديك حساب بالفعل؟ يرجى <a href=\"%(login_url)s\" style=\"color: #1960ab;\">تسجيل الدخول</a>."
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:9
@@ -2022,14 +2047,16 @@ msgid ""
 "email address so you can receive notifications, reset your password, etc."
 msgstr ""
 
-#: templates/account/verification_sent.html:5
-#: templates/account/verification_sent.html:9
+#: templates/account/verification_sent.html:6
+#: templates/account/verification_sent.html:17
+#: templates/account/verification_sent.html:28
 #: templates/account/verified_email_required.html:5
 #: templates/account/verified_email_required.html:9
 msgid "Verify Your Email Address"
 msgstr ""
 
-#: templates/account/verification_sent.html:12
+#: templates/account/verification_sent.html:19
+#: templates/account/verification_sent.html:30
 msgid ""
 "We have sent an email to you for verification. Follow the link provided to "
 "finalize the signup process. If you do not see the verification email in "
