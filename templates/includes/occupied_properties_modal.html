@@ -30,9 +30,6 @@
                                                     <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                                     <ul class="dropdown-menu">
                                                         <li>
-                                                            <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Edit Property" %}</a>
-                                                        </li>
-                                                        <li>
                                                             {% for rental in property.property_rentals.all  %}
                                                                 <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Edit Rental" %}</a>
                                                             {% endfor %}
