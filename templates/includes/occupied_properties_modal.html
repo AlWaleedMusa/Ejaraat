@@ -1,0 +1,59 @@
+{% load i18n %}
+
+
+<div class="modal fade" id="occupiedPropertiesModal" tabindex="-1" aria-labelledby="occupiedPropertiesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="occupiedPropertiesModalLabel">{% trans "Occupied Properties" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">{% trans "Property" %}</th>
+                                <th scope="col">{% trans "Tenant" %}</th>
+                                <th scope="col">{% trans "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for property in rented_properties %}
+                                <tr>
+                                    <td>{{ property.name }}</td>
+                                    {% for rental in property.property_rentals.all  %}
+                                        <td>{{ rental.tenant.name }}</td>
+                                        <td>
+                                            <div class="d-lg-none d-block">
+                                                <div class="dropend text-center">
+                                                    <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Edit Property" %}</a>
+                                                        </li>
+                                                        <li>
+                                                            {% for rental in property.property_rentals.all  %}
+                                                                <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Edit Rental" %}</a>
+                                                            {% endfor %}
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" hx-get="{% url "view_property" property.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "View Details" %}</a>
+                                                        </li>
+                                                    </ul>                                            
+                                                </div>
+                                            </div>
+                                            <div class="d-lg-block d-none">
+                                                <a hx-get="{% url 'view_property' property.id %}" hx-target="#main-content" data-bs-dismiss="modal" class="btn blue-button btn-sm">{% trans "View Details" %}</a>
+                                            </div>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+{% load i18n %}
+
+
+<div class="modal fade" id="availablePropertiesModal" tabindex="-1" aria-labelledby="availablePropertiesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="availablePropertiesModalLabel">{% trans "Available Properties" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">{% trans "Property" %}</th>
+                                <th scope="col">{% trans "Country" %}</th>
+                                <th scope="col">{% trans "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for property in available_properties %}
+                                <tr>
+                                    <td>{{ property.name }}</td>
+                                    <td>{{ property.get_country_display }}</td>
+                                    <td>
+                                        <div class="d-lg-none d-block">
+                                            <div class="dropend text-center">
+                                                <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item text-success" hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Rent" %}</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Edit Property" %}</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" hx-get="{% url "view_property" property.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "View History" %}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="d-lg-block d-none">
+                                            <a hx-get="{% url 'rent_property' property.id %}" hx-target="#main-content" data-bs-dismiss="modal" class="btn green-button btn-sm">{% trans "Rent" %}</a>
+                                            <a hx-get="{% url 'view_property' property.id %}" hx-target="#main-content" data-bs-dismiss="modal" class="btn blue-button btn-sm">{% trans "View History" %}</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
