@@ -19,7 +19,6 @@
                 {% comment %} end of ribbon {% endcomment %}
 
                 <div class="card-body property-details">
-
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="property-location"><i class="bi bi-geo-alt-fill pe-1"></i>{{ property.get_country_display }}, {{ property.city }}</p>
                     {% for rental in property.property_rentals.all %}
@@ -28,10 +27,10 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             {% if not property.is_rented %}
-                            <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn property-button">{% trans "View History" %}</a>
-                            <a hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" class="btn px-3 btn-success">{% trans "Rent" %}</a>
+                            <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn blue-button">{% trans "View History" %}</a>
+                            <a hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" class="btn px-3 green-button">{% trans "Rent" %}</a>
                             {% else %}
-                                <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn property-button">{% trans "View Details" %}</a>
+                                <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn blue-button">{% trans "View Details" %}</a>
                             {% endif %}
                         </div>
                         {% comment %} dropend {% endcomment %}

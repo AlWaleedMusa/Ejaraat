@@ -27,7 +27,7 @@
                                         <td class="text-success">{{ rental.price|format_numbers }}</td>
                                         <td id="paid-btn-container{{ rental.property.id }}">
                                             {% if rental.paid %}
-                                            <a class="property-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Paid" %}</a>
+                                            <a class="blue-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Paid" %}</a>
                                             {% else %}
                                             <a class="btn btn-sm btn-danger rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Unpaid" %}</a>
                                             {% endif %}
