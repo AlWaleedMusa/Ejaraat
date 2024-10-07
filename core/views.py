@@ -17,8 +17,14 @@ def landing(request):
 @login_required
 def home(request):
     """ """
-    available_properties = Property.objects.filter(user=request.user, is_rented=False)
-    rented_properties = Property.objects.filter(user=request.user, is_rented=True)
+    available_properties = Property.objects.filter(
+        user=request.user, is_rented=False
+    ).order_by("created_at")
+
+    rented_properties = Property.objects.filter(
+        user=request.user, is_rented=True
+    ).order_by("property_rentals__end_date")
+
     expiring_contracts = get_expiring_contracts(rented_properties)
     upcoming_payments = get_upcoming_payments(rented_properties)
 
@@ -216,9 +222,11 @@ def empty_property(request, pk):
         start_date=rental.start_date,
         payment_type=rental.get_payment_period(),
         end_date=(
-            rental.end_date if rental.end_date == datetime.today().date() else datetime.today().date()
+            rental.end_date
+            if rental.end_date == datetime.today().date()
+            else datetime.today().date()
         ),
-        contract=contract_url
+        contract=contract_url,
     )
 
     rental.delete()

@@ -14,7 +14,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">{% trans "Property" %}</th>
-                                <th scope="col">{% trans "Tenant" %}</th>
+                                <th scope="col">{% trans "End date" %}</th>
                                 <th scope="col">{% trans "Actions" %}</th>
                             </tr>
                         </thead>
@@ -23,7 +23,7 @@
                                 <tr>
                                     <td>{{ property.name }}</td>
                                     {% for rental in property.property_rentals.all  %}
-                                        <td>{{ rental.tenant.name }}</td>
+                                        <td>{{ rental.end_date }}</td>
                                         <td>
                                             <div class="d-lg-none d-block">
                                                 <div class="dropend text-center">
