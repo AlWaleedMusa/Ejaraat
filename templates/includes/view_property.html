@@ -6,35 +6,21 @@
     <!-- Property Details -->
     <div>
         {% for rental in property.property_rentals.all %}
-        <div class="d-flex justify-content-between">
-            <h2>{{ property.name }} - {{ property.get_property_type_display }}</h2>
-            <i class="dropdown bi bi-three-dots fs-3" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
-            <ul class="dropdown-menu">
-                <li>
-                    <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a>
-                </li>
-                <li>
-                    <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#emptyPropertyModal{{ property.id }}">{% trans "Empty" %}</a>
-                </li>
-            </ul>
-            <div class="modal fade" id="emptyPropertyModal{{ property.id }}" tabindex="-1" aria-labelledby="emptyPropertyModalLabel{{ property.id }}" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="emptyPropertyModalLabel{{ property.id }}">{% trans "Confirm Action" %}</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      {% trans "Are you sure you wish to empty this property" %} <span class="text-danger">{{ property.name }}.</span> {% trans "All current data will be saved as Rental history" %}
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
-                      <a hx-get="{% url "empty_property" rental.id %}" hx-target="#main-content" class="btn btn-danger" data-bs-dismiss="modal">{% trans "Empty" %}</a>
-                    </div>
-                  </div>
-                </div>
+            <div class="d-flex justify-content-between">
+                <h2>{{ property.name }} - {{ property.get_property_type_display }}</h2>
+                <i class="dropdown bi bi-three-dots fs-3" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#emptyPropertyModal{{ property.id }}">{% trans "Empty" %}</a>
+                    </li>
+                </ul>
+                {% comment %} empty property modal {% endcomment %}
+                    {% include "includes/empty_property_modal.html" %}
+                {% comment %} end of empty property modal {% endcomment %}
             </div>
-        </div>
         {% endfor %}
         <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }}<br> <span class="ms-4">{{ property.address }}</span></br>
         {% for rental in property.property_rentals.all %}
