@@ -50,6 +50,7 @@ class Property(models.Model):
         max_length=3, null=True, blank=True, choices=CURRENCY_CHOICES
     )
     is_rented = models.BooleanField(default=False)
+    created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.name} - {self.property_type}"
