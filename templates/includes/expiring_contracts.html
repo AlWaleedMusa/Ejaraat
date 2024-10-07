@@ -1,0 +1,49 @@
+{% load i18n %}
+
+<div class="col d-flex mt-lg-0 mt-3">
+    <div class="card card-overview shadow-sm border-0 flex-fill">
+        <div class="card-body">
+            <div class="row">
+                <h5>{% trans "Contracts to expire" %}</h5>
+                {% if expiring_contracts %}
+                    <p class="text-muted" style="font-size: 14px;">{% trans "Contracts expiring in 3 days or less" %}</p>
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">{% trans "Property" %}</th>
+                                <th scope="col">{% trans "Expiring in" %}</th>
+                                <th scope="col">{% trans "Options" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for property in expiring_contracts %}
+                                <tr>
+                                    <td>{{ property.property.name }}</td>
+                                    <td class="text-danger">{{ property.expiring_contracts.1 }} {% if property.expiring_contracts.1 == 1 %} {% trans "Day" %} {% else %} {% trans "Days" %} {% endif %}</td>
+                                    <td class="text-center">
+                                        <div class="dropdown">
+                                            <h3 class="dropdown p-0 m-0" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer"><i class="bi bi-three-dots"></i></h3>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a hx-get="{% url "view_property" property.property.id %}" hx-target="#main-content" class="dropdown-item">{% trans "view" %}</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item">{% trans "Contact Tenant" %}</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item">{% trans "Extend Contract" %}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p class="text-muted" style="font-size: 14px;">{% trans "No expiring contracts" %}</p>
+                {% endif %}
+            </div>
+        </div>
+    <div>
+</div>

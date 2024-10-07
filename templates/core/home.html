@@ -10,167 +10,31 @@
 <div class="container-fluid p-0">
     <div class="row">
         {% comment %} nav bar mobile {% endcomment %}
-        <div id="nav-bar-wrapper">
             {% include "includes/nav.html" %}
-        </div>
         {% comment %} end of navbar mobile {% endcomment %}
-        <div class="col-lg-2 col mt-5 mt-lg-0">
-            {% comment %} Sidebar {% endcomment %}
-            <div id="sidebar-wrapper">
-                <div class="sidebar-heading d-none d-lg-block p-4">
-                    <a href="{% url "home" %}"><img src="{% static "images/logo.png" %}" style="width: 140px"></a>
-                </div>
-                <div class="list-group list-group-flush d-flex pt-3 pt-lg-1 mt-lg-0">
-                    <a hx-get="{% url "all_properties" %}" hx-target="#main-content" hx-swap="innerHTML" class="list-group-item list-group-item-action p-3"><i class="bi bi-buildings px-2"></i>{% trans "Propereties" %}</a>
-                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-people px-2"></i>{% trans "Tenants" %}</a>
-                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-cash-coin px-2"></i>{% trans "Rent Payments" %}</a>
-                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-tools px-2"></i>{% trans "Maintenance" %}</a>
-                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-file-text px-2"></i>{% trans "Reports" %}</a>
-                    <a href="#" class="list-group-item list-group-item-action p-3"><i class="bi bi-sliders px-2"></i>{% trans "Settings" %}</a>
-                    <a href="{% url "account_logout" %}" class="list-group-item list-group-item-action p-3"><i class="bi bi-box-arrow-right px-2"></i>{% trans "Sign out" %}</a>
-                </div>
-            </div>
-            {% comment %} end of sidebar {% endcomment %}
-        </div>
+
+        {% comment %} Sidebar {% endcomment %}
+            {% include "includes/sidebar.html" %}
+        {% comment %} end of sidebar {% endcomment %}
+
         <div class="content col-lg-10 px-2">
-            <div class="row">
-                <div class="p-3 pb-0 d-flex justify-content-end">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="d-lg-block d-none">
-                            {% include "includes/language_menu.html" %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% comment %} language menu {% endcomment %}
+                {% include "includes/language_menu.html" %}
+            {% comment %} end of language menu {% endcomment %}
+
             <div id="main-content" class="p-3">
-                <div>
-                    <h2>{% trans "Overview" %}</h2>
-                </div>
-                <div class="mt-lg-3 row row-cols-2 row-cols-md-3">
-                    <div class="col-lg-3 p-3">
-                        <a href="#" style="text-decoration: none">
-                            <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px">
-                                <i class="fas fa-building icon-lg"></i>
-                                <h5>{% trans "Available Properties" %}</h5>
-                                <h3 class="card-value pt-3">{{ available_properties.count }}</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 p-3">
-                        <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px;">
-                            <i class="fas fa-building icon-lg"></i>
-                            <h5>{% trans "Occupied Properties" %}</h5>
-                            <h3 class="card-value pt-3">{{ rented_properties.count }}</h3>
-                        </div>
-                    </div>
-                </div>
+                {% comment %} overview_cards {% endcomment %}
+                    {% include "includes/overview_cards.html" %}
+                {% comment %} end of overview_cards {% endcomment %}
+
                 <div class="mt-lg-3 row row-cols-1 row-cols-md-2 d-flex">
-                    <div class="col d-flex">
-                        <div class="card card-overview shadow-sm border-0 flex-fill">
-                            <div class="card-body">
-                                <div class="row">
-                                    <h5>{% trans "Upcoming Payments" %}</h5>
-                                    {% if upcoming_payments %}
-                                        <p class="text-muted" style="font-size: 14px;">{% trans "Upcoming payments" %}</p>
-                                        <table class="table table-borderless">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">{% trans "Property" %}</th>
-                                                    <th class="d-lg-block d-none" scope="col">{% trans "Due in" %}</th>
-                                                    <th scope="col">{% trans "Amount" %}</th>
-                                                    <th scope="col">{% trans "Status" %}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for rental in upcoming_payments %}
-                                                    {% if rental.get_next_payment %}
-                                                        <tr>
-                                                            <td><a hx-get="{% url "view_property" rental.property.id %}" hx-target="#main-content">{{ rental.property.name }}</a></td>
-                                                            <td class="d-lg-block d-none">{{ rental.get_next_payment }} {% if rental.get_next_payment == 1%} {% trans "Day" %} {% else %} {% trans "Days" %}{% endif %}</td>
-                                                            <td class="text-success">{{ rental.price|format_numbers }}</td>
-                                                            <td id="paid-btn-container{{ rental.property.id }}">
-                                                                {% if rental.paid %}
-                                                                <a class="property-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Paid" %}</a>
-                                                                {% else %}
-                                                                <a class="btn btn-sm btn-danger rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Unpaid" %}</a>
-                                                                {% endif %}
-                                                            </td>
-                                                        </tr>
-                                                        <div class="modal fade" id="confirmPaymentModal{{ rental.property.id }}" tabindex="-1" aria-labelledby="confirmPaymentModalLabel{{ rental.property.id }}" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                <h5 class="modal-title" id="confirmPaymentModalLabel{{ rental.property.id }}">{% trans "Confirm Payment" %}</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    {% trans "Confirm this action ?" %}
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
-                                                                <a hx-get="{% url "mark_as_paid" rental.id %}" hx-target="#paid-btn-container{{ rental.property.id }}" class="property-button btn" data-bs-dismiss="modal">{% trans "Confirm" %}</a>
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    {% else %}
-                                        <p class="text-muted" style="font-size: 14px;">{% trans "No payments" %}</p>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex mt-lg-0 mt-3">
-                        <div class="card card-overview shadow-sm border-0 flex-fill">
-                            <div class="card-body">
-                                <div class="row">
-                                    <h5>{% trans "Contracts to expire" %}</h5>
-                                    {% if expiring_contracts %}
-                                        <p class="text-muted" style="font-size: 14px;">{% trans "Contracts expiring in 3 days or less" %}</p>
-                                        <table class="table table-borderless">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">{% trans "Property" %}</th>
-                                                    <th scope="col">{% trans "Expiring in" %}</th>
-                                                    <th scope="col">{% trans "Options" %}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for property in expiring_contracts %}
-                                                    <tr>
-                                                        <td>{{ property.property.name }}</td>
-                                                        <td class="text-danger">{{ property.expiring_contracts.1 }} {% if property.expiring_contracts.1 == 1 %} {% trans "Day" %} {% else %} {% trans "Days" %} {% endif %}</td>
-                                                        <td class="text-center">
-                                                            <div class="dropdown">
-                                                                <h3 class="dropdown p-0 m-0" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer"><i class="bi bi-three-dots"></i></h3>
-                                                                <ul class="dropdown-menu">
-                                                                    <li>
-                                                                        <a hx-get="{% url "view_property" property.property.id %}" hx-target="#main-content" class="dropdown-item">{% trans "view" %}</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item">{% trans "Contact Tenant" %}</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item">{% trans "Extend Contract" %}</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    {% else %}
-                                        <p class="text-muted" style="font-size: 14px;">{% trans "No expiring contracts" %}</p>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        <div>
-                    </div>
+                    {% comment %} upcoming payment {% endcomment %}
+                        {% include "includes/upcoming_payments.html" %}
+                    {% comment %} upcoming payment {% endcomment %}
+
+                    {% comment %} expiring contracts {% endcomment %}
+                        {% include "includes/expiring_contracts.html" %}
+                    {% comment %} end ofexpiring contracts {% endcomment %}
                 </div>
             </div>
         </div>

@@ -1,21 +1,23 @@
 {% load static %}
 {% load i18n %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom d-lg-none d-block px-3" style="position: fixed; top: 0; z-index: 1000; width: 100%;">
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center gap-3">
-            <a id="menu-toggle">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 7H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M5 12H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M5 17H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
-                </svg>                    
+<div id="nav-bar-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom d-lg-none d-block px-3" style="position: fixed; top: 0; z-index: 1000; width: 100%;">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a id="menu-toggle">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 7H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M5 12H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M5 17H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
+                    </svg>                    
+                </a>
+                {% include "includes/language_menu.html" %}
+                {% comment %} <a href="#" class="ms-1" style="color:#1960ab;"><h4 class="p-0 m-0"><i class="bi bi-moon"></i></h4></a> {% endcomment %}
+            </div>
+            <a href="{% url "home" %}">
+                <img src="{% static "images/logo.png" %}" style="width: 170px; height: 35px;">
             </a>
-            {% include "includes/language_menu.html" %}
-            {% comment %} <a href="#" class="ms-1" style="color:#1960ab;"><h4 class="p-0 m-0"><i class="bi bi-moon"></i></h4></a> {% endcomment %}
         </div>
-        <a href="{% url "home" %}">
-            <img src="{% static "images/logo.png" %}" style="width: 170px; height: 35px;">
-        </a>
-    </div>
-</nav>
+    </nav>
+</div>

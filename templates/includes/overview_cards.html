@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<div>
+    <h2>{% trans "Overview" %}</h2>
+</div>
+<div class="mt-lg-3 row row-cols-2 row-cols-md-3">
+    <div class="col-lg-3 p-3">
+        <a href="#" style="text-decoration: none">
+            <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px">
+                <h5>{% trans "Available Properties" %}</h5>
+                <h3 class="card-value pt-3">{{ available_properties.count }}</h3>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 p-3">
+        <a href="#" style="text-decoration: none">
+            <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px;">
+                <h5>{% trans "Occupied Properties" %}</h5>
+                <h3 class="card-value pt-3">{{ rented_properties.count }}</h3>
+            </div>
+        </a>
+    </div>
+</div>

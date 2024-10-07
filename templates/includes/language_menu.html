@@ -1,17 +1,24 @@
 {% load i18n %}
-
-<form action="{% url 'set_language' %}" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{% url 'home' %}">
-    <div class="p-2">
-        <h4 class="dropdown m-0 p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-translate" style="color: #1960ab;"></i></h4>
-        <ul class="dropdown-menu">
-            <button type="submit" class="dropdown-item" name="language" value="en">
-                {% trans "English" %}
-            </button>
-            <button type="submit" class="dropdown-item" name="language" value="ar">
-                {% trans "Arabic" %}
-            </button>
-        </ul>
+<div class="row">
+    <div class="p-3 pb-0 d-flex justify-content-end">
+        <div class="d-flex align-items-center gap-3">
+            <div class="d-lg-block d-none">
+                <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{% url 'home' %}">
+                    <div class="p-2">
+                        <h4 class="dropdown m-0 p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-translate" style="color: #1960ab;"></i></h4>
+                        <ul class="dropdown-menu">
+                            <button type="submit" class="dropdown-item" name="language" value="en">
+                                {% trans "English" %}
+                            </button>
+                            <button type="submit" class="dropdown-item" name="language" value="ar">
+                                {% trans "Arabic" %}
+                            </button>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</form>
+</div>
