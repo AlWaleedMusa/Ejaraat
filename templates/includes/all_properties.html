@@ -1,77 +1,48 @@
 {% load i18n %}
 {% load custome_filters %}
 
-<div>
-    <div class="d-flex justify-content-between">
-        <h2 class="px-1">{% trans "My Properties" %}</h2>
-        <a hx-get="{% url "add_property" %}" hx-target="#main-content" class="btn align-self-center"><i class="bi bi-plus-circle-fill fs-3 align-self-center d-flex" style="color: #28a745"></i></a>
-    </div>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-        {% for property in all_properties %}
-          <div class="col p-3">
+
+<div class="d-flex justify-content-between">
+    <h2 class="px-1">{% trans "My Properties" %}</h2>
+    <a hx-get="{% url "add_property" %}" hx-target="#main-content" class="btn align-self-center"><i class="bi bi-plus-circle-fill fs-3 align-self-center d-flex" style="color: #28a745"></i></a>
+</div>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    {% for property in all_properties %}
+        <div class="col p-3">
             <div class="card border-0 shadow-sm property-card position-relative">
-                <!-- Ribbon -->
-                {% if not property.is_rented %}
-                    <div class="{% if LANGUAGE_CODE == 'ar' %}property-status-ribbon-rtl{% else %}property-status-ribbon-ltr{% endif %} ribbon-available">
-                        {% trans "Available" %}
-                    </div>
-                {% endif %}
+                {% comment %} ribbon {% endcomment %}
+                    {% if not property.is_rented %}
+                        <div class="{% if LANGUAGE_CODE == 'ar' %}property-status-ribbon-rtl{% else %}property-status-ribbon-ltr{% endif %} ribbon-available">
+                            {% trans "Available" %}
+                        </div>
+                    {% endif %}
+                {% comment %} end of ribbon {% endcomment %}
+
                 <div class="card-body property-details">
+
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="property-location"><i class="bi bi-geo-alt-fill pe-1"></i>{{ property.get_country_display }}, {{ property.city }}</p>
                     {% for rental in property.property_rentals.all %}
-                      <h5 class="text-success py-2">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h5>
+                    <h5 class="text-success py-2">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h5>
                     {% endfor %}
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             {% if not property.is_rented %}
-                              <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn property-button">{% trans "View History" %}</a>
-                              <a hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" class="btn px-3 btn-success">{% trans "Rent" %}</a>
+                            <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn property-button">{% trans "View History" %}</a>
+                            <a hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" class="btn px-3 btn-success">{% trans "Rent" %}</a>
                             {% else %}
                                 <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn property-button">{% trans "View Details" %}</a>
                             {% endif %}
                         </div>
-                        <div>
-                            <div class="dropend">
-                                <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                <ul class="dropdown-menu">
-                                  <li>
-                                    <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content">{% trans "Edit Property" %}</a>
-                                  </li>
-                                  {% if property.is_rented %}
-                                    {% for rental in property.property_rentals.all %}
-                                      <li>
-                                        <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a>
-                                      </li>
-                                    {% endfor %}
-                                  {% endif %}
-                                  <li>
-                                      <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ property.id }}">{% trans "Delete" %}</a>
-                                  </li>
-                                </ul>
-                            </div>
-                        </div>
+                        {% comment %} dropend {% endcomment %}
+                            {% include "includes/property_drop_end.html" %}
+                        {% comment %} end of dropend {% endcomment %}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="confirmDeleteModal{{ property.id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ property.id }}" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="confirmDeleteModalLabel{{ property.id }}">{% trans "Confirm Delete" %}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  {% trans "Are you sure you wish to delete this property?" %} {{ property.name }}
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
-                  <a hx-get="{% url 'delete_property' property.id %}" hx-target="#main-content" class="btn btn-danger" data-bs-dismiss="modal">{% trans "Delete" %}</a>
-                </div>
-              </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+        {% comment %} confirm delete {% endcomment %}
+            {% include "includes/confirm_delete_modal.html" %}
+        {% comment %} end of confirm delete {% endcomment %}
+    {% endfor %}
 </div>

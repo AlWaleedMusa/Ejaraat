@@ -1,0 +1,20 @@
+{% load i18n %}
+
+
+<div class="modal fade" id="confirmDeleteModal{{ property.id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ property.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteModalLabel{{ property.id }}">{% trans "Confirm Delete" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% trans "Are you sure you wish to delete this property?" %} {{ property.name }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+          <a hx-get="{% url 'delete_property' property.id %}" hx-target="#main-content" class="btn btn-danger" data-bs-dismiss="modal">{% trans "Delete" %}</a>
+        </div>
+      </div>
+    </div>
+</div>

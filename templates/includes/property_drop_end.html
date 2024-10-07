@@ -1,0 +1,21 @@
+{% load i18n %}
+
+
+<div class="dropend">
+    <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
+    <ul class="dropdown-menu">
+    <li>
+        <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content">{% trans "Edit Property" %}</a>
+    </li>
+    {% if property.is_rented %}
+        {% for rental in property.property_rentals.all %}
+        <li>
+            <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a>
+        </li>
+        {% endfor %}
+    {% endif %}
+    <li>
+        <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ property.id }}">{% trans "Delete" %}</a>
+    </li>
+    </ul>
+</div>
