@@ -3,7 +3,8 @@
 
 {% block content %}
     <style>
-        .asteriskField {
+        .requiredField::after {
+            content: " *";
             color: red;
         }
     </style>
