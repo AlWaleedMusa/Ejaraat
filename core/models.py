@@ -161,7 +161,7 @@ class RentProperty(models.Model):
         end_date = self.end_date
         today = date.today()
 
-        if today >= end_date - timedelta(days=3):
+        if today >= end_date - timedelta(days=30):
             return True, (end_date - today).days
 
     def get_next_payment(self):
