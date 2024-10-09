@@ -191,17 +191,11 @@ def view_property(request, pk):
 def mark_as_paid(request, pk):
     instance = get_object_or_404(RentProperty, id=pk)
 
-    if instance.paid:
-        instance.paid = False
+    if instance:
+        instance.status = "paid"
         instance.save()
         return HttpResponse(
-            f'<a class="btn btn-danger btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{instance.property.id }">Unpaid</a>'
-        )
-    else:
-        instance.paid = True
-        instance.save()
-        return HttpResponse(
-            f'<a class="property-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{instance.property.id }">Paid</a>'
+            f'<a class="blue-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{instance.property.id }">Paid</a>'
         )
 
 
