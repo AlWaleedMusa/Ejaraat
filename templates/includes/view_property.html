@@ -80,6 +80,15 @@
                                 </p>
                             </div>
                             <div class="col-md-6 mb-3">
+                                <p><strong>{% trans "Expected income" %}:</strong> {{ rent_property.expected_income }} {{ property.get_translated_currency }}</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p>
+                                    <strong>{% trans "Payment status (Current month)" %}:</strong>
+                                    {{ rent_property.get_status_display }}
+                                </p>
+                            </div>
+                            <div class="col-md-6 mb-3">
                                 <p><strong>{% trans "Next payment" %}:</strong>
                                     {% if rent_property.get_next_payment %}
                                         {% trans "in" %} {{ rent_property.get_next_payment }} {% trans "Days" %}
@@ -87,9 +96,6 @@
                                         {% trans "No more payments" %}
                                     {% endif %}
                                 </p>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <p><strong>{% trans "Expected income" %}:</strong> {{ rent_property.expected_income }} {{ property.get_translated_currency }}</p>
                             </div>
                             <div class="col-md-6">
                                 <p><strong>{% trans "Contract image" %}:</strong>

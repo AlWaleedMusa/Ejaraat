@@ -21,7 +21,7 @@
                         <tbody>
                             {% for property in available_properties %}
                                 <tr>
-                                    <td>{{ property.name }}</td>
+                                    <td style="color: #1960ab;">{{ property.name }}</td>
                                     <td>{{ property.get_country_display }}</td>
                                     <td>
                                         <div class="d-lg-none d-block">
@@ -41,8 +41,8 @@
                                             </div>
                                         </div>
                                         <div class="d-lg-block d-none">
-                                            <a hx-get="{% url 'rent_property' property.id %}" hx-target="#main-content" data-bs-dismiss="modal" class="btn green-button btn-sm">{% trans "Rent" %}</a>
-                                            <a hx-get="{% url 'view_property' property.id %}" hx-target="#main-content" data-bs-dismiss="modal" class="btn blue-button btn-sm">{% trans "View History" %}</a>
+                                            <a hx-get="{% url 'rent_property' property.id %}" hx-target="#main-content" data-bs-dismiss="modal" class="btn rounded-4 px-3 green-button btn-sm">{% trans "Rent" %}</a>
+                                            <a hx-get="{% url 'view_property' property.id %}" hx-target="#main-content" data-bs-dismiss="modal" class="btn rounded-4 px-3 blue-button btn-sm">{% trans "View History" %}</a>
                                         </div>
                                     </td>
                                 </tr>

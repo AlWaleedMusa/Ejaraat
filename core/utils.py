@@ -1,3 +1,7 @@
+from datetime import date
+import calendar
+
+
 def get_expiring_contracts(properties):
     """
     """

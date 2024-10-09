@@ -9,7 +9,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            {% trans "Confirm this action ?" %}
+            {% trans "Confirm Payment for property ?" %} <span style="color: #1960ab;">{{ rental.property.name }}</span>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>

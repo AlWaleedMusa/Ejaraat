@@ -27,10 +27,10 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             {% if not property.is_rented %}
-                            <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn blue-button">{% trans "View History" %}</a>
-                            <a hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" class="btn px-3 green-button">{% trans "Rent" %}</a>
+                            <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn rounded-5 blue-button">{% trans "View History" %}</a>
+                            <a hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" class="btn rounded-5 px-3 green-button">{% trans "Rent" %}</a>
                             {% else %}
-                                <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn blue-button">{% trans "View Details" %}</a>
+                                <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn rounded-5 blue-button">{% trans "View Details" %}</a>
                             {% endif %}
                         </div>
                         {% comment %} dropend {% endcomment %}

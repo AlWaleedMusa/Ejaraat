@@ -2,13 +2,13 @@
 {% load custome_filters %}
 
 
-<div class="col d-flex">
+<div class="col-lg-7 d-flex">
     <div class="card card-overview shadow-sm border-0 flex-fill">
         <div class="card-body">
             <div class="row">
                 <h5>{% trans "Upcoming Payments" %}</h5>
                 {% if upcoming_payments %}
-                    <p class="text-muted" style="font-size: 14px;">{% trans "Upcoming payments" %}</p>
+                    <p class="text-muted" style="font-size: 14px;">{% trans "Upcoming payments with in the next 7 days" %}</p>
                     <table class="table table-borderless">
                         <thead>
                             <tr>
@@ -16,25 +16,46 @@
                                 <th class="d-lg-block d-none" scope="col">{% trans "Due in" %}</th>
                                 <th scope="col">{% trans "Amount" %}</th>
                                 <th scope="col">{% trans "Status" %}</th>
+                                <th scope="col">{% trans "Action" %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for rental in upcoming_payments %}
-                                {% if rental.get_next_payment %}
-                                    <tr>
-                                        <td><a hx-get="{% url "view_property" rental.property.id %}" hx-target="#main-content">{{ rental.property.name }}</a></td>
-                                        <td class="d-lg-block d-none">{{ rental.get_next_payment }} {% if rental.get_next_payment == 1%} {% trans "Day" %} {% else %} {% trans "Days" %}{% endif %}</td>
-                                        <td class="text-success">{{ rental.price|format_numbers }}</td>
-                                        <td id="paid-btn-container{{ rental.property.id }}">
-                                            {% if rental.paid %}
-                                            <a class="blue-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Paid" %}</a>
-                                            {% else %}
-                                            <a class="btn btn-sm btn-danger rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Unpaid" %}</a>
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                    {% include "includes/confirm_payment_modal.html" %}
-                                {% endif %}
+                                <tr>
+                                    <td><a hx-get="{% url "view_property" rental.property.id %}" hx-target="#main-content">{{ rental.property.name }}</a></td>
+                                        {% if not rental.status == "overdue" %}
+                                            <td class="d-lg-block d-none">{{ rental.get_next_payment }} {% if rental.get_next_payment == 1%} {% trans "Day" %} {% else %} {% trans "Days" %}{% endif %}</td>
+                                        {% else %}
+                                            <td class="d-lg-block d-none text-danger"><strong>{% trans "Overdue" %}</strong></td>
+                                        {% endif %}
+                                    <td class="text-success">{{ rental.price|format_numbers }}</td>
+                                    <td id="paid-btn-container{{ rental.property.id }}">
+                                        {% if rental.status == "paid" %}
+                                            <a class="btn blue-button btn-sm rounded-4 m-0 py-0" >{% trans "Paid" %}</a>
+                                        {% elif rental.status == "pending" %}
+                                            <a class="btn btn-sm btn-secondary rounded-4 m-0 py-0">{% trans "Pending" %}</a>
+                                        {% elif rental.status == "unpaid" %}
+                                            <a class="btn btn-sm btn-danger rounded-4 m-0 py-0">{% trans "Unpaid" %}</a>
+                                        {% else %}
+                                            <a class="btn btn-sm btn-danger rounded-4 m-0 py-0">{% trans "Overdue" %}</a>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item text-success" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Paid" %}</a>
+                                            </li>
+                                            {% comment %} <li>
+                                                <a class="dropdown-item" hx-get="" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Edit Property" %}</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" hx-get="" hx-target="#main-content" data-bs-dismiss="modal">{% trans "View History" %}</a>
+                                            </li> {% endcomment %}
+                                        </ul>
+                                    </td>
+                                </tr>
+                                {% include "includes/confirm_payment_modal.html" %}
                             {% endfor %}
                         </tbody>
                     </table>
