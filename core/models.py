@@ -110,6 +110,13 @@ class RentProperty(models.Model):
         ("365", _("Yearly")),
     )
 
+    STATUS_OPTIONS = (
+        ('paid', _("Paid")),
+        ('unpaid', _("Unpaid")),
+        ('pending', _("Pending")),
+        ('overdue', _("Overdue")),
+    )
+
     # tenant data
     tenant = models.ForeignKey(
         Tenant, on_delete=models.CASCADE, related_name="tenant_rentals"
@@ -129,7 +136,9 @@ class RentProperty(models.Model):
     damage_deposit = models.IntegerField(null=True, blank=True)
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(default=date.today() + timedelta(days=30))
-    paid = models.BooleanField(default=False)
+    status = models.CharField(
+        max_length=10, choices=STATUS_OPTIONS, default='paid'
+    )
     contract = models.ImageField(upload_to="contracts", null=True, blank=True)
 
     def __str__(self):

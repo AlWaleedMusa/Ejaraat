@@ -88,6 +88,7 @@ class RentPropertyForm(forms.ModelForm):
             "end_date": _("End Rent"),
             "contract": _("Contract Image"),
             "damage_deposit": _("Damage Deposit"),
+            "status": _("Current payment status")
         }
 
     def __init__(self, *args, **kwargs):
@@ -96,6 +97,7 @@ class RentPropertyForm(forms.ModelForm):
         tenant = kwargs.pop("tenant", None)
 
         super().__init__(*args, **kwargs)
+        self.fields["status"].initial = "paid"
         self.helper = FormHelper(self)
         self.helper.attrs = {
             "hx-post": (
@@ -122,6 +124,7 @@ class RentPropertyForm(forms.ModelForm):
                     "tenant_phone_number",
                     "tenant_image",
                     "payment",
+                    "status",
                     Row(
                         Column(
                             "start_date",
