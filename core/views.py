@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.utils.translation import gettext as _
 from .utils import *
 from datetime import datetime
+from django.db.models import Q
 
 
 def landing(request):
@@ -226,3 +227,23 @@ def empty_property(request, pk):
     rental.delete()
 
     return redirect("view_property", pk=property.id)
+
+
+def search_all_properties(request):
+    q = request.GET.get("q", None)
+
+    if q:
+        Properties = Property.objects.filter(
+            Q(name__icontains=q) | Q(country__icontains=q)
+        ).distinct()
+    else:
+        Properties = Property.objects.all()
+        return render(
+            request,
+            "includes/all_properties.html",
+            {"all_properties": Properties},
+        )
+
+    return render(
+        request, "includes/all_properties.html", {"all_properties": Properties}
+    )

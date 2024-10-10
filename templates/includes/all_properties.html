@@ -6,6 +6,11 @@
     <h2 class="px-1">{% trans "My Properties" %}</h2>
     <a hx-get="{% url "add_property" %}" hx-target="#main-content" class="btn align-self-center"><i class="bi bi-plus-circle-fill fs-2 align-self-center d-flex" style="color: #28a745"></i></a>
 </div>
+
+{% comment %} search form {% endcomment %}
+    {% include "includes/search.html" %}
+{% comment %} end of search form {% endcomment %}
+
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     {% for property in all_properties %}
         <div class="col p-3">
@@ -22,13 +27,13 @@
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="property-location"><i class="bi bi-geo-alt-fill pe-1"></i>{{ property.get_country_display }}, {{ property.city }}</p>
                     {% for rental in property.property_rentals.all %}
-                    <h5 class="text-success py-2">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h5>
+                        <h5 class="text-success py-2">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h5>
                     {% endfor %}
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             {% if not property.is_rented %}
-                            <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn rounded-5 blue-button">{% trans "View History" %}</a>
-                            <a hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" class="btn rounded-5 px-3 green-button">{% trans "Rent" %}</a>
+                                <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn rounded-5 blue-button">{% trans "View History" %}</a>
+                                <a hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" class="btn rounded-5 px-3 green-button">{% trans "Rent" %}</a>
                             {% else %}
                                 <a hx-get="{% url "view_property" property.id %}" hx-target="#main-content" class="btn rounded-5 blue-button">{% trans "View Details" %}</a>
                             {% endif %}
