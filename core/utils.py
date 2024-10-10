@@ -38,7 +38,7 @@ def get_upcoming_payments(properties):
                     rental.save()
                     upcoming_payments.append(rental)
             # check if the last month is paid or not
-            elif not rental.status == "paid":
+            elif not rental.status == "paid" and not date.today().day == rental.start_date.day:
                 rental.status = "overdue"
                 rental.save()
                 upcoming_payments.append(rental)
