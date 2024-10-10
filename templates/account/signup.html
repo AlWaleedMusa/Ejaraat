@@ -39,17 +39,17 @@
                                 </div>
                             </form>
                         {% endif %}
-                        {% if SOCIALACCOUNT_ENABLED %}
+                        {% comment %} {% if SOCIALACCOUNT_ENABLED %} {% endcomment %}
                             <hr class="w-100">
                             <div class="text-center my-3">
-                                <span class="px-3 bg-white text-muted">{% trans "or" %}</span>
+                                <span class="px-3 text-muted">{% trans "or" %}</span>
                             </div>
                             <div class="d-grid gap-2 w-100">
                                 <a href="#" class="btn btn-danger btn-block">
                                     <i class="bi bi-google me-2"></i> {% trans "Sign up with Google" %}
                                 </a>
                             </div>
-                        {% endif %}
+                        {% comment %} {% endif %} {% endcomment %}
                     </div>
                     <p class="mb-4 text-muted text-center">
                         {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}" style="color: #1960ab;">sign in</a>.{% endblocktranslate %}
