@@ -132,7 +132,7 @@ LANGUAGES = [
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Africa/Cairo"
 USE_TZ = True
 
 
