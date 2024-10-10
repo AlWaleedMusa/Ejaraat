@@ -18,9 +18,13 @@
         {% comment %} end of sidebar {% endcomment %}
 
         <div class="content col-lg-10 px-2">
-            {% comment %} language menu {% endcomment %}
-                {% include "includes/language_menu.html" %}
-            {% comment %} end of language menu {% endcomment %}
+            {% comment %} language menu large screen {% endcomment %}
+                <div class="row justify-content-end px-2 pt-2 d-lg-flex d-none">
+                    <div class="col-auto">
+                        {% include "includes/language_menu.html" %}
+                    </div>
+                </div>
+            {% comment %} end of language menu large screen {% endcomment %}
 
             <div id="main-content" class="p-3">
                 {% comment %} overview_cards {% endcomment %}
