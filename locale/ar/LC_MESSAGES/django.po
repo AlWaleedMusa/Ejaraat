@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 03:40+0300\n"
+"POT-Creation-Date: 2024-10-10 07:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1277,7 +1277,7 @@ msgstr ""
 
 #: env/lib/python3.10/site-packages/django/utils/text.py:286
 #: templates/account/login.html:58 templates/account/login.html:111
-#: templates/account/signup.html:46 templates/account/signup.html:85
+#: templates/account/signup.html:46 templates/account/signup.html:86
 msgid "or"
 msgstr "أو"
 
@@ -2034,13 +2034,11 @@ msgstr ""
 msgid "Sign Up"
 msgstr ""
 
-#: templates/account/signup.html:50 templates/account/signup.html:89
-#, fuzzy
-#| msgid "Sign in with Google"
+#: templates/account/signup.html:50 templates/account/signup.html:90
 msgid "Sign up with Google"
-msgstr "تسجيل الدخول باستخدام جوجل"
+msgstr "سجل الآن باستخدام جوجل"
 
-#: templates/account/signup.html:56 templates/account/signup.html:95
+#: templates/account/signup.html:56 templates/account/signup.html:97
 #, python-format
 msgid ""
 "Already have an account? Then please <a href=\"%(login_url)s\" "
@@ -2256,11 +2254,11 @@ msgstr "تمديد العقد"
 msgid "No expiring contracts"
 msgstr "لا توجد عقودات علي وشك الإنتهاء"
 
-#: templates/includes/language_menu.html:15
+#: templates/includes/language_menu.html:11
 msgid "English"
 msgstr ""
 
-#: templates/includes/language_menu.html:18
+#: templates/includes/language_menu.html:14
 msgid "Arabic"
 msgstr ""
 
