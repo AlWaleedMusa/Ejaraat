@@ -1,11 +1,13 @@
 {% load i18n %}
 
 
-<div class="col-lg-5 d-flex mt-lg-0 mt-3">
+<div class="col-lg-5 mt-lg-0 mt-3">
     <div class="card card-overview shadow-sm border-0 flex-fill">
         <div class="card-body">
             <div class="row">
-                <h5>{% trans "Expiring Contracts" %}</h5>
+                <h5>
+                    {% trans "Expiring Contracts" %}
+                </h5>
                 {% if expiring_contracts %}
                     <p class="text-muted" style="font-size: 14px;">{% trans "Contracts expiring in 30 days or less" %}</p>
                     <table class="table table-borderless">
@@ -24,7 +26,7 @@
                                     <td class="text-center">
                                         <div class="dropdown">
                                             <h3 class="dropdown p-0 m-0" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer"><i class="bi bi-three-dots"></i></h3>
-                                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu border-0 shadow-sm">
                                                 <li>
                                                     <a hx-get="{% url "view_property" property.property.id %}" hx-target="#main-content" class="dropdown-item">{% trans "View Details" %}</a>
                                                 </li>
