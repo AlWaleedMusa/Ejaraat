@@ -3,12 +3,11 @@
 
 <form class="d-lg-inline-block mt-2 px-1">
     <input
-        class="form-control me-2"
+        class="form-control rounded-5"
         hx-get="{% url 'search_all_properties' %}"
         hx-target="#main-content"
         hx-swap="innerHTML"
         hx-trigger="keyup changed delay:500ms"
-        class="form-control me-2"
         type="search"
         placeholder="{% trans "Search by Name, Country" %}"
         aria-label="Search"

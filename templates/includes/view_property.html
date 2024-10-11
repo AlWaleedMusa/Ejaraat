@@ -176,8 +176,8 @@
                                                     {% trans "Unknown" %}
                                                 {% endif %}
                                             </td>
-                                            <td>{{ rental_history.start_date }}</td>
-                                            <td>{{ rental_history.end_date }}</td>
+                                            <td>{{ rental_history.start_date|date:"d M Y" }}</td>
+                                            <td>{{ rental_history.end_date|date:"d M Y" }}</td>
                                             <td><a href="#">{% trans "More" %}</a></td> 
                                         </tr>
                                     {% endfor %}
