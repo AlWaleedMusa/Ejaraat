@@ -24,7 +24,18 @@
                                 <tr>
                                     <td><a hx-get="{% url "view_property" rental.property.id %}" hx-target="#main-content">{{ rental.property.name }}</a></td>
                                         {% if not rental.status == "overdue" %}
-                                            <td class="d-lg-block d-none">{{ rental.get_next_payment }} {% if rental.get_next_payment == 1%} {% trans "Day" %} {% else %} {% trans "Days" %}{% endif %}</td>
+                                            <td class="d-lg-block d-none">
+                                                {% if rental.get_next_payment %}
+                                                    {{ rental.get_next_payment }}
+                                                    {% if rental.get_next_payment == 1%}
+                                                        {% trans "Day" %}
+                                                    {% else %}
+                                                        {% trans "Days" %}
+                                                    {% endif %}
+                                                {% else %}
+                                                    {{ rental.start_date|date:"d M Y" }}
+                                                {% endif %}
+                                            </td>
                                         {% else %}
                                             <td class="d-lg-block d-none text-danger"><strong>{% trans "Overdue" %}</strong></td>
                                         {% endif %}

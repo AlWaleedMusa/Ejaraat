@@ -81,6 +81,16 @@
     color: white;
 }
 
+.cancel-button {
+    background-color: gray;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: rgb(104, 103, 103);
+    color: white;
+}
+
 .red-button {
     background-color: #f32020;
     color: white;
