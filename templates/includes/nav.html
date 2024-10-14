@@ -2,22 +2,32 @@
 {% load i18n %}
 
 
-<div id="nav-bar-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom d-lg-none d-block px-3" style="position: fixed; top: 0; z-index: 1000; width: 100%;">
+<div id="nav-bar-wrapper w-100">
+    <nav class="navbar navbar-expand-lg d-lg-none d-block px-3">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">
                 <a id="menu-toggle">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 7H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M5 12H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M5 17H19" stroke="#1960ab" stroke-width="2" stroke-linecap="round"/>
-                    </svg>                    
-                </a>
+                    <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 7H19" stroke="var(--light-color)" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M5 12H19" stroke="var(--light-color)" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M5 17H19" stroke="var(--light-color)" stroke-width="2" stroke-linecap="round"/>
+                    </svg></a>
+                    <div class="notification-icon" style="position:relative">
+                        <h4>
+                            <i class="bi bi-bell"></i>
+                        </h4>
+                        <span class="notification-counter d-none"></span>
+                    </div>
+                    <div class="notifications-container d-none card-overview shadow-sm p-3 border-0" >
+                        <div>
+                            {% include "includes/recent_activities.html" %}
+                        </div>
+                    </div>
                 {% include "includes/language_menu.html" %}
                 {% comment %} <a href="#" class="ms-1" style="color:#1960ab;"><h4 class="p-0 m-0"><i class="bi bi-moon"></i></h4></a> {% endcomment %}
             </div>
             <a href="{% url "home" %}">
-                <img src="{% static "images/logo.png" %}" style="width: 170px; height: 35px;">
+                <img src="{% static "images/logo-white.png" %}" class="navbar-logo">
             </a>
         </div>
     </nav>

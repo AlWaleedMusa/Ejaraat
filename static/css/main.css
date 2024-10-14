@@ -1,5 +1,30 @@
+:root {
+    --primary-color: #0f3054;
+    --secondary-color: #1960ab;
+    --success-color: #28a745;
+    --danger-color: #f32020;
+    --light-color: #f8f9fa;
+    --dark-color: #575757;
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --gray-color: #efeff1;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --tester: 1px solid red
+}
+
+/* overall css styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
     overflow-x: hidden;
+    /* overflow-y: hidden; */
+    background-color: var(--gray-color);
 }
 
 /* General RTL styles */
@@ -23,10 +48,17 @@ body[dir="ltr"] {
 }
 
 h2,
-h5 {
-    color: #464646;
+h6,
+h5,
+h4,
+h3,
+.close-notifications {
+    color: var(--dark-color);
+    padding: 0;
+    margin: 0;
 }
 
 a {
     cursor: pointer;
+    text-decoration: none;
 }

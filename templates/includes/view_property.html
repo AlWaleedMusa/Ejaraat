@@ -91,7 +91,7 @@
                             <div class="col-md-6 mb-3">
                                 <p><strong>{% trans "Next payment" %}:</strong>
                                     {% if rent_property.get_next_payment %}
-                                        {% trans "in" %} {{ rent_property.get_next_payment }} {% trans "Days" %}
+                                        {% trans "in" %} {{ rent_property.get_next_payment.1 }} {% trans "Days" %}
                                     {% else %}
                                         {% trans "No more payments" %}
                                     {% endif %}

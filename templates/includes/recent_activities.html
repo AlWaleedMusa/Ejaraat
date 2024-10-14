@@ -1,0 +1,88 @@
+{% load i18n %}
+
+
+<div id="recent-activities">
+    <div class="notifications-header d-flex justify-content-between align-items-center">
+        <h5>{% trans "Recent Activities" %}</h5>
+        <i class="close-notifications bi bi-x-lg" style='cursor: pointer;'></i>
+    </div>
+    {% comment %} <p class="text-muted" style="font-size: 14px;">{% trans "All recent activities will be logged here" %}</p> {% endcomment %}
+    
+    <!-- Timeline for Recent Activities -->
+    <div class="timeline">
+        {% for activity in recent_activities %}
+            {% comment %} adding notification {% endcomment %}
+            {% if activity.activity_type == "add" %}
+                <div class="timeline-item mb-4">
+                    <div class="timeline-icon bg-secondary text-white" >
+                        <i class="bi bi-plus-circle"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <p class="text-muted p-0 m-0">
+                            {{ activity.get_activity_type_display }}
+                            <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                {{ activity.property.name }}
+                            </a>
+                        </p>
+                        <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
+                    </div>
+                </div>
+            {% comment %} end of adding notification {% endcomment %}
+
+            {% comment %} overdue notifications {% endcomment %}
+            {% elif  activity.activity_type == "overdue"%}
+                <div class="timeline-item mb-4">
+                    <div class="timeline-icon bg-warning text-white">
+                        <i class="bi bi-exclamation-circle"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <p class="text-muted p-0 m-0">
+                            {{ activity.get_activity_type_display }}
+                            <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                {{ activity.property.name }}
+                            </a>
+                        </p>
+                        <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
+                    </div>
+                </div>
+            {% comment %} end of overdue notifications {% endcomment %}
+
+            {% comment %} rent notifications {% endcomment %}
+            {% elif activity.activity_type == "rent" %}
+                <div class="timeline-item mb-4">
+                    <div class="timeline-icon text-white" style="background-color: var(--primary-color)">
+                        <i class="bi bi-building-fill-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <p class="text-muted p-0 m-0">
+                            {{ activity.get_activity_type_display }}
+                            <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                {{ activity.property.name }}
+                            </a>
+                        </p>
+                        <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
+                    </div>
+                </div>
+            {% comment %} end of rent notifications {% endcomment %}
+
+            {% comment %} payment notifications {% endcomment %}
+            {% elif activity.activity_type == "payment" %}
+                <div class="timeline-item mb-4">
+                    <div class="timeline-icon text-white" style="background-color: var(--success-color)">
+                        <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <p class="text-muted p-0 m-0">
+                            {{ activity.get_activity_type_display }}
+                            <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                {{ activity.property.name }}
+                            </a>
+                        </p>
+                        <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
+                    </div>
+                </div>
+            {% comment %} end of payment notifications {% endcomment %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
