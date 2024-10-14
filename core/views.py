@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Property, Tenant, RentProperty, RentHistory
+from .models import Property, Tenant, RentProperty, RentHistory, RecentActivity
 from django.shortcuts import get_object_or_404
 from .forms import PropertyForm, RentPropertyForm
 from django.http import HttpResponse
@@ -28,12 +28,16 @@ def home(request):
 
     expiring_contracts = get_expiring_contracts(rented_properties)
     upcoming_payments = get_upcoming_payments(rented_properties)
+    # monthly_earning = get_monthly_earning(rented_properties)
+    recent_activities = get_recent_activity(request.user)
 
     context = {
         "available_properties": available_properties,
         "rented_properties": rented_properties,
         "expiring_contracts": expiring_contracts,
         "upcoming_payments": upcoming_payments,
+        "recent_activities": recent_activities,
+        # "monthly_earning": monthly_earning,
     }
 
     return render(request, "core/home.html", context)
@@ -195,9 +199,12 @@ def mark_as_paid(request, pk):
     if instance:
         instance.status = "paid"
         instance.save()
-        return HttpResponse(
-            f'<a class="blue-button btn btn-sm rounded-4 px-2 m-0 py-0" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{instance.property.id }">Paid</a>'
-        )
+
+        rented_properties = Property.objects.filter(
+            user=request.user, is_rented=True
+        ).order_by("property_rentals__end_date")
+        upcoming_payments = get_upcoming_payments(rented_properties)
+        return render(request, "includes/upcoming_payments.html", {"upcoming_payments": upcoming_payments})
 
 
 def empty_property(request, pk):

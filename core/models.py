@@ -111,10 +111,10 @@ class RentProperty(models.Model):
     )
 
     STATUS_OPTIONS = (
-        ('paid', _("Paid")),
-        ('unpaid', _("Unpaid")),
-        ('pending', _("Pending")),
-        ('overdue', _("Overdue")),
+        ("paid", _("Paid")),
+        ("unpaid", _("Unpaid")),
+        ("pending", _("Pending")),
+        ("overdue", _("Overdue")),
     )
 
     # tenant data
@@ -136,17 +136,14 @@ class RentProperty(models.Model):
     damage_deposit = models.IntegerField(null=True, blank=True)
     start_date = models.DateField(default=date.today)
     end_date = models.DateField(default=date.today() + timedelta(days=30))
-    status = models.CharField(
-        max_length=10, choices=STATUS_OPTIONS, default='paid'
-    )
+    status = models.CharField(max_length=10, choices=STATUS_OPTIONS, default="paid")
     contract = models.ImageField(upload_to="contracts", null=True, blank=True)
 
     def __str__(self):
         return f"{self.property.name} - Rented to {self.tenant.name}"
-    
+
     def get_payment_period(self):
-        """
-        """
+        """ """
         payment = int(self.payment)
         if payment == 7:
             return _("week")
@@ -219,14 +216,38 @@ class RentHistory(models.Model):
     payment_type = models.CharField(max_length=50)
     start_date = models.DateField()
     end_date = models.DateField()
-    contract = models.ImageField(upload_to="rent_history_contracts", null=True, blank=True)
+    contract = models.ImageField(
+        upload_to="rent_history_contracts", null=True, blank=True
+    )
 
     class Meta:
         verbose_name = "Rent History"
         verbose_name_plural = "Rent Histories"
-        ordering = ['-end_date']
+        ordering = ["-end_date"]
 
     def __str__(self):
         property_name = self.property.name
         tenant_name = self.tenant.name if self.tenant else "Unknown Tenant"
         return f"RentHistory for {property_name} by {tenant_name}"
+
+
+class RecentActivity(models.Model):
+    ACTIVITIES_OPTIONS = (
+        ("rent", _("You've rented a property.")),
+        ("payment", _("You've received payment.")),
+        ("contract", _("You've successfully renewed the contract.")),
+        ("overdue", _("Payment overdue")),
+        ("add", _("You've added a new property.")),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    activity_type = models.CharField(max_length=50, choices=ACTIVITIES_OPTIONS)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Recent Activity"
+        verbose_name_plural = "Recent Activities"
+        ordering = ["-timestamp"]
+
+    def __str__(self):
+        return f"{self.user} {self.activity_type} for {self.property.name} on {self.timestamp}"

@@ -13,5 +13,5 @@ urlpatterns = [
     path("view_property/<int:pk>", views.view_property, name="view_property"),
     path("mark_as_paid/<int:pk>", views.mark_as_paid, name="mark_as_paid"),
     path("empty_property/<int:pk>", views.empty_property, name="empty_property"),
-    path("search_all_properties/", views.search_all_properties, name="search_all_properties")
+    path("search_all_properties/", views.search_all_properties, name="search_all_properties"),
 ]
