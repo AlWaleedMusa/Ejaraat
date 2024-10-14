@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 07:29+0300\n"
+"POT-Creation-Date: 2024-10-14 08:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,7 +109,7 @@ msgstr "رسوم تأمين"
 msgid "Current payment status"
 msgstr "المستأجر الحالي"
 
-#: core/forms.py:112 templates/includes/all_properties.html:33
+#: core/forms.py:112 templates/includes/all_properties.html:42
 #: templates/includes/available_properties_modal.html:44
 #: templates/includes/available_properties_modal.html:56
 msgid "Rent"
@@ -195,21 +195,19 @@ msgstr "شهري"
 msgid "Yearly"
 msgstr "سنوي"
 
-#: core/models.py:114 templates/includes/upcoming_payments.html:34
-#: templates/includes/upcoming_payments.html:47
+#: core/models.py:114 templates/includes/upcoming_payments.html:51
 msgid "Paid"
 msgstr "مدفوع"
 
-#: core/models.py:115 templates/includes/upcoming_payments.html:38
+#: core/models.py:115 templates/includes/upcoming_payments.html:55
 msgid "Unpaid"
 msgstr "غير مدفوع"
 
-#: core/models.py:116 templates/includes/upcoming_payments.html:36
+#: core/models.py:116 templates/includes/upcoming_payments.html:53
 msgid "Pending"
 msgstr "معلقه"
 
-#: core/models.py:117 templates/includes/upcoming_payments.html:29
-#: templates/includes/upcoming_payments.html:40
+#: core/models.py:117 templates/includes/upcoming_payments.html:57
 msgid "Overdue"
 msgstr "متأخر"
 
@@ -217,21 +215,355 @@ msgstr "متأخر"
 msgid "Format: 12500"
 msgstr "الصيغه: 12500"
 
-#: core/models.py:152
+#: core/models.py:149
 msgid "week"
 msgstr "اسبوعياً"
 
-#: core/models.py:154
+#: core/models.py:151
 msgid "month"
 msgstr "شهرياً"
 
-#: core/models.py:156
+#: core/models.py:153
 msgid "year"
 msgstr "سنوياً"
 
-#: core/models.py:158
+#: core/models.py:155
 msgid "day"
 msgstr "يومياً"
+
+#: core/models.py:272
+msgid "You've rented a property."
+msgstr "تم تأجير عقار بنجاح"
+
+#: core/models.py:273
+msgid "You've received payment."
+msgstr "تم استلام الدفع بنجاح"
+
+#: core/models.py:274
+msgid "You've successfully renewed the contract."
+msgstr "تم تجديد العقد بنجاح"
+
+#: core/models.py:275
+msgid "Payment overdue"
+msgstr "الدفع متأخر"
+
+#: core/models.py:276
+msgid "You've added a new property."
+msgstr "تم إضافة عقار جديد"
+
+#: env/lib/python3.10/site-packages/click/_termui_impl.py:518
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/_termui_impl.py:522
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:1120
+msgid "Aborted!"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:1309
+#: env/lib/python3.10/site-packages/click/decorators.py:559
+msgid "Show this message and exit."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:1340
+#: env/lib/python3.10/site-packages/click/core.py:1370
+#, python-brace-format
+msgid "(Deprecated) {text}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:1387
+#: templates/includes/available_properties_modal.html:29
+#: templates/includes/expiring_contracts.html:18
+#: templates/includes/occupied_properties_modal.html:19
+#: templates/includes/view_property.html:168
+msgid "Options"
+msgstr "خيارات"
+
+#: env/lib/python3.10/site-packages/click/core.py:1413
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: env/lib/python3.10/site-packages/click/core.py:1429
+msgid "DeprecationWarning: The command {name!r} is deprecated."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:1636
+msgid "Commands"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:1668
+msgid "Missing command."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:1746
+msgid "No such command {name!r}."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:2310
+msgid "Value must be an iterable."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:2331
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: env/lib/python3.10/site-packages/click/core.py:2778
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:2808
+msgid "(dynamic)"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:2821
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/core.py:2834
+msgid "required"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/decorators.py:528
+msgid "Show the version and exit."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:44
+#: env/lib/python3.10/site-packages/click/exceptions.py:80
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:72
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:121
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:123
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:179
+msgid "Missing argument"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:181
+msgid "Missing option"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:183
+msgid "Missing parameter"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:185
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:192
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:212
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:224
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:262
+#, fuzzy
+#| msgid "Unknown"
+msgid "unknown error"
+msgstr "غير معروف"
+
+#: env/lib/python3.10/site-packages/click/exceptions.py:269
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/parser.py:231
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/parser.py:413
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/parser.py:474
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: env/lib/python3.10/site-packages/click/shell_completion.py:319
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/shell_completion.py:326
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/termui.py:158
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/termui.py:174
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/termui.py:176
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/termui.py:187
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/termui.py:243
+msgid "Error: invalid input"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/termui.py:773
+msgid "Press any key to continue..."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:266
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:298
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: env/lib/python3.10/site-packages/click/types.py:392
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: env/lib/python3.10/site-packages/click/types.py:414
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:470
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:611
+msgid "{value!r} is not a valid boolean."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:635
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:822
+msgid "file"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:824
+msgid "directory"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:826
+msgid "path"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:877
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:886
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:894
+#, python-brace-format
+msgid "{name} '{filename}' is a directory."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:903
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:912
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:921
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: env/lib/python3.10/site-packages/click/types.py:988
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: env/lib/python3.10/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"
@@ -1277,7 +1609,7 @@ msgstr ""
 
 #: env/lib/python3.10/site-packages/django/utils/text.py:286
 #: templates/account/login.html:58 templates/account/login.html:111
-#: templates/account/signup.html:46 templates/account/signup.html:86
+#: templates/account/signup.html:47 templates/account/signup.html:88
 msgid "or"
 msgstr "أو"
 
@@ -1285,73 +1617,73 @@ msgstr "أو"
 #: env/lib/python3.10/site-packages/django/utils/text.py:305
 #: env/lib/python3.10/site-packages/django/utils/timesince.py:135
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: env/lib/python3.10/site-packages/django/utils/timesince.py:8
 #, python-format
 msgid "%(num)d year"
 msgid_plural "%(num)d years"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "سنة واحدة"
+msgstr[1] "سنتان"
+msgstr[2] "سنوات"
+msgstr[3] "سنة"
+msgstr[4] "سنة"
+msgstr[5] "سنة"
 
 #: env/lib/python3.10/site-packages/django/utils/timesince.py:9
 #, python-format
 msgid "%(num)d month"
 msgid_plural "%(num)d months"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "شهر واحد"
+msgstr[1] "شهران"
+msgstr[2] "أشهر"
+msgstr[3] "شهر"
+msgstr[4] "شهر"
+msgstr[5] "شهر"
 
 #: env/lib/python3.10/site-packages/django/utils/timesince.py:10
 #, python-format
 msgid "%(num)d week"
 msgid_plural "%(num)d weeks"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أسبوع واحد"
+msgstr[1] "أسبوعان"
+msgstr[2] "أسابيع"
+msgstr[3] "أسبوع"
+msgstr[4] "أسبوع"
+msgstr[5] "أسبوع"
 
 #: env/lib/python3.10/site-packages/django/utils/timesince.py:11
 #, python-format
 msgid "%(num)d day"
 msgid_plural "%(num)d days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "يوم واحد"
+msgstr[1] "يومان"
+msgstr[2] "أيام"
+msgstr[3] "يوم"
+msgstr[4] "يوم"
+msgstr[5] "يوم"
 
 #: env/lib/python3.10/site-packages/django/utils/timesince.py:12
 #, python-format
 msgid "%(num)d hour"
 msgid_plural "%(num)d hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "ساعة واحدة"
+msgstr[1] "ساعتان"
+msgstr[2] "ساعات"
+msgstr[3] "ساعة"
+msgstr[4] "ساعة"
+msgstr[5] "ساعة"
 
 #: env/lib/python3.10/site-packages/django/utils/timesince.py:13
 #, python-format
 msgid "%(num)d minute"
 msgid_plural "%(num)d minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "دقيقه واحدة"
+msgstr[1] "دقيقتان"
+msgstr[2] "دقائق"
+msgstr[3] "دقيقة"
+msgstr[4] "دقيقة"
+msgstr[5] "دقيقة"
 
 #: env/lib/python3.10/site-packages/django/views/csrf.py:29
 msgid "Forbidden"
@@ -2030,15 +2362,15 @@ msgid "Request Code"
 msgstr ""
 
 #: templates/account/signup.html:7 templates/account/signup.html:38
-#: templates/account/signup.html:77
+#: templates/account/signup.html:79
 msgid "Sign Up"
-msgstr ""
+msgstr "سجل الآن"
 
-#: templates/account/signup.html:50 templates/account/signup.html:90
+#: templates/account/signup.html:51 templates/account/signup.html:92
 msgid "Sign up with Google"
 msgstr "سجل الآن باستخدام جوجل"
 
-#: templates/account/signup.html:56 templates/account/signup.html:97
+#: templates/account/signup.html:58 templates/account/signup.html:99
 #, python-format
 msgid ""
 "Already have an account? Then please <a href=\"%(login_url)s\" "
@@ -2115,6 +2447,38 @@ msgid ""
 "email address</a>."
 msgstr ""
 
+#: templates/core/home.html:28
+msgid "Hi"
+msgstr "مرحباً"
+
+#: templates/core/home.html:65
+#: templates/includes/available_properties_modal.html:18
+#: templates/includes/overview_cards.html:11
+msgid "Available Properties"
+msgstr "العقارات المتاحة"
+
+#: templates/core/home.html:78 templates/core/home.html:114
+#: templates/includes/occupied_properties_modal.html:9
+#: templates/includes/overview_cards.html:19
+msgid "Occupied Properties"
+msgstr "العقارات المشغولة"
+
+#: templates/core/home.html:92 templates/core/home.html:128
+msgid "Estimated monthly earnings"
+msgstr "متوقع الأرباح الشهرية"
+
+#: templates/core/home.html:92 templates/core/home.html:128
+msgid " in USD"
+msgstr "بالدولار"
+
+#: templates/core/home.html:127
+msgid "Monthly earning"
+msgstr "الأرباح الشهرية"
+
+#: templates/core/home.html:130
+msgid "$"
+msgstr "$"
+
 #: templates/forms/add_property_form.html:13
 #: templates/includes/available_properties_modal.html:69
 msgid "Add Property"
@@ -2141,46 +2505,32 @@ msgstr "أجّر العقار"
 msgid "My Properties"
 msgstr "عقاراتي"
 
-#: templates/includes/all_properties.html:17
+#: templates/includes/all_properties.html:26
 msgid "Available"
 msgstr "متوفر"
 
-#: templates/includes/all_properties.html:32
+#: templates/includes/all_properties.html:41
 #: templates/includes/available_properties_modal.html:50
 #: templates/includes/available_properties_modal.html:57
 msgid "View History"
 msgstr "تاريخ الإيجارات"
 
-#: templates/includes/all_properties.html:35
-#: templates/includes/expiring_contracts.html:29
+#: templates/includes/all_properties.html:44
+#: templates/includes/expiring_contracts.html:31
 #: templates/includes/occupied_properties_modal.html:39
 #: templates/includes/occupied_properties_modal.html:45
 msgid "View Details"
 msgstr "التفاصيل"
 
-#: templates/includes/available_properties_modal.html:18
-#: templates/includes/overview_cards.html:11
-msgid "Available Properties"
-msgstr "العقارات المتاحة"
-
 #: templates/includes/available_properties_modal.html:26
-#: templates/includes/expiring_contracts.html:14
+#: templates/includes/expiring_contracts.html:16
 #: templates/includes/occupied_properties_modal.html:17
-#: templates/includes/upcoming_payments.html:15
 msgid "Property"
 msgstr "العقار"
 
 #: templates/includes/available_properties_modal.html:28
 msgid "Type"
 msgstr "النوع"
-
-#: templates/includes/available_properties_modal.html:29
-#: templates/includes/expiring_contracts.html:16
-#: templates/includes/occupied_properties_modal.html:19
-#: templates/includes/upcoming_payments.html:19
-#: templates/includes/view_property.html:168
-msgid "Options"
-msgstr "خيارات"
 
 #: templates/includes/available_properties_modal.html:68
 msgid "There is no available properties"
@@ -2219,53 +2569,46 @@ msgstr "كل البيانات الحالية سيتم حفظها كتاريخ إ
 msgid "Empty"
 msgstr "إخلاء"
 
-#: templates/includes/expiring_contracts.html:8
+#: templates/includes/expiring_contracts.html:9
 msgid "Expiring Contracts"
 msgstr "عقودات علي إنتهاء"
 
-#: templates/includes/expiring_contracts.html:10
+#: templates/includes/expiring_contracts.html:12
 msgid "Contracts expiring in 30 days or less"
 msgstr "عقود تنتهي خلال 30 يوم او اقل"
 
-#: templates/includes/expiring_contracts.html:15
+#: templates/includes/expiring_contracts.html:17
 msgid "Expiring in"
 msgstr "إنتهاء بعد"
 
-#: templates/includes/expiring_contracts.html:23
-#: templates/includes/upcoming_payments.html:27
+#: templates/includes/expiring_contracts.html:25
 msgid "Day"
 msgstr "يوم"
 
-#: templates/includes/expiring_contracts.html:23
-#: templates/includes/upcoming_payments.html:27
+#: templates/includes/expiring_contracts.html:25
 #: templates/includes/view_property.html:96
 msgid "Days"
 msgstr "أيام"
 
-#: templates/includes/expiring_contracts.html:32
+#: templates/includes/expiring_contracts.html:34
 msgid "Contact Tenant"
 msgstr "تواصل مع المستأجر"
 
-#: templates/includes/expiring_contracts.html:35
+#: templates/includes/expiring_contracts.html:37
 msgid "Extend Contract"
 msgstr "تمديد العقد"
 
-#: templates/includes/expiring_contracts.html:45
+#: templates/includes/expiring_contracts.html:47
 msgid "No expiring contracts"
 msgstr "لا توجد عقودات علي وشك الإنتهاء"
 
-#: templates/includes/language_menu.html:11
+#: templates/includes/language_menu.html:22
 msgid "English"
 msgstr ""
 
-#: templates/includes/language_menu.html:14
+#: templates/includes/language_menu.html:30
 msgid "Arabic"
 msgstr ""
-
-#: templates/includes/occupied_properties_modal.html:9
-#: templates/includes/overview_cards.html:19
-msgid "Occupied Properties"
-msgstr "العقارات المشغولة"
 
 #: templates/includes/occupied_properties_modal.html:18
 msgid "End date"
@@ -2280,23 +2623,31 @@ msgstr "لا توجد عقارات مشغولة"
 msgid "Overview"
 msgstr "المُلخص"
 
-#: templates/includes/sidebar.html:11
+#: templates/includes/recent_activities.html:6
+msgid "Recent Activities"
+msgstr "الأنشطة الأخيرة"
+
+#: templates/includes/search.html:12
+msgid "Search by Name, Country"
+msgstr "بحث بإسم العقار, الدولة"
+
+#: templates/includes/sidebar.html:10
 msgid "Propereties"
 msgstr "العقارات"
 
-#: templates/includes/sidebar.html:12
+#: templates/includes/sidebar.html:11
 msgid "Tenants"
 msgstr "المستأجرين"
 
-#: templates/includes/sidebar.html:13
+#: templates/includes/sidebar.html:12
 msgid "Rent Payments"
 msgstr "الإيجارات"
 
-#: templates/includes/sidebar.html:14
+#: templates/includes/sidebar.html:13
 msgid "Maintenance"
 msgstr "الصيانة"
 
-#: templates/includes/sidebar.html:15
+#: templates/includes/sidebar.html:14
 msgid "Reports"
 msgstr "التقارير"
 
@@ -2308,28 +2659,32 @@ msgstr "الإعدادات"
 msgid "Sign out"
 msgstr "تسجيل الخروج"
 
-#: templates/includes/upcoming_payments.html:9
+#: templates/includes/upcoming_payments.html:8
 msgid "Upcoming Payments"
 msgstr "دفعات إيجار قادمة"
 
-#: templates/includes/upcoming_payments.html:11
+#: templates/includes/upcoming_payments.html:10
 msgid "Upcoming payments"
 msgstr "دفعات إيجار قادمة خلال ال 7 ايام القادمة"
 
-#: templates/includes/upcoming_payments.html:16
-msgid "Due in"
-msgstr "مستحق خلال"
+#: templates/includes/upcoming_payments.html:22
+msgid "Mark as Paid"
+msgstr "تم الدفع"
 
-#: templates/includes/upcoming_payments.html:17
-msgid "Amount"
-msgstr "القيمة"
+#: templates/includes/upcoming_payments.html:29
+msgid "Expected on"
+msgstr "متوقع في"
 
-#: templates/includes/upcoming_payments.html:18
-msgid "Status"
-msgstr "الحالة"
+#: templates/includes/upcoming_payments.html:31
+msgid "No upcoming payments"
+msgstr "لا توجد دفعات قادمة"
 
-#: templates/includes/upcoming_payments.html:64
-msgid "No payments with in the next 7 days"
+#: templates/includes/upcoming_payments.html:35
+msgid "Was expected on"
+msgstr "كان متوقع في"
+
+#: templates/includes/upcoming_payments.html:65
+msgid "No payments within the next 7 days"
 msgstr "لا توجد دفعات خلال ال 7 ايام القادمة"
 
 #: templates/includes/view_property.html:43
