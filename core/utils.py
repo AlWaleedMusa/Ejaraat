@@ -61,6 +61,11 @@ def get_recent_activity(user):
     """
     return RecentActivity.objects.filter(user=user).order_by("-timestamp")[:10]
 
+def get_notifications(user):
+    """
+    """
+    return RecentActivity.objects.filter(user=user, activity_type="overdue")[:5]
+
 
 
 # def convert_currency(amount, from_currency, to_currency="USD"):

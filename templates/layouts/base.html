@@ -48,7 +48,7 @@
         <link rel="stylesheet" href="{%static "css/accounts/login.css" %}">
 
     </head>
-    <body>
+    <body hx-ext="ws" ws-connect="/ws/recent-activities/">
         {% block content %}
         
         {% endblock content %}

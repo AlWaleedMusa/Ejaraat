@@ -24,9 +24,9 @@
             </h3>
         </div>
         <div class="d-flex align-items-center gap-3">
-            <div hx-ext="ws" ws-connect="/ws/recent-activities/" hx-target="#recent-activities" class="notifications-container d-none card-overview shadow-sm p-3 border-0" >
-                <div id="recent-activities">
-                    {% include "includes/recent_activities.html" %}
+            <div class="notifications-container d-none card-overview shadow-sm p-3 border-0" >
+                <div id="notifications">
+                    {% include "includes/notifications.html" %}
                 </div>
             </div>
             <div class="notification-icon" style="position: relative">
@@ -115,8 +115,8 @@
                             {% comment %} end of monthly earning in big screen {% endcomment %}
 
                             {% comment %} recent activities {% endcomment %}
-                            <div class="col">
-                                {% comment %} {% include "includes/recent_activities.html" %} {% endcomment %}
+                            <div class="p-3 border-0" class="col">
+                                {% include "includes/recent_activities.html" %}
                             </div>
                             {% comment %} end of recent activities {% endcomment %}
                         </div>

@@ -30,6 +30,7 @@ def home(request):
     upcoming_payments = get_upcoming_payments(rented_properties)
     # monthly_earning = get_monthly_earning(rented_properties)
     recent_activities = get_recent_activity(request.user)
+    notifications = get_notifications(request.user)
 
     context = {
         "available_properties": available_properties,
@@ -37,6 +38,7 @@ def home(request):
         "expiring_contracts": expiring_contracts,
         "upcoming_payments": upcoming_payments,
         "recent_activities": recent_activities,
+        "notifications": notifications,
         # "monthly_earning": monthly_earning,
     }
 

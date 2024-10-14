@@ -29,7 +29,15 @@ class RecentActivitiesConsumer(WebsocketConsumer):
 
     # Method to send the recent activities
     def send_recent_activities(self, event):
-        html = get_template("includes/recent_activities.html").render(
-            context={"recent_activities": event["recent_activities"]}
-        )
-        self.send(text_data=html)
+        if event["recent_activities"]:
+            activities_html = get_template("includes/recent_activities.html").render(
+                context={"recent_activities": event["recent_activities"]}
+            )
+            self.send(text_data=activities_html)
+
+    def send_notifications(self, event):
+        if event["notifications"]:
+            notifications_html = get_template("includes/notifications.html").render(
+                context={"notifications": event["notifications"]}
+            )
+            self.send(text_data=notifications_html)
