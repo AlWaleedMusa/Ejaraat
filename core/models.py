@@ -176,11 +176,47 @@ class RentProperty(models.Model):
                 current_payment_date += timedelta(days=interval_days)
 
         if current_payment_date >= end_date:
-            return (
-                None
-            )
+            return None
 
-        return (current_payment_date - today).days
+        days_until_next_payment = (current_payment_date - today).days
+
+        return current_payment_date, days_until_next_payment
+
+    # def reset_payment_status(self):
+    #     """
+    #     Resets the payment status based on the payment frequency (daily, weekly, monthly, or yearly).
+    #     This should reset on the next payment date based on the interval.
+    #     """
+    #     today = date.today()
+    #     interval_days = int(self.payment)
+
+    #     if self.status == "paid":
+    #         # Reset logic for different payment intervals
+    #         if interval_days == 1:
+    #             # Reset every day
+    #             self.status == "pending"
+    #             self.save()
+
+    #         elif interval_days == 7:
+    #             # Reset every 7 days from start_date
+    #             next_payment_day = self.start_date + timedelta(weeks=(today - self.start_date).days // 7 + 1)
+    #             if today == next_payment_day:
+    #                 self.status == "pending"
+    #                 self.save()
+
+    #         elif interval_days == 30:
+    #             # Reset every month on the same day as start_date
+    #             next_payment_month = self.start_date + relativedelta(months=(today.year - self.start_date.year) * 12 + today.month - self.start_date.month + 1)
+    #             if today == next_payment_month:
+    #                 self.status == "pending"
+    #                 self.save()
+
+    #         elif self.payment == 365:
+    #             # Reset every year on the same day as start_date
+    #             next_payment_year = self.start_date + relativedelta(years=(today.year - self.start_date.year + 1))
+    #             if today == next_payment_year:
+    #                 self.status == "pending"
+    #                 self.save()
 
     def expected_income(self):
         interval_days = int(self.payment)
