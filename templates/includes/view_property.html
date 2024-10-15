@@ -6,103 +6,87 @@
     <!-- Property Details -->
     <div>
         {% for rental in property.property_rentals.all %}
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
                 <h2>{{ property.name }} - {{ property.get_property_type_display }}</h2>
-                <i class="dropdown bi bi-three-dots fs-3" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#emptyPropertyModal{{ property.id }}">{% trans "Empty" %}</a>
-                    </li>
-                </ul>
-                {% comment %} empty property modal {% endcomment %}
-                    {% include "includes/empty_property_modal.html" %}
-                {% comment %} end of empty property modal {% endcomment %}
+                <div class="dropdown">
+                    <i class="bi bi-three-dots fs-3" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+                        <li>
+                            <a class="dropdown-item" hx-get="{% url 'edit_rental' rental.id %}" hx-target="#main-content">{% trans "Edit Rental" %}</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#emptyPropertyModal{{ property.id }}">{% trans "Empty" %}</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         {% endfor %}
-        <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }}<br> <span class="ms-4">{{ property.address }}</span></br>
+        
+        <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }}<br> 
+            <span class="ms-4">{{ property.address }}</span>
+        </p>
+
         {% for rental in property.property_rentals.all %}
             <h4 class="text-success">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h4>
         {% endfor %}
-        <hr>
         
-        <!-- Tabs for different sections -->
+        <hr>
+
+        <!-- Property Tabs -->
         <ul class="nav nav-tabs" id="propertyDetailsTab" role="tablist">
             {% if property.is_rented %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">
-                        {% trans "Overview" %}
+                <li class="nav-item">
+                    <button class="nav-link active" style="color: var(--primary-color)" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" role="tab" aria-selected="true">
+                        <i class="bi bi-house-fill pe-1"></i>{% trans "Overview" %}
                     </button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="tenant-tab" data-bs-toggle="tab" data-bs-target="#tenant" type="button" role="tab" aria-controls="tenant" aria-selected="false">
-                        {% trans "Tenant Info" %}
+                <li class="nav-item">
+                    <button class="nav-link" style="color: var(--primary-color)" id="tenant-tab" data-bs-toggle="tab" data-bs-target="#tenant" role="tab">
+                        <i class="bi bi-person-fill pe-1"></i>{% trans "Tenant Info" %}
                     </button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link {% if not property.is_rented %}active{% endif %}" id="rental-history-tab" data-bs-toggle="tab" data-bs-target="#rental-history" type="button" role="tab" aria-controls="rental-history" aria-selected="false">
-                        {% trans "Rental History" %}
+                <li class="nav-item">
+                    <button class="nav-link" style="color: var(--primary-color)" id="rental-history-tab" data-bs-toggle="tab" data-bs-target="#rental-history" role="tab">
+                        <i class="bi bi-clock-history pe-1"></i>{% trans "Rental History" %}
                     </button>
                 </li>
             {% else %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link {% if not property.is_rented %}active{% endif %}" id="rental-history-tab" data-bs-toggle="tab" data-bs-target="#rental-history" type="button" role="tab" aria-controls="rental-history" aria-selected="false">
-                        {% trans "Rental History" %}
+                <li class="nav-item">
+                    <button class="nav-link active" id="rental-history-tab" data-bs-toggle="tab" data-bs-target="#rental-history" role="tab">
+                        <i class="bi bi-clock-history pe-1"></i>{% trans "Rental History" %}
                     </button>
                 </li>
             {% endif %}
         </ul>
-        
+
         <div class="tab-content mt-3" id="propertyDetailsTabContent">
-        <!-- Overview Tab -->
-            <div class="tab-pane fade show {% if property.is_rented %}active{% endif %}" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                <h5 class="pb-2">{% trans "Property Overview" %}</h5>
-                
-                <!-- Card for Property Overview -->
-                <div class="card card-overview shadow-sm border-0 mb-4">
+            <!-- Overview Tab -->
+            <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                <div class="card shadow-sm mb-4">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <p><strong>{% trans "Rent start date" %}:</strong> {{ rent_property.start_date|date:"d M Y" }}</p>
+                                <p><strong>{% trans "Rent start date" %}:</strong> <i class="bi bi-calendar-event"></i> {{ rent_property.start_date|date:"d M Y" }}</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <p><strong>{% trans "Rent end date" %}:</strong> {{ rent_property.end_date|date:"d M Y" }}</p>
+                                <p><strong>{% trans "Rent end date" %}:</strong> <i class="bi bi-calendar-event"></i> {{ rent_property.end_date|date:"d M Y" }}</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <p><strong>{% trans "Damage deposit" %}:</strong> 
-                                    {% if rent_property.damage_deposit %}
-                                        {{ rent_property.damage_deposit|format_numbers }} {{ property.get_translated_currency }}
-                                    {% else %}
-                                        {% trans "N/A" %}
-                                    {% endif %}
-                                </p>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <p><strong>{% trans "Expected income" %}:</strong> {{ rent_property.expected_income }} {{ property.get_translated_currency }}</p>
+                                {% if rent_property.damage_deposit %}
+                                    <p><strong>{% trans "Damage deposit" %}:</strong> {{ rent_property.damage_deposit|format_numbers }} {{ property.get_translated_currency }}</p>
+                                {% else %}
+                                    <p><strong>{% trans "Damage deposit" %}:</strong> {% trans "N/A" %}</p>
+                                {% endif %}
                             </div>
                             <div class="col-md-6 mb-3">
                                 <p>
                                     <strong>{% trans "Payment status (Current month)" %}:</strong>
-                                    {{ rent_property.get_status_display }}
-                                </p>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <p><strong>{% trans "Next payment" %}:</strong>
-                                    {% if rent_property.get_next_payment %}
-                                        {% trans "in" %} {{ rent_property.get_next_payment.1 }} {% trans "Days" %}
-                                    {% else %}
-                                        {% trans "No more payments" %}
-                                    {% endif %}
-                                </p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><strong>{% trans "Contract image" %}:</strong>
-                                    {% if rent_property.contract %}
-                                        <a href="{{ rent_property.contract.url }}" target="_blank" class="btn btn-dark btn-sm">{% trans "View contract" %}</a>
-                                    {% else %}
-                                        {% trans "N/A" %}
+                                    {% if rent_property.status == "pending" %}
+                                        <span class="badge bg-secondary">{{ rent_property.get_status_display }}</span>
+                                    {% elif rent_property.status == "overdue" %}
+                                        <span class="badge bg-danger">{{ rent_property.get_status_display }}</span>
+                                    {% elif rent_property.status == "paid" %}
+                                        <span class="badge bg-success">{{ rent_property.get_status_display }}</span>
                                     {% endif %}
                                 </p>
                             </div>
@@ -110,25 +94,17 @@
                     </div>
                 </div>
             </div>
-        <!-- Tenant Info Tab -->
-            <div class="tab-pane fade" id="tenant" role="tabpanel" aria-labelledby="tenant-tab">
-                <h5 class="pb-2">{% trans "Current Tenant" %}</h5>
-            
-                <!-- Card for Tenant Info -->
-                <div class="card card-overview shadow-sm border-0 mb-4">
+
+            <!-- Tenant Info Tab -->
+            <div class="tab-pane fade" id="tenant" role="tabpanel">
+                <div class="card shadow-sm mb-4">
                     <div class="card-body">
                         <div class="row">
-                            <!-- Tenant Name -->
                             <div class="col-md-6 mb-3">
-                                <p>
-                                    <strong>{% trans "Name" %}:</strong> {{ rent_property.tenant.name }}
-                                </p>
+                                <p><strong>{% trans "Name" %}:</strong> {{ rent_property.tenant.name }}</p>
                             </div>
-            
-                            <!-- Tenant ID Image -->
                             <div class="col-md-6 mb-3">
-                                <p>
-                                    <strong>{% trans "ID image" %}:</strong>
+                                <p><strong>{% trans "ID image" %}:</strong> 
                                     {% if rent_property.tenant.id_image %}
                                         <a href="{{ rent_property.tenant.id_image.url }}" target="_blank" class="btn btn-dark btn-sm">{% trans "View ID Image" %}</a>
                                     {% else %}
@@ -136,65 +112,51 @@
                                     {% endif %}
                                 </p>
                             </div>
-                            
-                            <!-- Tenant Phone Number with Mobile Buttons -->
-                            <div class="col-md-6 mb-3">
-                                <p>
-                                    <strong>{% trans "Phone Number" %}:</strong> {{ rent_property.tenant.phone_number }}
-                                    <div id="mobile-buttons" class="d-none">
-                                        <a href="tel:{{ rent_property.tenant.phone_number }}" class="btn btn-success btn-sm">{% trans "Phone Call" %}</a>
-                                        <a href="sms:{{ rent_property.tenant.phone_number }}" class="btn btn-warning btn-sm">{% trans "Text Message" %}</a>
-                                    </div>
-                                </p>
+                            <div id="mobile-buttons" class="d-none">
+                                <button class="btn btn-sm me-2 text-white" style="background-color: var(--primary-color)">
+                                    <i class="bi bi-telephone-fill"></i> {% trans "Call" %}
+                                </button>
+                                <button class="btn btn-success btn-sm">
+                                    <i class="bi bi-chat-dots-fill"></i> {% trans "Text" %}
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <!-- Rental History Tab -->
-            <div class="tab-pane {% if not property.is_rented %}active{% endif %}" id="rental-history" role="tabpanel" aria-labelledby="rental-history-tab">
-                <h5 class="pb-2">{% trans "Rental History" %}</h5>
-                {% if rental_histories %}
-                    <div class="card card-overview shadow-sm border-0">
-                        <div class="card-body table-responsive" style="overflow-x: auto">
-                            <table class="table table-borderless">
-                                <thead>
+
+            <!-- Rental History Tab -->
+            <div class="tab-pane fade" id="rental-history" role="tabpanel">
+                <div class="card shadow-sm">
+                    <div class="card-body table-responsive">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Tenant" %}</th>
+                                    <th>{% trans "From" %}</th>
+                                    <th>{% trans "To" %}</th>
+                                    <th>{% trans "Options" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for rental_history in rental_histories %}
                                     <tr>
-                                        <th scope="col">{% trans "Tenant" %}</th>
-                                        <th scope="col">{% trans "From" %}</th>
-                                        <th scope="col">{% trans "To" %}</th>
-                                        <th scope="col">{% trans "Options" %}</th>
+                                        <td>{{ rental_history.tenant.name }}</td>
+                                        <td>{{ rental_history.start_date|date:"d M Y" }}</td>
+                                        <td>{{ rental_history.end_date|date:"d M Y" }}</td>
+                                        <td><a href="#" class="text-decoration-underline">{% trans "More" %}</a></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {% for rental_history in rental_histories %}
-                                        <tr>
-                                            <td>
-                                                {% if rental_history.tenant.name %}
-                                                    <a href="#">{{ rental_history.tenant.name }}</a>
-                                                {% else %}
-                                                    {% trans "Unknown" %}
-                                                {% endif %}
-                                            </td>
-                                            <td>{{ rental_history.start_date|date:"d M Y" }}</td>
-                                            <td>{{ rental_history.end_date|date:"d M Y" }}</td>
-                                            <td><a href="#">{% trans "More" %}</a></td> 
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
-                {% else %}
-                    <p class="text-muted" style="font-size: 14px;">{% trans "No rental history available." %}</p>
-                {% endif %}
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // Simple check for mobile devices
     if (/Mobi|Android/i.test(navigator.userAgent)) {
         document.getElementById('mobile-buttons').classList.remove('d-none');
     }

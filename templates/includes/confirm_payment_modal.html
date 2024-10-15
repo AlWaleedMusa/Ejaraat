@@ -13,7 +13,7 @@
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
-        <a hx-get="{% url "mark_as_paid" rental.id %}" hx-target="#upcoming-payment" class="blue-button btn" data-bs-dismiss="modal">{% trans "Confirm" %}</a>
+        <a hx-get="{% url "mark_as_paid" rental.id %}" hx-target="#upcoming-payment-content" class="blue-button btn" data-bs-dismiss="modal">{% trans "Confirm" %}</a>
         </div>
     </div>
     </div>

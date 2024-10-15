@@ -2,10 +2,10 @@
 {% load custome_filters %}
 
 
-<h2 class="px-1">
+{% comment %} <h2 class="px-1">
     {% trans "My Properties" %}
-</h2>
-<div class="d-flex justify-content-between">
+</h2> {% endcomment %}
+<div class="d-flex justify-content-between align-items-center">
     {% comment %} search form {% endcomment %}
         {% include "includes/search.html" %}
     {% comment %} end of search form {% endcomment %}
@@ -15,7 +15,7 @@
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     {% for property in all_properties %}
-        <div class="col p-3">
+        <div class="col p-3" style="overflow: auto;">
             <div class="card border-0 shadow-sm property-card position-relative">
                 {% comment %} ribbon {% endcomment %}
                     {% if not property.is_rented %}

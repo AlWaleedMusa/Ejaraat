@@ -2,68 +2,70 @@
 {% load custome_filters %}
 
 
-<div class="card card-overview shadow-sm border-0 flex-fill">
-    <div class="card-body">
-        <div class="row">
-            <h5>{% trans "Upcoming Payments" %}</h5>          
-            {% if upcoming_payments %}
-                <p class="text-muted" style="font-size: 14px;">{% trans "Upcoming payments" %}</p>
-                <div class="d-flex flex-nowrap overflow-x-auto gap-3 mobile-payment-cards">
-                    {% for rental in upcoming_payments %}
-                        <div class="payment-card shadow-sm p-3 rounded-4 bg-light d-flex flex-column justify-content-between">
-                            <div>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h6>
-                                        <a class="text-decoration-none text-dark" href="{% url 'view_property' rental.property.id %}">{{ rental.property.name }}</a>
-                                    </h6>
-                                    <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                    <ul class="dropdown-menu border-0 shadow-sm">
-                                        <li>
-                                            <a class="dropdown-item text-success" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Mark as Paid" %}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <p class="text-muted" style="font-size: 12px;">
-                                    {% if not rental.status == 'overdue' %}
-                                        {% if rental.get_next_payment %}
-                                            {% trans "Expected on" %} {{ rental.get_next_payment.0|date:"d M Y" }}
+<div id="upcoming-payment-content">
+    <div class="card card-overview shadow-sm border-0 flex-fill">
+        <div class="card-body">
+            <div class="row">
+                <h5>{% trans "Upcoming Payments" %}</h5>          
+                {% if upcoming_payments %}
+                    <p class="text-muted" style="font-size: 14px;">{% trans "Upcoming payments" %}</p>
+                    <div class="d-flex flex-nowrap overflow-x-auto gap-3 mobile-payment-cards">
+                        {% for rental in upcoming_payments %}
+                            <div class="payment-card shadow-sm p-3 rounded-4 bg-light d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6>
+                                            <a href="{% url 'view_property' rental.property.id %}" style="color: var(--dark-color)">{{ rental.property.name }}</a>
+                                        </h6>
+                                        <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                        <ul class="dropdown-menu border-0 shadow-sm">
+                                            <li>
+                                                <a class="dropdown-item text-success" data-bs-toggle="modal" data-bs-target="#confirmPaymentModal{{ rental.property.id }}">{% trans "Mark as Paid" %}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p class="text-muted" style="font-size: 12px;">
+                                        {% if not rental.status == 'overdue' %}
+                                            {% if rental.get_next_payment %}
+                                                {% trans "Expected on" %} {{ rental.get_next_payment.0|date:"d M Y" }}
+                                            {% else %}
+                                                {% trans "No upcoming payments" %}
+                                            {% endif %}
                                         {% else %}
-                                            {% trans "No upcoming payments" %}
+                                            <span class="text-danger">
+                                                <strong>{% trans "Was expected on" %}
+                                                    {{ rental.start_date|date:"d M Y" }}
+                                                </strong>
+                                            </span>
                                         {% endif %}
+                                    </p>
+                                </div>
+    
+                                <!-- Payment Amount -->
+                                <div class="amount-section">
+                                    <h6 class="text-success fw-normal">{{ rental.price|format_numbers }} {{ rental.property.get_translated_currency }}</h6>
+                                </div>
+    
+                                <!-- Payment Status as Badges -->
+                                <div class="status-section mt-2">
+                                    {% if rental.status == "paid" %}
+                                        <span class="badge bg-success">{% trans "Paid" %}</span>
+                                    {% elif rental.status == "pending" %}
+                                        <span class="badge bg-secondary">{% trans "Pending" %}</span>
+                                    {% elif rental.status == "unpaid" %}
+                                        <span class="badge bg-danger">{% trans "Unpaid" %}</span>
                                     {% else %}
-                                        <span class="text-danger">
-                                            <strong>{% trans "Was expected on" %}
-                                                {{ rental.start_date|date:"d M Y" }}
-                                            </strong>
-                                        </span>
+                                        <span class="badge bg-warning text-dark">{% trans "Overdue" %}</span>
                                     {% endif %}
-                                </p>
+                                </div>
                             </div>
-
-                            <!-- Payment Amount -->
-                            <div class="amount-section">
-                                <h6 class="text-success fw-normal">{{ rental.price|format_numbers }} {{ rental.property.get_translated_currency }}</h6>
-                            </div>
-
-                            <!-- Payment Status as Badges -->
-                            <div class="status-section mt-2">
-                                {% if rental.status == "paid" %}
-                                    <span class="badge bg-success">{% trans "Paid" %}</span>
-                                {% elif rental.status == "pending" %}
-                                    <span class="badge bg-secondary">{% trans "Pending" %}</span>
-                                {% elif rental.status == "unpaid" %}
-                                    <span class="badge bg-danger">{% trans "Unpaid" %}</span>
-                                {% else %}
-                                    <span class="badge bg-warning text-dark">{% trans "Overdue" %}</span>
-                                {% endif %}
-                            </div>
-                        </div>
-                        {% include "includes/confirm_payment_modal.html" %}
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p class="text-muted" style="font-size: 14px;">{% trans "No payments within the next 7 days" %}</p>
-            {% endif %}
+                            {% include "includes/confirm_payment_modal.html" %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted" style="font-size: 14px;">{% trans "No payments within the next 7 days" %}</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

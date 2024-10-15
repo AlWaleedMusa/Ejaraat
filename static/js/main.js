@@ -65,7 +65,6 @@ const notificationsCount = document.querySelectorAll(".notification-counter");
 
 document.body.addEventListener("htmx:wsAfterMessage", (event) => {
     const message = JSON.parse(event.detail.message);
-    console.log(message.type);
 
     if (message.type === "notifications") {
         let numberOfNotifications = parseInt(notificationsCount[0].innerHTML);
