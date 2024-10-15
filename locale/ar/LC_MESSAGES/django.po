@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-15 06:03+0300\n"
+"POT-Creation-Date: 2024-10-16 00:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,10 +104,8 @@ msgid "Damage Deposit"
 msgstr "رسوم تأمين"
 
 #: core/forms.py:91
-#, fuzzy
-#| msgid "Current Tenant"
 msgid "Current payment status"
-msgstr "المستأجر الحالي"
+msgstr "حالة الدفع الحالية"
 
 #: core/forms.py:112 templates/includes/all_properties.html:43
 #: templates/includes/available_properties_modal.html:44
@@ -412,10 +410,8 @@ msgstr[4] ""
 msgstr[5] ""
 
 #: env/lib/python3.10/site-packages/click/exceptions.py:262
-#, fuzzy
-#| msgid "Unknown"
 msgid "unknown error"
-msgstr "غير معروف"
+msgstr "خطاء غير معروف"
 
 #: env/lib/python3.10/site-packages/click/exceptions.py:269
 msgid "Could not open file {filename!r}: {message}"
@@ -1607,8 +1603,8 @@ msgid "%(truncated_text)s…"
 msgstr ""
 
 #: env/lib/python3.10/site-packages/django/utils/text.py:286
-#: templates/account/login.html:58 templates/account/login.html:111
-#: templates/account/signup.html:47 templates/account/signup.html:88
+#: templates/account/login.html:65 templates/account/login.html:118
+#: templates/account/signup.html:54 templates/account/signup.html:95
 msgid "or"
 msgstr "أو"
 
@@ -1908,7 +1904,7 @@ msgstr "إلغاء"
 
 #: templates/account/confirm_login_code.html:5
 #: templates/account/confirm_login_code.html:27 templates/account/login.html:8
-#: templates/account/login.html:35 templates/account/login.html:88
+#: templates/account/login.html:42 templates/account/login.html:95
 #: templates/account/request_login_code.html:5
 msgid "Sign In"
 msgstr ""
@@ -2197,20 +2193,20 @@ msgid ""
 "href=\"%(email_url)s\">issue a new email confirmation request</a>."
 msgstr ""
 
-#: templates/account/login.html:45 templates/account/login.html:98
+#: templates/account/login.html:52 templates/account/login.html:105
 msgid "Sign in with a passkey"
 msgstr ""
 
-#: templates/account/login.html:50 templates/account/login.html:103
+#: templates/account/login.html:57 templates/account/login.html:110
 #: templates/account/request_login_code.html:9
 msgid "Mail me a sign-in code"
 msgstr ""
 
-#: templates/account/login.html:62 templates/account/login.html:115
+#: templates/account/login.html:69 templates/account/login.html:122
 msgid "Sign in with Google"
 msgstr "تسجيل الدخول باستخدام جوجل"
 
-#: templates/account/login.html:66
+#: templates/account/login.html:73
 #, python-format
 msgid ""
 " You dont have an account? <a href=\"%(signup_url)s\" style=\"color: #1960ab;"
@@ -2219,14 +2215,14 @@ msgstr ""
 "لا تملك حساب؟ <a href=\"%(signup_url)s\" style=\"color: #1960ab;\">سجل الآن</"
 "a>"
 
-#: templates/account/login.html:119
+#: templates/account/login.html:126
 #, python-format
 msgid ""
-" You dont have an account? <a href=\"%(signup_url)s\" style=\"color: #1960ab;"
-"\">Sign Up</a> "
+" You dont have an account? <a href=\"%(signup_url)s\" class=\"text-white\" "
+"style=\"text-decoration: underline\">Sign Up</a> "
 msgstr ""
-"لا تملك حساب؟ <a href=\"%(signup_url)s\" style=\"color: #1960ab;\">سجل الآن</"
-"a>"
+"لا تملك حساب؟ <a href=\"%(signup_url)s\" class=\"text-white\" "
+"style=\"text-decoration: underline\">سجل الآن</a>"
 
 #: templates/account/logout.html:5 templates/account/logout.html:22
 msgid "Sign Out"
@@ -2360,23 +2356,32 @@ msgstr ""
 msgid "Request Code"
 msgstr ""
 
-#: templates/account/signup.html:7 templates/account/signup.html:38
-#: templates/account/signup.html:79
+#: templates/account/signup.html:7 templates/account/signup.html:45
+#: templates/account/signup.html:86
 msgid "Sign Up"
 msgstr "سجل الآن"
 
-#: templates/account/signup.html:51 templates/account/signup.html:92
+#: templates/account/signup.html:58 templates/account/signup.html:99
 msgid "Sign up with Google"
 msgstr "سجل الآن باستخدام جوجل"
 
-#: templates/account/signup.html:58 templates/account/signup.html:99
+#: templates/account/signup.html:65
 #, python-format
 msgid ""
-"Already have an account? Then please <a href=\"%(login_url)s\" "
-"style=\"color: #1960ab;\">sign in</a>."
+"Already have an account? <a href=\"%(login_url)s\" style=\"color: #1960ab;"
+"\">sign in</a>."
 msgstr ""
 "لديك حساب بالفعل؟ يرجى <a href=\"%(login_url)s\" style=\"color: #1960ab;"
 "\">تسجيل الدخول</a>."
+
+#: templates/account/signup.html:106
+#, python-format
+msgid ""
+"Already have an account? <a href=\"%(login_url)s\" class=\"text-white\" "
+"style=\"text-decoration: underline\">Sign in</a>"
+msgstr ""
+"لديك حساب بالفعل؟ <a href=\"%(login_url)s\" class=\"text-white\" "
+"style=\"text-decoration: underline\">تسجيل الدخول</a>"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:9
@@ -2462,15 +2467,15 @@ msgstr "العقارات المتاحة"
 msgid "Occupied Properties"
 msgstr "العقارات المشغولة"
 
-#: templates/core/home.html:91 templates/core/home.html:121
-msgid "Monthly earnings in USD"
-msgstr "مجموع الارباح الشهرية بالدولار"
-
-#: templates/core/home.html:120
+#: templates/core/home.html:89 templates/core/home.html:118
 msgid "Monthly earning"
 msgstr "الأرباح الشهرية"
 
-#: templates/core/home.html:123
+#: templates/core/home.html:90 templates/core/home.html:119
+msgid "Monthly earnings in USD"
+msgstr "مجموع الارباح الشهرية بالدولار"
+
+#: templates/core/home.html:92 templates/core/home.html:121
 msgid "$"
 msgstr "$"
 
