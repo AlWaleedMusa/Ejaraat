@@ -272,7 +272,7 @@ class RecentActivity(models.Model):
         ("rent", _("You've rented a property.")),
         ("payment", _("You've received payment.")),
         ("contract", _("You've successfully renewed the contract.")),
-        ("overdue", _("Payment overdue")),
+        ("overdue", _("Payment overdue for property")),
         ("add", _("You've added a new property.")),
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)

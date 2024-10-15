@@ -59,7 +59,7 @@ def get_upcoming_payments(properties):
 def get_recent_activity(user):
     """
     """
-    return RecentActivity.objects.filter(user=user).exclude(activity_type="overdue").order_by("-timestamp")[:10]
+    return RecentActivity.objects.filter(user=user).order_by("-timestamp")[:10]
 
 def get_notifications(user):
     """
