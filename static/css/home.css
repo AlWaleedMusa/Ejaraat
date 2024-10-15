@@ -93,8 +93,9 @@
         position: absolute;
         top: 58px;
         right: 90px;
-        width: 20em;
+        width: 25em;
         height: auto;
+        max-height: 40em;
         background-color: var(--light-color);
         z-index: 2000;
     }
@@ -103,8 +104,9 @@
         position: absolute;
         top: 58px;
         left: 90px;
-        width: 20em;
+        width: 25em;
         height: auto;
+        max-height: 40em;
         background-color: var(--light-color);
         z-index: 2000;
     }
