@@ -11,7 +11,14 @@
 
 <style>
     body {
-        background-color: #f7f7f7;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Gradient from primary color to a secondary color */
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Ensures the background stays fixed during scrolling */
+        color: white; /* Optional: Set text color to white for better contrast */
+    }
+
+    .bi-translate {
+        color: white;
     }
 </style>
 
@@ -52,7 +59,7 @@
                         {% comment %} {% endif %} {% endcomment %}
                     </div>
                     <p class="mb-4 text-muted text-center">
-                        {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}" style="color: #1960ab;">sign in</a>.{% endblocktranslate %}
+                        {% blocktranslate %}Already have an account? <a href="{{ login_url }}" style="color: #1960ab;">sign in</a>.{% endblocktranslate %}
                     </p>
                 </div>
             </div>
@@ -62,7 +69,7 @@
             <!-- Simple layout for smaller screens -->
             <div class="col-11 d-lg-none" style="margin-top: -40px;">
                 <div class="d-flex justify-content-center flex-column align-items-center">
-                    <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-5" style="width: 200px; height: 45px;">
+                    <img src="{% static 'images/logo-white.png' %}" alt="Logo" class="mb-5" style="width: 200px; height: 45px;">
                     {% comment %} <h1 class="h4 mb-3 text-primary">{% trans "Sign Up" %}</h1> {% endcomment %}
                     {% if not SOCIALACCOUNT_ONLY %}
                         {% url 'account_signup' as action_url %}
@@ -80,7 +87,7 @@
                     {% comment %} {% if SOCIALACCOUNT_ENABLED %} {% endcomment %}
                         <hr class="w-100">
                         <div class="text-center my-3">
-                            <span class="text-muted my-3">{% trans "or" %}</span>
+                            <span class="my-3">{% trans "or" %}</span>
                         </div>
                         <div class="d-grid gap-2 w-100">
                             <a href="#" class="btn btn-danger btn-block">
@@ -89,8 +96,8 @@
                         </div>
                     {% comment %} {% endif %} {% endcomment %}
                 </div>
-                <p class="mt-4 text-muted text-center">
-                    {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}" style="color: #1960ab;">sign in</a>.{% endblocktranslate %}
+                <p class="mt-4 text-white text-center">
+                    {% blocktranslate %}Already have an account? <a href="{{ login_url }}" class="text-white" style="text-decoration: underline">Sign in</a>{% endblocktranslate %}
                 </p>
             </div>
         </div>

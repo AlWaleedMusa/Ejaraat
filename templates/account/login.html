@@ -12,7 +12,14 @@
 
 <style>
     body {
-        background-color: #f7f7f7;
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)); /* Gradient from primary color to a secondary color */
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Ensures the background stays fixed during scrolling */
+        color: white; /* Optional: Set text color to white for better contrast */
+    }
+
+    .bi-translate {
+        color: white;
     }
 </style>
 
@@ -74,7 +81,7 @@
             <!-- Simple layout for smaller screens -->
             <div class="col-11 d-lg-none" style="margin-top: -30px">
                 <div class="d-flex justify-content-center flex-column align-items-center">
-                    <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-5" style="width: 200px; height: 45px;">
+                    <img src="{% static 'images/logo-white.png' %}" alt="Logo" class="mb-5" style="width: 200px; height: 45px;">
                     {% if not SOCIALACCOUNT_ONLY %}
                         {% url 'account_login' as login_url %}
                         <form method="post" action="{{ login_url }}" class="w-100">
@@ -104,7 +111,7 @@
                         </div>
                     {% endif %}
                     {% comment %} {% if SOCIALACCOUNT_ENABLED %} {% endcomment %}
-                        <div class="text-muted my-3">
+                        <div class="my-3">
                             {% trans "or" %}
                         </div>
                         <div class="d-grid gap-2 w-100">
@@ -112,8 +119,8 @@
                                 <i class="bi bi-google me-2"></i> {% trans "Sign in with Google" %}
                             </a>
                         </div>
-                        <p class="mt-4 text-muted text-center">
-                            {% blocktranslate %} You dont have an account? <a href="{{ signup_url }}" style="color: #1960ab;">Sign Up</a> {% endblocktranslate %}
+                        <p class="mt-4 text-white text-center">
+                            {% blocktranslate %} You dont have an account? <a href="{{ signup_url }}" class="text-white" style="text-decoration: underline">Sign Up</a> {% endblocktranslate %}
                         </p>
                     {% comment %} {% endif %} {% endcomment %}
                 </div>
