@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 08:54+0300\n"
+"POT-Creation-Date: 2024-10-15 03:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,8 +244,8 @@ msgid "You've successfully renewed the contract."
 msgstr "تم تجديد العقد بنجاح"
 
 #: core/models.py:275
-msgid "Payment overdue"
-msgstr "الدفع متأخر"
+msgid "Payment overdue for property"
+msgstr "الدفع متأخر عن العقار"
 
 #: core/models.py:276
 msgid "You've added a new property."
@@ -2609,6 +2609,10 @@ msgstr ""
 #: templates/includes/language_menu.html:30
 msgid "Arabic"
 msgstr ""
+
+#: templates/includes/notifications.html:6
+msgid "Notifications"
+msgstr "الإشعارات"
 
 #: templates/includes/occupied_properties_modal.html:18
 msgid "End date"
