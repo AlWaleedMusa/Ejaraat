@@ -6,3 +6,5 @@ admin.site.register(RentProperty)
 admin.site.register(Tenant)
 admin.site.register(RentHistory)
 admin.site.register(RecentActivity)
+admin.site.register(Notifications)
+
