@@ -72,10 +72,10 @@
                             
                             {% comment %} monthly earning in mobile {% endcomment %}
                             <div class="col d-lg-none d-block" >
-                                <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px;">
+                                <div class="card monthly-earnings shadow-sm p-3 border-0" style="height: 130px;">
                                     <h5 class="text-white">{% trans "Monthly earning" %}</h5>
                                     <p class="text-muted" style="font-size: 14px;">{% trans "Monthly earnings in USD" %}</p>
-                                    <h3 class="text-success">
+                                    <h3 class="text-white fw-normal">
                                         {{ monthly_earning|floatformat:2 }} {{ user.get_translated_currency }} {% trans "$" %}
                                     </h3>
                                 </div>
