@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Property, RentProperty, Tenant, RentHistory, RecentActivity
+from .models import Property, RentProperty, Tenant, RentHistory, RecentActivity, Notifications
 
 admin.site.register(Property)
 admin.site.register(RentProperty)
