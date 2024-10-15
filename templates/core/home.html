@@ -4,7 +4,6 @@
 {% load i18n %}
 {% load custome_filters %}
 
-
 {% block content %}
 
 <div class="container-fluid p-0">
@@ -24,7 +23,7 @@
             </h3>
         </div>
         <div class="d-flex align-items-center gap-3">
-            <div class="notifications-container d-none card-overview shadow-sm p-3 border-0" >
+            <div class="notifications-container d-none card-overview shadow-sm p-3 border-0">
                 <div>
                     {% include "includes/notifications.html" %}
                 </div>
@@ -47,10 +46,10 @@
             {% comment %} big screen view {% endcomment %}
             <div id="main-content" class="container-fluid">
                 <div class="row gap-3">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8" >
                         <div class="row gap-3">
                             {% comment %} available properties {% endcomment %}
-                            <div class="col">
+                            <div class="col" >
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#availablePropertiesModal">
                                     <div class="card card-overview shadow-sm p-3 border-0">
                                         <h5>{% trans "Available Properties" %}</h5>
@@ -61,7 +60,7 @@
                             {% comment %} end of available properties {% endcomment %}
 
                             {% comment %} occupied properties {% endcomment %}
-                            <div class="col">
+                            <div class="col" >
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#occupiedPropertiesModal">
                                     <div class="card card-overview shadow-sm p-3 border-0">
                                         <h5>{% trans "Occupied Properties" %}</h5>
@@ -72,12 +71,12 @@
                             {% comment %} end of occupied properties {% endcomment %}
                             
                             {% comment %} monthly earning in mobile {% endcomment %}
-                            <div class="col d-lg-none d-block">
+                            <div class="col d-lg-none d-block" >
                                 <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px;">
-                                    {% comment %} <h5>{% trans "Monthly earning" %}</h5> {% endcomment %}
-                                    <p class="text-muted" style="font-size: 14px;">{% trans "Estimated monthly earnings" %} {% trans " in USD" %}</p>
+                                    <h5 class="text-white">{% trans "Monthly earning" %}</h5>
+                                    <p class="text-muted" style="font-size: 14px;">{% trans "Monthly earnings in USD" %}</p>
                                     <h3 class="text-success">
-                                        {% comment %} {{ monthly_earning }} {{ user.get_translated_currency }} {% trans "USD" %} {% endcomment %}
+                                        {{ monthly_earning|floatformat:2 }} {{ user.get_translated_currency }} {% trans "$" %}
                                     </h3>
                                 </div>
                             </div>
@@ -85,37 +84,31 @@
                         </div>
                         <div class="row gap-3 mt-3 row-cols-1">
                             {% comment %} upcoming payment {% endcomment %}
-                            <div id="upcoming-payment" class="col">
+                            <div class="col" >
                                 {% include "includes/upcoming_payments.html" %}
                             </div>
                             {% comment %} end of upcoming payment {% endcomment %}
-
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#occupiedPropertiesModal">
-                                    <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px;">
-                                        <h5>{% trans "Occupied Properties" %}</h5>
-                                        <h3 class="card-value pt-3">{{ rented_properties.count }}</h3>
-                                    </div>
-                                </a>
+                            <div class="col" >
+                                {% include "includes/expiring_contracts.html" %}
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col" >
                         <div class="row row-cols-1 gap-3">
                             {% comment %} monthly earning in big screen {% endcomment %}
                             <div class="col d-lg-block d-none">
-                                <div class="card card-overview shadow-sm p-3 border-0" style="height: 130px;">
-                                    <h5>{% trans "Monthly earning" %}</h5>
-                                    <p class="text-muted" style="font-size: 14px;">{% trans "Estimated monthly earnings" %} {% trans " in USD" %}</p>
-                                    <h3 class="text-success fw-normal">
-                                        {{ monthly_earning }} {{ user.get_translated_currency }} {% trans "$" %}
+                                <div class="card monthly-earnings shadow-sm p-3 border-0" style="background-color: var(--success-color); color: white">
+                                    <h5 class="text-white">{% trans "Monthly earning" %}</h5>
+                                    <p class="text-muted" style="font-size: 14px;">{% trans "Monthly earnings in USD" %}</p>
+                                    <h3 class="text-white fw-normal">
+                                        {{ monthly_earning|floatformat:2 }} {{ user.get_translated_currency }} {% trans "$" %}
                                     </h3>
                                 </div>
                             </div>
                             {% comment %} end of monthly earning in big screen {% endcomment %}
 
                             {% comment %} recent activities {% endcomment %}
-                            <div class="recent-activities-container d-lg-block d-none p-3 border-0" class="col">
+                            <div class="recent-activities-container d-lg-block d-none p-3 border-0" >
                                 {% include "includes/recent_activities.html" %}
                             </div>
                             {% comment %} end of recent activities {% endcomment %}
@@ -125,17 +118,15 @@
             </div>   
         </div>
     {% comment %} end of main container {% endcomment %}
-</divs>
+</div>
 
 <!-- available Properties Modal -->
     {% include "includes/available_properties_modal.html" %}
 <!-- end of available Properties Modal -->
 
-
 <!-- occupied Properties Modal -->
     {% include "includes/occupied_properties_modal.html" %}
 <!-- end of occupied Properties Modal -->
-
 
 {% comment %} Javascript {% endcomment %}
 <script src="{% static "js/main.js" %}"></script>

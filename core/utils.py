@@ -1,7 +1,6 @@
 from datetime import date
-import calendar
 import requests
-from datetime import timedelta
+import os
 from .models import Notifications, RecentActivity
 
 
@@ -68,36 +67,34 @@ def get_notifications(user):
 
 
 
-# def convert_currency(amount, from_currency, to_currency="USD"):
-#     """
-#     """
-#     url = f"https://v6.exchangerate-api.com/v6/5ea2b1bcbecc8661d649b429/latest/{from_currency}"
-#     response = requests.get(url)
-#     data = response.json()
+def convert_currency(amount, from_currency, to_currency="USD"):
+    """
+    """
+    url = f"https://v6.exchangerate-api.com/v6/{os.getenv('CURRENCY_CONVERTER_API')}/latest/{from_currency}"
+    response = requests.get(url)
+    data = response.json()
 
-#     if response.status_code == 200:
-#         if to_currency in data["conversion_rates"]:
-#             data = response.json()
-#             rate = data["conversion_rates"][to_currency]
-#             return amount * rate
-#         else:
-#             raise ValueError(f"conversion rate for {to_currency} not found")
+    if response.status_code == 200:
+        if to_currency in data["conversion_rates"]:
+            data = response.json()
+            rate = data["conversion_rates"][to_currency]
+            return amount * rate
+        else:
+            raise ValueError(f"conversion rate for {to_currency} not found")
 
 
-# def get_monthly_earning(properties):
-#     """
-#     """
-#     today = date.today()
-#     month = today.month
-#     year = today.year
-#     monthly_earning = 0
+def get_monthly_earning(properties):
+    """
+    """
+    today = date.today()
+    month = today.month
+    year = today.year
+    monthly_earning = 0
 
-#     for property in properties:
-#         for rental in property.property_rentals.all():
-#             if rental.start_date.month == month and rental.start_date.year == year:
-#                 print(rental.price, rental.property.currency)
-#                 converted_price = convert_currency(rental.price, rental.property.currency)
-#                 print(converted_price)
-#                 monthly_earning += converted_price
+    for property in properties:
+        for rental in property.property_rentals.all():
+            if rental.start_date.month == month and rental.start_date.year == year:
+                converted_price = convert_currency(rental.price, rental.property.currency)
+                monthly_earning += converted_price
 
-#     return monthly_earning
+    return monthly_earning
