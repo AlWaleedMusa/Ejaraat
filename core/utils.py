@@ -2,7 +2,7 @@ from datetime import date
 import calendar
 import requests
 from datetime import timedelta
-from .models import RecentActivity
+from .models import Notifications, RecentActivity
 
 
 def get_expiring_contracts(properties):
@@ -59,12 +59,12 @@ def get_upcoming_payments(properties):
 def get_recent_activity(user):
     """
     """
-    return RecentActivity.objects.filter(user=user).order_by("-timestamp")[:10]
+    return RecentActivity.objects.filter(user=user).exclude(activity_type="overdue").order_by("-timestamp")[:10]
 
 def get_notifications(user):
     """
     """
-    return RecentActivity.objects.filter(user=user, activity_type="overdue")[:5]
+    return Notifications.objects.filter(user=user, is_read=False)
 
 
 

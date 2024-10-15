@@ -4,31 +4,36 @@
 <div id="notifications">
     <div class="notifications-header d-flex justify-content-between align-items-center">
         <h5>{% trans "Notifications" %}</h5>
-        <i class="close-notifications bi bi-x-lg" style='cursor: pointer;'></i>
+        <div class="d-flex align-items-center gap-2">
+            {% if notifications %}
+                <button ws-send name="data" value="clear" class="btn btn-sm btn-light rounded-4" style="color: var(--dark-color);">clear</button>
+            {% endif %}
+            <i class="close-notifications bi bi-x-lg" style='cursor: pointer;'></i>
+        </div>
     </div>
     {% comment %} <p class="text-muted" style="font-size: 14px;">{% trans "All recent activities will be logged here" %}</p> {% endcomment %}
     
-    <!-- Timeline for Recent Activities -->
-    <div class="timeline">
-        {% for notification in notifications %}
-            {% comment %} overdue notifications {% endcomment %}
-            {% if  notification.activity_type == "overdue"%}
+    {% if notifications %}
+        <!-- Timeline for Recent Activities -->
+        <div class="timeline">
+            {% for notification in notifications %}
+                {% comment %} overdue notifications {% endcomment %}
                 <div class="timeline-item mb-4">
+                    {% comment %} <i class="bi bi-x px-2" style='cursor: pointer; float: right'></i> {% endcomment %}
                     <div class="timeline-icon bg-warning text-white">
                         <i class="bi bi-exclamation-circle"></i>
                     </div>
                     <div class="timeline-content">
                         <p class="text-muted p-0 m-0">
-                            {{ notification.get_activity_type_display }}
-                            <a hx-get="{% url "view_property" notification.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
-                                {{ notification.property.name }}
-                            </a>
+                            {{ notification.message }} <a hx-get="{% url "view_property" notification.property.id%}" hx-target="#main-content" style="color: var(--primary-color)">{{notification.property.name}}</a>
                         </p>
                         <small class="text-muted">{{ notification.timestamp|date:"d M Y - h:i A" }}</small>
                     </div>
                 </div>
-            {% endif %}
-            {% comment %} end of overdue notifications {% endcomment %}
-        {% endfor %}
-    </div>
+                {% comment %} end of overdue notifications {% endcomment %}
+            {% endfor %}
+        </div>
+    {% else %}
+        {% comment %} Nothing here {% endcomment %}
+    {% endif %}
 </div>

@@ -287,3 +287,19 @@ class RecentActivity(models.Model):
 
     def __str__(self):
         return f"{self.user} {self.activity_type} for {self.property.name} on {self.timestamp}"
+
+
+class Notifications(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, null=True, blank=True)
+    message = models.TextField()
+    is_read = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Notification"
+        verbose_name_plural = "Notifications"
+        ordering = ["-timestamp"]
+
+    def __str__(self):
+        return f"Notification for {self.user}"
