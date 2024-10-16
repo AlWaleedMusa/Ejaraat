@@ -55,7 +55,6 @@
     body {
         overflow-x: hidden;
         overflow-y: hidden;
-        background-color: var(--gray-color);
     }
 
     .main-container-wrapper {
@@ -210,6 +209,12 @@
     color: white;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wrap-long-text {
+    word-wrap: break-word; /* Allows long words to be broken and wrap to the next line */
+    word-break: break-all; /* Ensures that the text breaks within the word if necessary */
+    white-space: normal; /* Allows the text to wrap normally */
 }
 
 .content {
