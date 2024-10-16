@@ -2,6 +2,8 @@
 @media (max-width: 992px) {
     #sidebar-wrapper {
         display: none;
+        width: 12em;
+        top: 3em;
     }
 
     #menu-toggle {
@@ -124,15 +126,19 @@
         right: -10px;
         z-index: 10;
     }
+
+    #sidebar-wrapper {
+        width: 15em;
+        top: 0;
+    }
 }
 
 /* Sidebar */
 #sidebar-wrapper {
     position: fixed;
     z-index: 500;
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     height: 100%;
-    width: 15em;
     min-height: 100vh;
 }
 
@@ -156,7 +162,7 @@
 .list-group-item {
     font-size: 1.1rem;
     border: none;
-    background-color: var(--primary-color);
+    background-color: transparent;
     color: var(--light-color);
 }
 
@@ -228,6 +234,10 @@
     flex: 0 0 auto; /* Prevents cards from shrinking and allows them to scroll horizontally */
     background: #f8f9fa;
     scroll-snap-align: start; /* Ensures smooth snapping when scrolling */
+}
+
+.badge {
+    border-radius: 30px;
 }
 
 .amount-section h6 {

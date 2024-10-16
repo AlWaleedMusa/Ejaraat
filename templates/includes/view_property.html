@@ -113,12 +113,12 @@
                                 </p>
                             </div>
                             <div id="mobile-buttons" class="d-none">
-                                <button class="btn btn-sm me-2 text-white" style="background-color: var(--primary-color)">
+                                <a href="tel:{{ rent_property.tenant.phone_number }}" class="btn btn-sm me-2 text-white" style="background-color: var(--primary-color)">
                                     <i class="bi bi-telephone-fill"></i> {% trans "Call" %}
-                                </button>
-                                <button class="btn btn-success btn-sm">
+                                </a>
+                                <a href="sms:{{ rent_property.tenant.phone_number }}" class="btn btn-success btn-sm">
                                     <i class="bi bi-chat-dots-fill"></i> {% trans "Text" %}
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
