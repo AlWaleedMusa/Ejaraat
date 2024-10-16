@@ -30,27 +30,33 @@ def get_upcoming_payments(properties):
                 # Always show rentals with payments due within 7 days or overdue
                 if days_until_due <= 7:
                     # Handle overdue payments
-                    if today > due_date and rental.status != "paid":
-                        if rental.status != "overdue":
+                    if today > due_date:
+                        if rental.status != "overdue" and rental.status != "paid":
                             rental.status = "overdue"
                             rental.save()
                         upcoming_payments.append(rental)
-                    
-                    # Handle pending payments due within 7 days
-                    elif rental.status != "pending" and rental.status != "paid":
-                        rental.status = "pending"
-                        rental.save()
-                        upcoming_payments.append(rental)
+                    else:                    
+                        # Handle pending payments due within 7 days
+                        if rental.status != "pending" and rental.status != "paid":
+                            rental.status = "pending"
+                            rental.save()
+                            upcoming_payments.append(rental)
 
-                    # Always append rentals due within 7 days, regardless of status
-                    if rental not in upcoming_payments and rental.status != "paid":
-                        upcoming_payments.append(rental)
+                        # Always append rentals due within 7 days, regardless of status
+                        if rental not in upcoming_payments or rental.status != "paid":
+                            upcoming_payments.append(rental)
+                    
+                    if rental.status == "paid" and rental in upcoming_payments:
+                        upcoming_payments.remove(rental)
             else:
                 # Handle rentals with no more payments and unpaid/overdue status
                 if rental.status != "paid" and rental.status != "overdue":
                     rental.status = "overdue"
                     rental.save()
-                    upcoming_payments.append(rental)
+                upcoming_payments.append(rental)
+
+                if rental.status == "paid" and rental in upcoming_payments:
+                    upcoming_payments.remove(rental)
 
     return upcoming_payments
 
