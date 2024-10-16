@@ -66,27 +66,37 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <p><strong>{% trans "Rent start date" %}:</strong> <i class="bi bi-calendar-event"></i> {{ rent_property.start_date|date:"d M Y" }}</p>
+                                <p><i class="bi bi-calendar-event px-2"></i> <strong>{% trans "Rent start date" %}:</strong> {{ rent_property.start_date|date:"d M Y" }}</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <p><strong>{% trans "Rent end date" %}:</strong> <i class="bi bi-calendar-event"></i> {{ rent_property.end_date|date:"d M Y" }}</p>
+                                <p><i class="bi bi-calendar-event px-2"></i> <strong>{% trans "Rent end date" %}:</strong>{{ rent_property.end_date|date:"d M Y" }}</p>
                             </div>
                             <div class="col-md-6 mb-3">
                                 {% if rent_property.damage_deposit %}
-                                    <p><strong>{% trans "Damage deposit" %}:</strong> {{ rent_property.damage_deposit|format_numbers }} {{ property.get_translated_currency }}</p>
+                                    <p><i class="bi bi-bank px-2"></i><strong>{% trans "Damage deposit" %}:</strong> {{ rent_property.damage_deposit|format_numbers }} {{ property.get_translated_currency }}</p>
                                 {% else %}
-                                    <p><strong>{% trans "Damage deposit" %}:</strong> {% trans "N/A" %}</p>
+                                    <p><i class="bi bi-bank px-2"></i><strong>{% trans "Damage deposit" %}:</strong> {% trans "N/A" %}</p>
                                 {% endif %}
                             </div>
                             <div class="col-md-6 mb-3">
                                 <p>
-                                    <strong>{% trans "Payment status (Current month)" %}:</strong>
+                                    <strong><i class="bi bi-currency-dollar px-2"></i>{% trans "Payment status (Current month)" %}:</strong>
                                     {% if rent_property.status == "pending" %}
                                         <span class="badge bg-secondary">{{ rent_property.get_status_display }}</span>
                                     {% elif rent_property.status == "overdue" %}
                                         <span class="badge bg-danger">{{ rent_property.get_status_display }}</span>
                                     {% elif rent_property.status == "paid" %}
                                         <span class="badge bg-success">{{ rent_property.get_status_display }}</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p>
+                                    <i class="bi bi-calendar-event px-2"></i><strong>{% trans "Next Payment" %}:</strong>
+                                    {% if rent_property.get_next_payment %}
+                                        {% trans "in" %} {{ rent_property.get_next_payment.1 }} {% trans "day" %}{{ rent_property.get_next_payment.1|pluralize }}
+                                    {% else %}
+                                        {% trans "No more Payments" %}
                                     {% endif %}
                                 </p>
                             </div>

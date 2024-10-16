@@ -217,6 +217,16 @@
     background-color: var(--light-color);
 }
 
+.dropdown-menu button:hover{
+    background-color: none;
+    text-decoration: underline;
+}
+
+.dropdown-menu button:focus{
+    background-color: var(--light-color);
+    color: black;
+}
+
 .main-container-wrapper {
     min-height: 100vh;
     padding: 1em;
