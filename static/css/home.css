@@ -52,6 +52,12 @@
 }
 
 @media (min-width: 992px) {
+    body {
+        overflow-x: hidden;
+        overflow-y: hidden;
+        background-color: var(--gray-color);
+    }
+
     .main-container-wrapper {
         width: calc(100% - 15em);
         margin-left: 15em;
@@ -271,6 +277,14 @@
     }
 }
 
+.upgrade-plan {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Notifications */
 .notifications-container {
     position: absolute;
@@ -296,6 +310,7 @@ html[dir="ltr"] .timeline {
     padding-left: 5px;
     overflow: auto;
     max-height: 45vh;
+    height: 13em;
 }
 html[dir="rtl"] .timeline {
     position: relative;
@@ -303,6 +318,7 @@ html[dir="rtl"] .timeline {
     padding-right: 5px;
     overflow: auto;
     max-height: 45vh;
+    height: 13em;
 }
 
 html[dir="ltr"] .timeline-item {
@@ -374,5 +390,5 @@ html[dir="rtl"] .timeline-content {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--gray-color); /* Color of the scrollbar thumb on hover */
+    background: var(--dark-color); /* Color of the scrollbar thumb on hover */
 }

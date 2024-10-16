@@ -21,11 +21,6 @@
     box-sizing: border-box;
 }
 
-body {
-    overflow-x: hidden;
-    /* overflow-y: hidden; */
-    background-color: var(--gray-color);
-}
 
 /* General RTL styles */
 body[dir="rtl"] {
@@ -61,4 +56,9 @@ h3,
 a {
     cursor: pointer;
     text-decoration: none;
+}
+
+.over-flow-auto {
+    overflow-y: auto;
+    overflow-x: hidden;
 }
