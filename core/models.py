@@ -269,10 +269,10 @@ class RentHistory(models.Model):
 
 class RecentActivity(models.Model):
     ACTIVITIES_OPTIONS = (
-        ("rent", _("You've rented a property.")),
-        ("payment", _("You've received payment.")),
-        ("contract", _("You've successfully renewed the contract.")),
-        ("overdue", _("Payment overdue for property")),
+        ("rent", _("You've rented this property.")),
+        ("payment", _("You've received a payment for the property.")),
+        ("contract", _("You've successfully renewed the contract for the property.")),
+        ("overdue", _("Payment overdue for the property.")),
         ("add", _("You've added a new property.")),
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
