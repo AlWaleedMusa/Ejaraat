@@ -15,7 +15,7 @@
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     {% for property in all_properties %}
-        <div class="col p-3" style="overflow: auto;">
+        <div class="col p-3">
             <div class="card border-0 shadow-sm property-card position-relative">
                 {% comment %} ribbon {% endcomment %}
                     {% if not property.is_rented %}
@@ -28,9 +28,13 @@
                 <div class="card-body property-details">
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="property-location"><i class="bi bi-geo-alt-fill pe-1"></i>{{ property.get_country_display }}, {{ property.city }}</p>
-                    {% for rental in property.property_rentals.all %}
-                        <h5 class="text-success py-2">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h5>
-                    {% endfor %}
+                    {% if property.is_rented %}
+                        {% for rental in property.property_rentals.all %}
+                            <h5 class="text-success py-2">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h5>
+                        {% endfor %}
+                    {% else %}
+                        <h5 class="text-success fw-light py-2">{% trans "Available to Rent" %}</h5>
+                    {% endif %}
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             {% if not property.is_rented %}

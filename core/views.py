@@ -28,7 +28,7 @@ def home(request):
 
     expiring_contracts = get_expiring_contracts(rented_properties)
     upcoming_payments = get_upcoming_payments(rented_properties)
-    monthly_earning = get_monthly_earning(rented_properties)
+    monthly_revenue = get_monthly_revenue(rented_properties)
     recent_activities = get_recent_activity(request.user)
     notifications = get_notifications(request.user)
 
@@ -39,7 +39,7 @@ def home(request):
         "upcoming_payments": upcoming_payments,
         "recent_activities": recent_activities,
         "notifications": notifications,
-        "monthly_earning": monthly_earning,
+        "monthly_revenue": monthly_revenue,
     }
 
     return render(request, "core/home.html", context)
@@ -206,7 +206,11 @@ def mark_as_paid(request, pk):
             user=request.user, is_rented=True
         ).order_by("property_rentals__end_date")
         upcoming_payments = get_upcoming_payments(rented_properties)
-        return render(request, "includes/upcoming_payments.html", {"upcoming_payments": upcoming_payments})
+        return render(
+            request,
+            "includes/upcoming_payments.html",
+            {"upcoming_payments": upcoming_payments},
+        )
 
 
 def empty_property(request, pk):

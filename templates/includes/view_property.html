@@ -84,7 +84,7 @@
                                     {% if rent_property.status == "pending" %}
                                         <span class="badge bg-secondary">{{ rent_property.get_status_display }}</span>
                                     {% elif rent_property.status == "overdue" %}
-                                        <span class="badge bg-danger">{{ rent_property.get_status_display }}</span>
+                                        <span class="badge bg-warning">{{ rent_property.get_status_display }}</span>
                                     {% elif rent_property.status == "paid" %}
                                         <span class="badge bg-success">{{ rent_property.get_status_display }}</span>
                                     {% endif %}

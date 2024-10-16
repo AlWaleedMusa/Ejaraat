@@ -198,13 +198,12 @@
     background-color: var(--light-color);
 }
 
-.monthly-earnings {
+.monthly-revenue {
     border-radius: 20px;
-    background: linear-gradient(135deg, #a8e063, #56ab2f); /* Gradient from light green to dark green */
-    color: white; /* Text color */
-    padding: 20px; /* Padding inside the element */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    background: linear-gradient(135deg, #a8e063, #56ab2f);
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .content {
@@ -217,12 +216,16 @@
     background-color: var(--light-color);
 }
 
-.dropdown-menu button:hover{
+.dropdown-menu button:hover,
+.dropdown-item:hover
+{
     background-color: none;
     text-decoration: underline;
 }
 
-.dropdown-menu button:focus{
+.dropdown-menu button:focus,
+.dropdown-item:active
+{
     background-color: var(--light-color);
     color: black;
 }
@@ -235,15 +238,15 @@
 /* Flexbox adjustments for mobile */
 .mobile-payment-cards {
     display: flex;
-    flex-wrap: nowrap; /* No wrap to create horizontal scrolling */
-    overflow-x: auto; /* Enables horizontal scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .payment-card {
-    flex: 0 0 auto; /* Prevents cards from shrinking and allows them to scroll horizontally */
+    flex: 0 0 auto;
     background: #f8f9fa;
-    scroll-snap-align: start; /* Ensures smooth snapping when scrolling */
+    scroll-snap-align: start;
 }
 
 .badge {
@@ -263,7 +266,7 @@
 /* Adjust layout for larger screens */
 @media (max-width: 768px) {
     .payment-card {
-        width: 100%; /* calc(100% - 1rem); Two cards per row on larger screens */
+        width: 100%;
         margin-bottom: 1rem;
     }
 }
@@ -282,9 +285,9 @@
 .notifications-header, .activities-header {
     position: sticky;
     top: 0;
-    z-index: 10; /* Ensure it stays above other content */
-    padding: 10px; /* Adjust padding as needed */
-    border-bottom: 1px solid #ddd; /* Optional: Add a bottom border for separation */
+    z-index: 10;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
 html[dir="ltr"] .timeline {
@@ -344,6 +347,14 @@ html[dir="ltr"] .timeline-content {
 html[dir="rtl"] .timeline-content {
     padding-right: 10px;
     margin-right: 10px;
+}
+
+.red-modal-header {
+    background: linear-gradient(135deg, #ff7e79, #ff3d3d);
+}
+
+.green-modal-header {
+    background: linear-gradient(135deg, #a8e063, #56ab2f);
 }
 
 /* Custom scrollbar styles */

@@ -14,9 +14,10 @@
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
-                                    <th scope="col">{% trans "Property" %}</th>
-                                    <th scope="col">{% trans "End date" %}</th>
-                                    <th scope="col">{% trans "Options" %}</th>
+                                    <th scope="col" style="color: var(--dark-color)">{% trans "Property" %}</th>
+                                    <th scope="col" style="color: var(--dark-color)">{% trans "End date" %}</th>
+                                    <th scope="col" style="color: var(--dark-color)">{% trans "Status" %}</th>
+                                    <th scope="col" style="color: var(--dark-color)">{% trans "Options" %}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,10 +27,19 @@
                                         {% for rental in property.property_rentals.all %}
                                             <td>{{ rental.end_date|date:"d M Y" }}</td>
                                             <td>
+                                                {% if rental.status == "paid" %}
+                                                    <span class="badge bg-success">{% trans "Paid" %}</span>
+                                                {% elif rental.status == "overdue" %}
+                                                    <span class="badge bg-warning">{% trans "Overdue" %}</span>
+                                                {% else %}
+                                                    <span class="badge bg-secondary">{% trans "Pending" %}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
                                                 <div class="d-lg-none d-block">
                                                     <div class="dropend text-center">
                                                         <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                                        <ul class="dropdown-menu">
+                                                        <ul class="dropdown-menu rounded-4">
                                                             <li>
                                                                 <a class="dropdown-item" hx-get="{% url "edit_rental" rental.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Edit Rental" %}</a>
                                                             </li>
@@ -40,7 +50,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-lg-block d-none">
-                                                    <a hx-get="{% url 'view_property' property.id %}" hx-target="#main-content" data-bs-dismiss="modal" class="btn rounded-4 px-3 blue-button btn-sm">{% trans "View Details" %}</a>
+                                                    <a hx-get="{% url 'view_property' property.id %}" hx-target="#main-content" data-bs-dismiss="modal" class="btn btn-sm blue-button rounded-5 px-3">{% trans "View Details" %}</a>
                                                 </div>
                                             </td>
                                         {% endfor %}
