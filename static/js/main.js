@@ -8,8 +8,28 @@ links.forEach((link) => {
 
 // Sidebar Toggle
 document.getElementById("menu-toggle").addEventListener("click", function () {
-    document.getElementById("sidebar-wrapper").classList.toggle("d-block");
+    const sidebar = document.getElementById("sidebar-wrapper");
+    sidebar.classList.toggle("d-block");
+
+    // Add or remove the click outside event listener based on sidebar state
+    if (sidebar.classList.contains("d-block")) {
+        document.addEventListener("click", closeSidebarOnClickOutside);
+    } else {
+        document.removeEventListener("click", closeSidebarOnClickOutside);
+    }
 });
+
+function closeSidebarOnClickOutside(event) {
+    const sidebar = document.getElementById("sidebar-wrapper");
+    const menuToggle = document.getElementById("menu-toggle");
+
+    // Check if the click happened outside the sidebar and the menu toggle button
+    if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+        sidebar.classList.remove("d-block");  // Close the sidebar
+        document.removeEventListener("click", closeSidebarOnClickOutside);  // Remove the event listener
+    }
+}
+
 
 // Notifications
 const bellIcon = document.querySelectorAll(".bi-bell");
