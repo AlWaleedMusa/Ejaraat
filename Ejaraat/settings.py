@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     # third party apps
     "allauth",
     "allauth.account",
-    "bootstrap_datepicker_plus",
     "crispy_forms",
     "crispy_bootstrap5",
 ]
