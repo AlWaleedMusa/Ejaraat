@@ -92,7 +92,7 @@
     }
 
     .payment-card {
-        width: calc(51% - 1rem); /* Three cards per row on extra large screens */
+        width: calc(50% - 1rem); /* Three cards per row on extra large screens */
         margin-bottom: 1rem;
     }
 
