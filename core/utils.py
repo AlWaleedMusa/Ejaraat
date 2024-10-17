@@ -1,6 +1,10 @@
 from datetime import date
+from dateutil.relativedelta import relativedelta
+from datetime import timedelta
 import os
 import requests
+
+from django.template.loader import get_template
 
 
 def get_expiring_contracts(properties):
@@ -137,3 +141,65 @@ def get_monthly_revenue(properties):
                 monthly_revenue += converted_price
 
     return monthly_revenue
+
+
+def clear_notification_service(user):
+    """
+    Clear the notifications for a given user.
+
+    This function marks all unread notifications for a given user as read and returns the updated
+    notifications HTML.
+
+    Args:
+        user (User): The user whose notifications are to be cleared.
+
+    Returns:
+        str: The updated notifications HTML.
+    """
+
+    from .models import Notifications
+
+    Notifications.objects.filter(user=user).update(is_read=True)
+    notifications = Notifications.objects.filter(user=user, is_read=False)
+    notifications_html = get_template("includes/notifications.html").render(
+        context={"notifications": notifications}
+    )
+
+    return notifications_html
+
+
+def get_next_payment(payment, start_date, end_date):
+    """
+    Calculate the next payment date based on the payment interval.
+
+    This function calculates the next payment date based on the payment interval (daily, weekly,
+    monthly, or yearly) and the start date of the rental contract. It returns the next payment date
+    and the number of days until the next payment is due.
+
+    Args:
+        payment (int): The payment interval in days.
+        start_date (date): The start date of the rental contract.
+        end_date (date): The end date of the rental contract.
+
+    Returns:
+        tuple: A tuple containing the next payment date and the number of days until the next payment.
+    """
+
+    interval_days = int(payment)
+    today = date.today()
+    current_payment_date = start_date
+
+    while current_payment_date <= today and current_payment_date < end_date:
+        if interval_days == 365:
+            current_payment_date += relativedelta(years=1)
+        elif interval_days == 30:
+            current_payment_date += relativedelta(months=1)
+        else:
+            current_payment_date += timedelta(days=interval_days)
+
+    if current_payment_date >= end_date:
+        return None
+
+    days_until_next_payment = (current_payment_date - today).days
+
+    return current_payment_date, days_until_next_payment

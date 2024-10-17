@@ -1,10 +1,12 @@
-from django.db import models
-from django.contrib.auth.models import User
 from datetime import timedelta, date
 from dateutil.relativedelta import relativedelta
-from babel.numbers import format_number
+
+from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+from .utils import get_next_payment
 
 
 class Property(models.Model):
@@ -181,25 +183,7 @@ class RentProperty(models.Model):
         Calculate the next payment date based on the payment interval
         """
 
-        interval_days = int(self.payment)
-        today = date.today()
-        current_payment_date = self.start_date
-        end_date = self.end_date
-
-        while current_payment_date <= today and current_payment_date < end_date:
-            if interval_days == 365:
-                current_payment_date += relativedelta(years=1)
-            elif interval_days == 30:
-                current_payment_date += relativedelta(months=1)
-            else:
-                current_payment_date += timedelta(days=interval_days)
-
-        if current_payment_date >= end_date:
-            return None
-
-        days_until_next_payment = (current_payment_date - today).days
-
-        return current_payment_date, days_until_next_payment
+        return get_next_payment(self.payment, self.start_date, self.end_date)
 
     # def reset_payment_status(self):
     #     """
@@ -237,34 +221,34 @@ class RentProperty(models.Model):
     #                 self.status == "pending"
     #                 self.save()
 
-    def expected_income(self):
-        """
-        Calculate the expected income from the property based on the payment interval
-        """
+    # def expected_income(self):
+    #     """
+    #     Calculate the expected income from the property based on the payment interval
+    #     """
 
-        interval_days = int(self.payment)
-        price = self.price
-        expected_income = 0
-        end_date = self.end_date
-        start_date = self.start_date
+    #     interval_days = int(self.payment)
+    #     price = self.price
+    #     expected_income = 0
+    #     end_date = self.end_date
+    #     start_date = self.start_date
 
-        current_date = start_date
+    #     current_date = start_date
 
-        # Use relativedelta for better handling of monthly or yearly intervals
-        while current_date <= end_date:
-            expected_income += price
+    #     # Use relativedelta for better handling of monthly or yearly intervals
+    #     while current_date <= end_date:
+    #         expected_income += price
 
-            # Check if it's a monthly interval, for example 30 days
-            if interval_days == 30:
-                current_date += relativedelta(months=1)  # Move by 1 month
-            else:
-                current_date += timedelta(days=interval_days)  # For other intervals
+    #         # Check if it's a monthly interval, for example 30 days
+    #         if interval_days == 30:
+    #             current_date += relativedelta(months=1)  # Move by 1 month
+    #         else:
+    #             current_date += timedelta(days=interval_days)  # For other intervals
 
-        return (
-            format_number(expected_income, locale="en_US")
-            if expected_income == price
-            else format_number(expected_income - price, locale="en_US")
-        )
+    #     return (
+    #         format_number(expected_income, locale="en_US")
+    #         if expected_income == price
+    #         else format_number(expected_income - price, locale="en_US")
+    #     )
 
 
 class RentHistory(models.Model):

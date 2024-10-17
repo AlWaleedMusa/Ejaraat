@@ -1,19 +1,13 @@
+from datetime import datetime
+
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
-from django.db.models import Q
-from datetime import datetime
 
 from .forms import PropertyForm, RentPropertyForm
-from .models import (
-    Property,
-    Tenant,
-    RentProperty,
-    RentHistory,
-    RecentActivity,
-    Notifications,
-)
+from .models import *
 from .utils import *
 
 

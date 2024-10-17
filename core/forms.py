@@ -1,10 +1,11 @@
-from .models import Property, RentProperty
-from django import forms
-from bootstrap_datepicker_plus.widgets import DatePickerInput
-from django.utils.translation import gettext_lazy as _
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Row, Column, Submit, HTML
 from django.urls import reverse_lazy
+from django import forms
+from django.utils.translation import gettext_lazy as _
+
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Row, Column, Submit
+
+from .models import Property, RentProperty
 
 
 class PropertyForm(forms.ModelForm):
@@ -79,7 +80,7 @@ class RentPropertyForm(forms.ModelForm):
         widgets = {
             "start_date": forms.DateInput(attrs={"type": "date"}),
             "end_date": forms.DateInput(attrs={"type": "date"}),
-            "damage_deposit": forms.NumberInput(attrs={"placeholder": "0"})
+            "damage_deposit": forms.NumberInput(attrs={"placeholder": "0"}),
         }
         labels = {
             "payment": _("Rent Payment Type"),
@@ -88,7 +89,7 @@ class RentPropertyForm(forms.ModelForm):
             "end_date": _("End Rent"),
             "contract": _("Contract Image"),
             "damage_deposit": _("Damage Deposit"),
-            "status": _("Current payment status")
+            "status": _("Current payment status"),
         }
 
     def __init__(self, *args, **kwargs):
@@ -133,8 +134,8 @@ class RentPropertyForm(forms.ModelForm):
                         Column(
                             "end_date",
                             css_class="col-lg-6",
-                        )
-                ),
+                        ),
+                    ),
                     css_class="col-lg-6",
                 ),
                 Column(
