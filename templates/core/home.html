@@ -89,14 +89,15 @@
                             </div>
                             {% comment %} end of monthly revenue in mobile {% endcomment %}
                         </div>
-                        <div class="row gap-3 mt-3 row-cols-1">
-                            {% comment %} upcoming payment {% endcomment %}
-                            <div class="col" >
-                                {% include "includes/upcoming_payments.html" %}
-                            </div>
-                            {% comment %} end of upcoming payment {% endcomment %}
-                            <div class="col" >
+                        <div class="row gap-3 mt-3">
+                            <div class="col-lg-8 col" >
                                 {% include "includes/expiring_contracts.html" %}
+                            </div>
+                            <div class="col-3 d-lg-block d-none">
+                                <canvas id="rentPaymentChart"></canvas>
+                            </div>
+                            <div class="col-fill" >
+                                {% include "includes/upcoming_payments.html" %}
                             </div>
                         </div>
                     </div>
@@ -145,5 +146,74 @@
 
 {% comment %} Javascript {% endcomment %}
 <script src="{% static "js/main.js" %}"></script>
+
+<script>
+    const ctx = document.getElementById("rentPaymentChart").getContext("2d");
+    const rentPaymentChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: [
+            '{% trans "Paid" %}',
+            '{% trans "Pending" %}',
+            '{% trans "Overdue" %}'
+            ],
+            datasets: [
+                {
+                    data: [
+                        {{ payment_status_counts.paid}}, // Rent payments marked as Paid
+                        {{ payment_status_counts.pending}}, // Rent payments marked as Pending
+                        {{ payment_status_counts.overdue}}, // Rent payments marked as Overdue
+                    ],
+                    backgroundColor: [
+                        "rgba(0, 128, 0, 0.8)",
+                        "rgba(128, 128, 128, 0.8)",
+                        "rgba(255, 0, 0, 0.8)",
+                    ],
+                    borderColor: [
+                        "rgba(0, 128, 0, 0.6)",
+                        "rgba(128, 128, 128, 0.6)",
+                        "rgba(255, 0, 0, 0.6)",
+                    ],
+                    borderWidth: 0.5,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        font: {
+                            size: 10,
+                        },
+                        color: "rgba(0, 0, 0, 0.6)",
+                        padding: 15,
+                        usePointStyle: true,
+                    },
+                },
+                title: {
+                    display: true,
+                    text: '{% trans "Rent Payment Status Breakdown" %}' ,
+                    font: {
+                        size: 15,
+                        weight: "500",
+                        family: "Roboto",
+                    },
+                },
+            },
+            layout: {
+                padding: {
+                    left: 15,
+                    right: 0,
+                    top: 10,
+                    bottom: 0,
+                },
+            },
+            maintainAspectRatio: false,
+            aspectRatio: 2,
+        },
+    });
+</script>
 
 {% endblock content %}

@@ -69,3 +69,11 @@ class RecentActivitiesConsumer(WebsocketConsumer):
                     {"notifications_html": notifications_html, "type": "notifications"}
                 )
             )
+
+    def send_payment_status_chart(self, event):
+        if event["data"]:
+            self.send(
+                text_data=json.dumps(
+                    {"data": event["data"], "type": "payment_status_chart"}
+                )
+            )

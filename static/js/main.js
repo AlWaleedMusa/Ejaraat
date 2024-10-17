@@ -25,11 +25,10 @@ function closeSidebarOnClickOutside(event) {
 
     // Check if the click happened outside the sidebar and the menu toggle button
     if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
-        sidebar.classList.remove("d-block");  // Close the sidebar
-        document.removeEventListener("click", closeSidebarOnClickOutside);  // Remove the event listener
+        sidebar.classList.remove("d-block"); // Close the sidebar
+        document.removeEventListener("click", closeSidebarOnClickOutside); // Remove the event listener
     }
 }
-
 
 // Notifications
 const bellIcon = document.querySelectorAll(".bi-bell");
@@ -116,17 +115,30 @@ document.body.addEventListener("htmx:wsAfterMessage", (event) => {
         notificationsContainer.forEach((container) => {
             container.innerHTML = message.notifications_html;
             container.classList.add("d-none");
-            attachCloseButtonListener();  // Reattach close listener after DOM update
+            attachCloseButtonListener(); // Reattach close listener after DOM update
         });
+    } else if ((message.type = "payment_status_chart")) {        
+        paymentCharts(
+            parseInt(message.data["paid"]),
+            parseInt(message.data["pending"]),
+            parseInt(message.data["overdue"])
+        );
     }
 });
 
+function paymentCharts(paid, pending, overdue) {
+    rentPaymentChart.data.datasets[0].data = [paid, pending, overdue];
+    rentPaymentChart.update();
+}
+
 // Function to attach the close button event listener
 function attachCloseButtonListener() {
-    const closeNotifications = document.querySelectorAll(".close-notifications");  // Adjust selector if needed
+    const closeNotifications = document.querySelectorAll(
+        ".close-notifications"
+    ); // Adjust selector if needed
     closeNotifications.forEach((close) => {
         close.addEventListener("click", function () {
-            const container = this.closest(".notifications-container");  // Assuming the container has this class
+            const container = this.closest(".notifications-container"); // Assuming the container has this class
             if (container) {
                 container.classList.add("d-none");
             }

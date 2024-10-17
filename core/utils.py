@@ -5,6 +5,7 @@ import os
 import requests
 
 from django.template.loader import get_template
+from django.db.models import Count
 
 
 def get_expiring_contracts(properties):
@@ -103,6 +104,7 @@ def convert_currency(amount, from_currency, to_currency="USD"):
     Raises:
         ValueError: If the conversion rate for the target currency is not found.
     """
+
     url = f"https://v6.exchangerate-api.com/v6/{os.getenv('CURRENCY_CONVERTER_API')}/latest/{from_currency}"
     response = requests.get(url)
     data = response.json()
@@ -135,10 +137,10 @@ def get_monthly_revenue(properties):
     for property in properties:
         for rental in property.property_rentals.all():
             if rental.start_date <= today and rental.end_date >= today:
-                converted_price = convert_currency(
-                    rental.price, rental.property.currency
-                )
-                monthly_revenue += converted_price
+                # converted_price = convert_currency(
+                    # rental.price, rental.property.currency
+                # )
+                monthly_revenue += 1 #converted_price
 
     return monthly_revenue
 
@@ -203,3 +205,32 @@ def get_next_payment(payment, start_date, end_date):
     days_until_next_payment = (current_payment_date - today).days
 
     return current_payment_date, days_until_next_payment
+
+
+def get_payment_status_chart():
+    from .models import RentProperty
+
+    payment_status_counts = RentProperty.objects.values('status').annotate(count=Count('status'))
+
+    # Prepare the data for the chart
+    data = {
+        'paid': 0,
+        'pending': 0,
+        'overdue': 0,
+    }
+    
+    # Populate the data dictionary based on query results
+    for entry in payment_status_counts:
+        if entry['status'] == 'paid':
+            data['paid'] = entry['count']
+        elif entry['status'] == 'pending':
+            data['pending'] = entry['count']
+        elif entry['status'] == 'overdue':
+            data['overdue'] = entry['count']
+
+    # Pass the data to the frontend
+    return {
+        'paid': data['paid'],
+        'pending': data['pending'],
+        'overdue': data['overdue']
+    }

@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
+from django.http import JsonResponse
 
 from .forms import PropertyForm, RentPropertyForm
 from .models import *
@@ -56,6 +57,8 @@ def home(request):
     upcoming_payments = get_upcoming_payments(rented_properties)
     monthly_revenue = get_monthly_revenue(rented_properties)
 
+    payment_status_counts = get_payment_status_chart()
+
     context = {
         "available_properties": available_properties,
         "rented_properties": rented_properties,
@@ -64,6 +67,7 @@ def home(request):
         "recent_activities": recent_activities,
         "notifications": notifications,
         "monthly_revenue": monthly_revenue,
+        "payment_status_counts": payment_status_counts,
     }
 
     return render(request, "core/home.html", context)

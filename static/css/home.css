@@ -55,6 +55,7 @@
     body {
         overflow-x: hidden;
         overflow-y: hidden;
+        min-width: 982px;
     }
 
     .main-container-wrapper {
@@ -315,7 +316,7 @@ html[dir="ltr"] .timeline {
     padding-left: 5px;
     overflow: auto;
     max-height: 45vh;
-    height: 13em;
+    height: 14em;
 }
 html[dir="rtl"] .timeline {
     position: relative;
@@ -323,7 +324,7 @@ html[dir="rtl"] .timeline {
     padding-right: 5px;
     overflow: auto;
     max-height: 45vh;
-    height: 13em;
+    height: 14em;
 }
 
 html[dir="ltr"] .timeline-item {

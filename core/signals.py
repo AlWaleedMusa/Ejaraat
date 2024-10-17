@@ -1,10 +1,12 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import gettext as _
 
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
 from .models import Property, RecentActivity, RentProperty, Notifications
+from .utils import get_payment_status_chart
 
 
 @receiver(post_save, sender=Property)
@@ -98,7 +100,7 @@ def handle_recent_activity(sender, instance, created, **kwargs):
             Notifications.objects.create(
                 user=instance.user,
                 property=instance.property,
-                message=f"Payment overdue for property",
+                message=_(f"Payment overdue for property"),
             )
             notifications = list(
                 Notifications.objects.filter(user=instance.user, is_read=False)
@@ -110,3 +112,13 @@ def handle_recent_activity(sender, instance, created, **kwargs):
                     "notifications": notifications,
                 },
             )
+
+    data = get_payment_status_chart()
+
+    async_to_sync(channel_layer.group_send)(
+        f"user_{instance.user.id}",
+        {
+            "type": "send_payment_status_chart",
+            "data": data,
+        },
+    )
