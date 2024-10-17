@@ -1,7 +1,6 @@
 from datetime import date
-import requests
 import os
-from .models import Notifications, RecentActivity
+import requests
 
 
 def get_expiring_contracts(properties):
