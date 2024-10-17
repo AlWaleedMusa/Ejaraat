@@ -56,6 +56,10 @@ class Property(models.Model):
         return f"{self.name} - {self.property_type}"
 
     def get_translated_currency(self):
+        """
+        Get the translated currency based on the selected currency
+        """
+
         currency_map = {
             "USD": _("USD"),
             "EUR": _("EUR"),
@@ -65,6 +69,10 @@ class Property(models.Model):
         return currency_map.get(self.currency, self.currency)
 
     def save(self, *args, **kwargs):
+        """
+        Set the currency based on the country
+        """
+
         country_currency_map = {
             "US": "USD",
             "EU": "EUR",
@@ -143,7 +151,10 @@ class RentProperty(models.Model):
         return f"{self.property.name} - Rented to {self.tenant.name}"
 
     def get_payment_period(self):
-        """ """
+        """
+        Get the payment period based on the payment interval
+        """
+
         payment = int(self.payment)
         if payment == 7:
             return _("week")
@@ -155,6 +166,10 @@ class RentProperty(models.Model):
             return _("day")
 
     def expiring_contracts(self):
+        """
+        Check if the contract is expiring in the next 30 days
+        """
+
         end_date = self.end_date
         today = date.today()
 
@@ -162,6 +177,10 @@ class RentProperty(models.Model):
             return True, (end_date - today).days
 
     def get_next_payment(self):
+        """
+        Calculate the next payment date based on the payment interval
+        """
+
         interval_days = int(self.payment)
         today = date.today()
         current_payment_date = self.start_date
@@ -219,6 +238,10 @@ class RentProperty(models.Model):
     #                 self.save()
 
     def expected_income(self):
+        """
+        Calculate the expected income from the property based on the payment interval
+        """
+
         interval_days = int(self.payment)
         price = self.price
         expected_income = 0
@@ -245,6 +268,10 @@ class RentProperty(models.Model):
 
 
 class RentHistory(models.Model):
+    """
+    A model to represent the rent history of a property
+    """
+
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     tenant = models.ForeignKey(Tenant, on_delete=models.SET_NULL, null=True, blank=True)
     price = models.IntegerField()
@@ -268,6 +295,10 @@ class RentHistory(models.Model):
 
 
 class RecentActivity(models.Model):
+    """
+    A model to represent recent activities for a user
+    """
+
     ACTIVITIES_OPTIONS = (
         ("rent", _("You've rented this property.")),
         ("payment", _("You've received a payment for the property.")),
@@ -290,8 +321,14 @@ class RecentActivity(models.Model):
 
 
 class Notifications(models.Model):
+    """
+    A model to represent notifications for a user
+    """
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    property = models.ForeignKey(Property, on_delete=models.CASCADE, null=True, blank=True)
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE, null=True, blank=True
+    )
     message = models.TextField()
     is_read = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
