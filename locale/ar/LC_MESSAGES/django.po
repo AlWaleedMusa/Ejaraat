@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-17 12:27+0300\n"
+"POT-Creation-Date: 2024-10-17 22:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr "نوع العقار"
 msgid "Property Address"
 msgstr "عنوان العقار"
 
-#: core/forms.py:20 templates/includes/available_properties_modal.html:27
+#: core/forms.py:20 templates/modals/available_properties_modal.html:27
 msgid "Country"
 msgstr "البلد"
 
@@ -108,8 +108,8 @@ msgid "Current payment status"
 msgstr "حالة الدفع الحالية"
 
 #: core/forms.py:113 templates/includes/all_properties.html:50
-#: templates/includes/available_properties_modal.html:44
-#: templates/includes/available_properties_modal.html:56
+#: templates/modals/available_properties_modal.html:44
+#: templates/modals/available_properties_modal.html:56
 msgid "Rent"
 msgstr "أجّر"
 
@@ -194,8 +194,8 @@ msgid "Yearly"
 msgstr "سنوي"
 
 #: core/models.py:124 templates/core/home.html:177
-#: templates/includes/occupied_properties_modal.html:31
 #: templates/includes/upcoming_payments.html:52
+#: templates/modals/occupied_properties_modal.html:31
 msgid "Paid"
 msgstr "مدفوع"
 
@@ -204,14 +204,14 @@ msgid "Unpaid"
 msgstr "غير مدفوع"
 
 #: core/models.py:126 templates/core/home.html:178
-#: templates/includes/occupied_properties_modal.html:35
 #: templates/includes/upcoming_payments.html:54
+#: templates/modals/occupied_properties_modal.html:35
 msgid "Pending"
 msgstr "معلقه"
 
 #: core/models.py:127 templates/core/home.html:179
-#: templates/includes/occupied_properties_modal.html:33
 #: templates/includes/upcoming_payments.html:58
+#: templates/modals/occupied_properties_modal.html:33
 msgid "Overdue"
 msgstr "متأخر"
 
@@ -285,10 +285,10 @@ msgid "(Deprecated) {text}"
 msgstr ""
 
 #: env/lib/python3.10/site-packages/click/core.py:1387
-#: templates/includes/available_properties_modal.html:29
-#: templates/includes/occupied_properties_modal.html:20
 #: templates/includes/view_property.html:150
 #: templates/includes/view_property.html:179
+#: templates/modals/available_properties_modal.html:29
+#: templates/modals/occupied_properties_modal.html:20
 msgid "Options"
 msgstr "خيارات"
 
@@ -1195,8 +1195,8 @@ msgid "Order"
 msgstr ""
 
 #: env/lib/python3.10/site-packages/django/forms/formsets.py:499
-#: templates/includes/confirm_delete_modal.html:16
 #: templates/includes/property_drop_end.html:18
+#: templates/modals/confirm_delete_modal.html:16
 msgid "Delete"
 msgstr "حذف"
 
@@ -1902,14 +1902,14 @@ msgstr ""
 #: templates/account/email_confirm.html:30
 #: templates/account/email_confirm.html:64
 #: templates/account/reauthenticate.html:18
-#: templates/includes/confirm_payment_modal.html:22
+#: templates/modals/confirm_payment_modal.html:22
 msgid "Confirm"
 msgstr "تأكيد"
 
 #: templates/account/confirm_email_verification_code.html:33
-#: templates/includes/confirm_delete_modal.html:15
-#: templates/includes/confirm_payment_modal.html:21
-#: templates/includes/empty_property_modal.html:14
+#: templates/modals/confirm_delete_modal.html:15
+#: templates/modals/confirm_payment_modal.html:21
+#: templates/modals/empty_property_modal.html:14
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -2466,15 +2466,13 @@ msgstr ""
 msgid "Hi"
 msgstr "مرحباً"
 
-#: templates/core/home.html:71
-#: templates/includes/available_properties_modal.html:18
-#: templates/includes/overview_cards.html:11
+#: templates/core/home.html:71 templates/includes/overview_cards.html:11
+#: templates/modals/available_properties_modal.html:18
 msgid "Available Properties"
 msgstr "العقارات المتاحة"
 
-#: templates/core/home.html:84
-#: templates/includes/occupied_properties_modal.html:9
-#: templates/includes/overview_cards.html:19
+#: templates/core/home.html:84 templates/includes/overview_cards.html:19
+#: templates/modals/occupied_properties_modal.html:9
 msgid "Occupied Properties"
 msgstr "العقارات المشغولة"
 
@@ -2507,20 +2505,20 @@ msgid "Rent Payment Status Breakdown"
 msgstr "تفاصيل حالة دفع الإيجارات"
 
 #: templates/forms/add_property_form.html:13
-#: templates/includes/available_properties_modal.html:69
+#: templates/modals/available_properties_modal.html:69
 msgid "Add Property"
 msgstr "إضافة عقار"
 
 #: templates/forms/edit_property_form.html:13
-#: templates/includes/available_properties_modal.html:47
 #: templates/includes/property_drop_end.html:8
+#: templates/modals/available_properties_modal.html:47
 msgid "Edit Property"
 msgstr "تعديل العقار"
 
 #: templates/forms/edit_rental_form.html:14
-#: templates/includes/occupied_properties_modal.html:44
 #: templates/includes/property_drop_end.html:13
 #: templates/includes/view_property.html:15
+#: templates/modals/occupied_properties_modal.html:44
 msgid "Edit Rental"
 msgstr "تعديل الإيجار"
 
@@ -2537,66 +2535,16 @@ msgid "Available to Rent"
 msgstr "متاح للإيجار"
 
 #: templates/includes/all_properties.html:49
-#: templates/includes/available_properties_modal.html:50
-#: templates/includes/available_properties_modal.html:57
+#: templates/modals/available_properties_modal.html:50
+#: templates/modals/available_properties_modal.html:57
 msgid "View History"
 msgstr "تاريخ الإيجارات"
 
 #: templates/includes/all_properties.html:52
-#: templates/includes/occupied_properties_modal.html:47
-#: templates/includes/occupied_properties_modal.html:53
+#: templates/modals/occupied_properties_modal.html:47
+#: templates/modals/occupied_properties_modal.html:53
 msgid "View Details"
 msgstr "التفاصيل"
-
-#: templates/includes/available_properties_modal.html:26
-#: templates/includes/occupied_properties_modal.html:17
-msgid "Property"
-msgstr "العقار"
-
-#: templates/includes/available_properties_modal.html:28
-msgid "Type"
-msgstr "النوع"
-
-#: templates/includes/available_properties_modal.html:68
-msgid "There is no available properties"
-msgstr "لا توجد عقارات متاحة"
-
-#: templates/includes/confirm_delete_modal.html:8
-msgid "Confirm Delete"
-msgstr "تأكيد الحذف"
-
-#: templates/includes/confirm_delete_modal.html:12
-msgid "Are you sure you wish to delete this property?"
-msgstr "هل انت متاكد من حذف هذا العقار ؟"
-
-#: templates/includes/confirm_payment_modal.html:8
-msgid "Confirm Payment"
-msgstr "تأكيد الدفع"
-
-#: templates/includes/confirm_payment_modal.html:12
-msgid "Confirm Payment for property ?"
-msgstr "تأكيد استلام الدفع للعقار ؟"
-
-#: templates/includes/confirm_payment_modal.html:13
-msgid "until"
-msgstr "الي"
-
-#: templates/includes/empty_property_modal.html:7
-msgid "Confirm Action"
-msgstr "تأكيد العملية"
-
-#: templates/includes/empty_property_modal.html:11
-msgid "Are you sure you wish to empty this property"
-msgstr "هل انت متاكد من إخلاء هذا العقار ؟"
-
-#: templates/includes/empty_property_modal.html:11
-msgid "All current data will be saved as Rental history"
-msgstr "كل البيانات الحالية سيتم حفظها كتاريخ إيجار"
-
-#: templates/includes/empty_property_modal.html:15
-#: templates/includes/view_property.html:18
-msgid "Empty"
-msgstr "إخلاء العقار"
 
 #: templates/includes/expiring_contracts.html:8
 msgid "Expiring Contracts"
@@ -2638,18 +2586,6 @@ msgstr ""
 #: templates/includes/notifications.html:6
 msgid "Notifications"
 msgstr "الإشعارات"
-
-#: templates/includes/occupied_properties_modal.html:18
-msgid "End date"
-msgstr "إنتهاء العقد"
-
-#: templates/includes/occupied_properties_modal.html:19
-msgid "Status"
-msgstr "الحالة"
-
-#: templates/includes/occupied_properties_modal.html:65
-msgid "There is no occupied properties"
-msgstr "لا توجد عقارات مشغولة"
 
 #: templates/includes/overview_cards.html:5
 #: templates/includes/view_property.html:41
@@ -2719,6 +2655,11 @@ msgstr "لا توجد دفعات قادمة"
 #: templates/includes/upcoming_payments.html:36
 msgid "Was expected on"
 msgstr "كان متوقع في"
+
+#: templates/includes/view_property.html:18
+#: templates/modals/empty_property_modal.html:15
+msgid "Empty"
+msgstr "إخلاء العقار"
 
 #: templates/includes/view_property.html:46
 msgid "Tenant Info"
@@ -2798,3 +2739,60 @@ msgstr "الي"
 #: templates/includes/view_property.html:188
 msgid "More"
 msgstr "المزيد"
+
+#: templates/modals/available_properties_modal.html:26
+#: templates/modals/occupied_properties_modal.html:17
+msgid "Property"
+msgstr "العقار"
+
+#: templates/modals/available_properties_modal.html:28
+msgid "Type"
+msgstr "النوع"
+
+#: templates/modals/available_properties_modal.html:68
+msgid "There is no available properties"
+msgstr "لا توجد عقارات متاحة"
+
+#: templates/modals/confirm_delete_modal.html:8
+msgid "Confirm Delete"
+msgstr "تأكيد الحذف"
+
+#: templates/modals/confirm_delete_modal.html:12
+msgid "Are you sure you wish to delete this property?"
+msgstr "هل انت متاكد من حذف هذا العقار ؟"
+
+#: templates/modals/confirm_payment_modal.html:8
+msgid "Confirm Payment"
+msgstr "تأكيد الدفع"
+
+#: templates/modals/confirm_payment_modal.html:12
+msgid "Confirm Payment for property ?"
+msgstr "تأكيد استلام الدفع للعقار ؟"
+
+#: templates/modals/confirm_payment_modal.html:13
+msgid "until"
+msgstr "الي"
+
+#: templates/modals/empty_property_modal.html:7
+msgid "Confirm Action"
+msgstr "تأكيد العملية"
+
+#: templates/modals/empty_property_modal.html:11
+msgid "Are you sure you wish to empty this property"
+msgstr "هل انت متاكد من إخلاء هذا العقار ؟"
+
+#: templates/modals/empty_property_modal.html:11
+msgid "All current data will be saved as Rental history"
+msgstr "كل البيانات الحالية سيتم حفظها كتاريخ إيجار"
+
+#: templates/modals/occupied_properties_modal.html:18
+msgid "End date"
+msgstr "إنتهاء العقد"
+
+#: templates/modals/occupied_properties_modal.html:19
+msgid "Status"
+msgstr "الحالة"
+
+#: templates/modals/occupied_properties_modal.html:65
+msgid "There is no occupied properties"
+msgstr "لا توجد عقارات مشغولة"
