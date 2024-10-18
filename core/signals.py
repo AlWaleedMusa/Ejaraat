@@ -113,7 +113,7 @@ def handle_recent_activity(sender, instance, created, **kwargs):
                 },
             )
 
-    data = get_payment_status_chart()
+    data = get_payment_status_chart(instance.user)
 
     async_to_sync(channel_layer.group_send)(
         f"user_{instance.user.id}",

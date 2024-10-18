@@ -57,7 +57,7 @@ def home(request):
     upcoming_payments = get_upcoming_payments(rented_properties)
     monthly_revenue = get_monthly_revenue(rented_properties)
 
-    payment_status_counts = get_payment_status_chart()
+    payment_status_counts = get_payment_status_chart(request.user)
 
     context = {
         "available_properties": available_properties,
