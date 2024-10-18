@@ -210,7 +210,7 @@ def get_next_payment(payment, start_date, end_date):
 def get_payment_status_chart():
     from .models import RentProperty
 
-    payment_status_counts = RentProperty.objects.values('status').annotate(count=Count('status'))
+    payment_status_counts = RentProperty.objects.filter(property__user=user).values('status').annotate(count=Count('status'))
 
     # Prepare the data for the chart
     data = {
