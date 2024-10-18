@@ -84,7 +84,8 @@
                                     <h3 class="text-white fw-normal">
                                         {{ monthly_revenue|floatformat:2 }} {{ user.get_translated_currency }} {% trans "$" %}
                                     </h3>
-                                    <i class="bi bi-bar-chart-line" style="position: absolute; bottom: 0px; right: 10px; font-size: 60px; color: rgba(0, 0, 0, 0.05);"></i>
+                                    {% comment %} <i class="bi bi-bar-chart-line" style="position: absolute; bottom: 0px; right: 10px; font-size: 60px; color: rgba(0, 0, 0, 0.05);"></i> {% endcomment %}
+                                    <img src="{% static "images/stock.png" %}" alt="stock icon" style="width: 100px; height: 100px; position: absolute; bottom: 15px; right: 10px; opacity: 0.08">
                                 </div>
                             </div>
                             {% comment %} end of monthly revenue in mobile {% endcomment %}
@@ -111,17 +112,18 @@
                                     <h3 class="text-white fw-normal wrap-long-text">
                                         {{ monthly_revenue|format_numbers }} {{ user.get_translated_currency }} {% trans "$" %}
                                     </h3>
-                                    <i class="bi bi-bar-chart-line" style="position: absolute; bottom: 0px; right: 10px; font-size: 60px; color: rgba(0, 0, 0, 0.05);"></i>
+                                    {% comment %} <i class="bi bi-bar-chart-line"></i> {% endcomment %}
+                                    <img src="{% static "images/stock.png" %}" alt="stock icon" style="width: 100px; height: 100px; position: absolute; bottom: 10px; right: 10px; opacity: 0.08">
                                 </div>
                             </div>
                             {% comment %} end of monthly earning in big screen {% endcomment %}
 
                             {% comment %} recent activities {% endcomment %}
-                            <div class="recent-activities-container d-lg-block d-none p-3 border-0" >
+                            <div class="recent-activities-container d-lg-block d-none p-3 pt-lg-0 border-0" >
                                 {% include "includes/recent_activities.html" %}
                             </div>
                             {% comment %} end of recent activities {% endcomment %}
-                            <div class="d-lg-block d-none p-3 pt-0 border-0" >
+                            <div class="p-3 pt-0 border-0" >
                                 <div class="card upgrade-plan shadow-sm p-3 border-0" style="background-color: var(--primary-color); color: white; position: relative;">
                                     <h5 class="text-white"><i class="bi bi-rocket"></i> {% trans "Upgrade Plan" %}</h5>
                                     <p class="text-white" style="font-size: 14px;">{% trans "Unlock more features by upgrading your plan." %}</p>
@@ -149,8 +151,9 @@
 
 <script>
     const ctx = document.getElementById("rentPaymentChart").getContext("2d");
+    var fontFamily = document.documentElement.getAttribute('dir') === 'rtl' ? 'Cairo' : 'Roboto';
     const rentPaymentChart = new Chart(ctx, {
-        type: "doughnut",
+        type: "pie",
         data: {
             labels: [
             '{% trans "Paid" %}',
@@ -165,12 +168,7 @@
                         {{ payment_status_counts.overdue}}, // Rent payments marked as Overdue
                     ],
                     backgroundColor: [
-                        "rgba(0, 128, 0, 0.8)",
-                        "rgba(128, 128, 128, 0.8)",
-                        "rgba(255, 0, 0, 0.8)",
-                    ],
-                    borderColor: [
-                        "rgba(0, 128, 0, 0.6)",
+                        "rgba(86, 171, 47)",
                         "rgba(128, 128, 128, 0.6)",
                         "rgba(255, 0, 0, 0.6)",
                     ],
@@ -185,10 +183,11 @@
                     position: "bottom",
                     labels: {
                         font: {
-                            size: 10,
+                            size: 12,
+                            family: fontFamily,
                         },
                         color: "rgba(0, 0, 0, 0.6)",
-                        padding: 15,
+                        padding: 10,
                         usePointStyle: true,
                     },
                 },
@@ -196,18 +195,11 @@
                     display: true,
                     text: '{% trans "Rent Payment Status Breakdown" %}' ,
                     font: {
-                        size: 15,
-                        weight: "500",
-                        family: "Roboto",
+                        size: 20,
+                        weight: "400",
+                        family: fontFamily,
                     },
-                },
-            },
-            layout: {
-                padding: {
-                    left: 15,
-                    right: 0,
-                    top: 10,
-                    bottom: 0,
+                    color: "rgba(0, 0, 0, 0.6)",
                 },
             },
             maintainAspectRatio: false,
