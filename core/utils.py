@@ -207,7 +207,19 @@ def get_next_payment(payment, start_date, end_date):
     return current_payment_date, days_until_next_payment
 
 
-def get_payment_status_chart():
+def get_payment_status_chart(user):
+    """
+    Retrieve the payment status counts for a given user's properties.
+
+    This function queries the database to get the count of payments with different statuses
+    (paid, pending, overdue) for a given user's properties.
+
+    Args:
+        user (User): The user whose payment status counts are to be retrieved.
+
+    Returns:
+        dict: A dictionary containing the counts of payments with different statuses.
+    """
     from .models import RentProperty
 
     payment_status_counts = RentProperty.objects.filter(property__user=user).values('status').annotate(count=Count('status'))
