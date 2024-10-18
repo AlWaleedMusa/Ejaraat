@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -75,21 +75,48 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "Ejaraat.wsgi.application"
 
-ASGI_APPLICATION = 'Ejaraat.asgi.application'
+ASGI_APPLICATION = "Ejaraat.asgi.application"
 
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
     },
 }
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+# production database set up
+
+# if DEBUG:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": BASE_DIR / "db.sqlite3",
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.postgresql_psycopg2",
+#             "NAME": os.getenv("DATABASE_NAME"),
+#             "USER": os.getenv("DATABASE_USER"),
+#             "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+#             "HOST": os.getenv("DATABASE_HOST"),
+#             "PORT": "",
+#         }
+#     }
+
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.getenv("DATABASE_NAME"),
+        "USER": os.getenv("DATABASE_USER"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST"),
+        "PORT": "",
     }
 }
 
@@ -122,7 +149,7 @@ AUTHENTICATION_BACKENDS = [
 
 # after signing up this is where user will be redirected to
 LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = 'landing'
+LOGOUT_REDIRECT_URL = "landing"
 
 
 # Internationalization
@@ -184,7 +211,7 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_UNIQUE_EMAIL = True
