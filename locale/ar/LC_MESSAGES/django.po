@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 00:28+0300\n"
+"POT-Creation-Date: 2024-10-20 02:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2555,16 +2555,12 @@ msgid "Contracts Expiring with in 30 days"
 msgstr "عقودات تنتهي خلال 30 يوم او اقل"
 
 #: templates/includes/expiring_contracts.html:31
+msgid "After"
+msgstr "بعد"
+
+#: templates/includes/expiring_contracts.html:31
 msgid "Day"
 msgstr "يوم"
-
-#: templates/includes/expiring_contracts.html:31
-msgid "Days"
-msgstr "أيام"
-
-#: templates/includes/expiring_contracts.html:31
-msgid "left"
-msgstr "متبقي"
 
 #: templates/includes/expiring_contracts.html:36
 msgid "Expiring Contract"
