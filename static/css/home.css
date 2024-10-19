@@ -212,6 +212,25 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.monthly-revenue img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 10px;
+    opacity: 0.08
+}
+
+html[dir="ltr"] .monthly-revenue img {
+    right: 10px;
+}
+
+html[dir="rtl"] .monthly-revenue img {
+    left: 10px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+
 .wrap-long-text {
     word-wrap: break-word; /* Allows long words to be broken and wrap to the next line */
     word-break: break-all; /* Ensures that the text breaks within the word if necessary */
