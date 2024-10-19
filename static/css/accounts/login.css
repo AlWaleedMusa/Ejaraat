@@ -1,3 +1,16 @@
+@media (max-width: 992px) {
+    #id_password_helptext a {
+        color: white;
+    }
+}
+
+@media (min-width: 992px) {
+    #id_password_helptext a {
+        color: var(--secondary-color);
+    }
+}
+
+
 .container {
     max-width: 1200px;
 }
@@ -27,9 +40,5 @@ img {
 
 .login-btn:hover {
     background-color: rgb(22, 88, 158);
-    color: white;
-}
-
-#id_password_helptext a {
     color: white;
 }
