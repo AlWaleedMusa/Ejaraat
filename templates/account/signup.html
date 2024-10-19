@@ -23,10 +23,10 @@
 </style>
 
 {% include "includes/language_menu.html" %}
-    <div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: -45px;">
+    <div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: -40px">
         <div class="row justify-content-center w-100 gap-5">
             <!-- Card layout for large screens -->
-            <div class="col-lg-5 d-none d-lg-block">
+            <div class="col-lg-5 d-none d-lg-block" style="margin-top: -45px">
                 <div class="card shadow-sm p-4">
                     <div class="card-body">
                         <div class="text-center">
@@ -59,7 +59,7 @@
                         {% comment %} {% endif %} {% endcomment %}
                     </div>
                     <p class="mb-4 text-muted text-center">
-                        {% blocktranslate %}Already have an account? <a href="{{ login_url }}" style="color: #1960ab;">sign in</a>.{% endblocktranslate %}
+                        {% blocktranslate %}Already have an account? <a href="{{ login_url }}" style="color: #1960ab;">Sign in</a>.{% endblocktranslate %}
                     </p>
                 </div>
             </div>
