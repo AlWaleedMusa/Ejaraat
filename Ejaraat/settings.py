@@ -89,24 +89,24 @@ CHANNEL_LAYERS = {
 
 # production database set up
 
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.getenv("DATABASE_NAME"),
+        "USER": os.getenv("DATABASE_USER"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST"),
+        "PORT": "",
     }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": os.getenv("DATABASE_NAME"),
-            "USER": os.getenv("DATABASE_USER"),
-            "PASSWORD": os.getenv("DATABASE_PASSWORD"),
-            "HOST": os.getenv("DATABASE_HOST"),
-            "PORT": "",
-        }
-    }
+}
 
 
 WHITENOISE_USE_FINDERS = True
