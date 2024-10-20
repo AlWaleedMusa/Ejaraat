@@ -1,5 +1,6 @@
 :root {
     --primary-color: #0f3054;
+    --primary-color-dark: #0c2744;
     --secondary-color: #1960ab;
     --success-color: #28a745;
     --danger-color: #f32020;
@@ -45,6 +46,7 @@ body[dir="ltr"] {
     font-family: "Cairo", sans-serif;
 }
 
+h1,
 h2,
 h6,
 h5,

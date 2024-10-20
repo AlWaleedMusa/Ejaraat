@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 03:12+0300\n"
+"POT-Creation-Date: 2024-10-20 09:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2504,6 +2504,205 @@ msgstr "حدّث الآن"
 msgid "Rent Payment Status Breakdown"
 msgstr "تفاصيل حالة دفع الإيجارات"
 
+#: templates/core/landing.html:137 templates/includes/language_menu.html:22
+msgid "English"
+msgstr ""
+
+#: templates/core/landing.html:145 templates/includes/language_menu.html:30
+msgid "Arabic"
+msgstr ""
+
+#: templates/core/landing.html:154
+msgid "Get Started"
+msgstr "إشترك الآن"
+
+#: templates/core/landing.html:161
+msgid "Features"
+msgstr "المميزات"
+
+#: templates/core/landing.html:168 templates/includes/expiring_contracts.html:8
+msgid "Expiring Contracts"
+msgstr "متابعة العقود"
+
+#: templates/core/landing.html:169
+msgid ""
+"Stay on top of expiring contracts and <span style=\"color: var(--secondary-"
+"color)\">never</span> miss a renewal. Automated reminders ensure timely "
+"follow-ups with your tenants."
+msgstr ""
+"كن دائماً على علم بالعقود التي تنتهي ولا تفوت أي تجديد. تذكيرات آلية تضمن "
+"متابعة مواعيد التجديد مع المستأجرين."
+
+#: templates/core/landing.html:176
+msgid "Payment Tracking"
+msgstr "متابعة الدفعات"
+
+#: templates/core/landing.html:177
+msgid ""
+"Keep track of rent payments and outstanding balances. Get <span "
+"style=\"color: var(--secondary-color)\">real-time</span> updates and "
+"automate payment reminders to tenants."
+msgstr ""
+"كن على علم بدفعات الإيجار والأرصدة المتبقية. إحصل على تحديثات فورية وأتمتة "
+"تذكيرات الدفع للمستأجرين."
+
+#: templates/core/landing.html:187
+msgid "Tenant Management"
+msgstr "إدارة المستأجرين"
+
+#: templates/core/landing.html:188
+msgid ""
+"Easily manage tenant profiles, contact information, and communication. Stay "
+"connected with your tenants through integrated <span style=\"color: var(--"
+"secondary-color)\">messaging tools</span>."
+msgstr ""
+"إدارة ملفات المستأجرين بسهولة، بيانات الاتصال والتواصل. تبقى على اتصال مع "
+"المستأجرين من خلال أدوات التواصل المتكاملة."
+
+#: templates/core/landing.html:202
+msgid "What Our Users Say"
+msgstr "تقييمات المستخدمين"
+
+#: templates/core/landing.html:207
+msgid "Salma Yousif"
+msgstr "سلمي يوسف"
+
+#: templates/core/landing.html:208
+msgid ""
+"\"With Ejaraat, I can track all my payments and tenants without any hassle. "
+"The interface is intuitive and smooth.\""
+msgstr ""
+"مع Ejaraat، يمكنني تتبع جميع دفعاتي والمستأجرين بدون أي عناء. الواجهة سهلة "
+"الاستخدام وسلسة."
+
+#: templates/core/landing.html:214
+msgid "Mohammed Madibo"
+msgstr "محمد مادبو"
+
+#: templates/core/landing.html:215
+msgid ""
+"\"Ejaraat has made managing my rental properties so much easier! The "
+"expiring contracts feature is a life-saver.\""
+msgstr ""
+"لقد جعل Ejaraat إدارة العقارات الخاصة بي أسهل بكثير! ميزة العقود التي تنتهي "
+"هي منقذة للحياة."
+
+#: templates/core/landing.html:221
+msgid "Fakhraldeen Faisal"
+msgstr "فخر الدين فيصل"
+
+#: templates/core/landing.html:222
+msgid ""
+"\"Tenant management has never been easier. I love the messaging feature that "
+"helps me stay in touch with tenants.\""
+msgstr ""
+"لم تكن إدارة المستأجرين أسهل من ذلك. أحب ميزة الرسائل التي تساعدني على "
+"التواصل مع المستأجرين."
+
+#: templates/core/landing.html:232
+msgid "About us"
+msgstr "عنا"
+
+#: templates/core/landing.html:238
+msgid ""
+"<span style=\"color: var(--secondary-color)\">Ejaraat</span> is a modern "
+"platform built to simplify rental property management. Our goal is to "
+"provide landlords with powerful tools to manage their properties "
+"efficiently, streamline tenant communication, and track payments with ease. "
+"Whether you own one property or many, Ejaraat has everything you need to "
+"stay organized and grow your business.</p>"
+msgstr ""
+"Ejaraat هي منصة حديثة تم بناؤها لتبسيط إدارة العقارات. هدفنا هو توفير أدوات "
+"قوية للملاك لإدارة عقاراتهم بكفاءة، وتبسيط التواصل مع المستأجرين، وتتبع "
+"الدفعات بسهولة. سواء كنت تمتلك عقارًا واحدًا أو أكثر، فإن Ejaraat لديها كل ما "
+"تحتاجه للبقاء منظمًا وتنمية عملك."
+
+#: templates/core/landing.html:246
+msgid "Choose Your Plan"
+msgstr "إختر خطتك"
+
+#: templates/core/landing.html:251
+msgid "Free"
+msgstr "مجاني"
+
+#: templates/core/landing.html:254
+msgid "$0.00 / month"
+msgstr "شهرياً 0.00$"
+
+#: templates/core/landing.html:255
+msgid "Manage up to 2 properties"
+msgstr "إدارة ما يصل إلى 2 عقار"
+
+#: templates/core/landing.html:256
+msgid "Email Support"
+msgstr "دعم البريد الإلكتروني"
+
+#: templates/core/landing.html:257 templates/core/landing.html:270
+msgid "Choose Plan"
+msgstr "إختر الخطة"
+
+#: templates/core/landing.html:264
+msgid "Pro"
+msgstr "مميز"
+
+#: templates/core/landing.html:267
+msgid "$19.99 / month"
+msgstr "شهرياً 19.99$"
+
+#: templates/core/landing.html:268
+msgid "Manage up to 20 properties"
+msgstr "إدارة ما يصل إلى 20 عقار"
+
+#: templates/core/landing.html:269
+msgid "Priority Support"
+msgstr "دعم الأولوية"
+
+#: templates/core/landing.html:277
+msgid "Enterprise"
+msgstr "الشركات"
+
+#: templates/core/landing.html:280
+msgid "Custom Pricing"
+msgstr "تسعير مخصص"
+
+#: templates/core/landing.html:281
+msgid "Unlimited Properties"
+msgstr "عدد غير محدود من العقارات"
+
+#: templates/core/landing.html:282
+msgid "Dedicated Account Manager"
+msgstr "مدير حساب مخصص"
+
+#: templates/core/landing.html:283 templates/core/landing.html:295
+msgid "Contact Us"
+msgstr "تواصل معنا"
+
+#: templates/core/landing.html:296
+msgid "We’re here to help! Reach out with any questions or support needs."
+msgstr "نحن هنا للمساعدة! تواصل معنا بأي أسئلة أو احتياجات دعم."
+
+#: templates/core/landing.html:299
+msgid "Your Name"
+msgstr "إسمك"
+
+#: templates/core/landing.html:302
+msgid "Your Email"
+msgstr "بريدك الإلكتروني"
+
+#: templates/core/landing.html:305
+msgid "Your Message"
+msgstr "رسالتك"
+
+#: templates/core/landing.html:308
+msgid "Send Message"
+msgstr "إرسال الرسالة"
+
+#: templates/core/landing.html:316
+msgid ""
+"&copy; 2024 Ejaraat. All rights reserved. | Privacy Policy | Terms of Service"
+msgstr ""
+"&copy; 2024 Ejaraat. جميع الحقوق محفوظة. | سياسة الخصوصية | شروط الخدمة"
+
 #: templates/forms/add_property_form.html:13
 #: templates/modals/available_properties_modal.html:69
 msgid "Add Property"
@@ -2546,10 +2745,6 @@ msgstr "تاريخ الإيجارات"
 msgid "View Details"
 msgstr "التفاصيل"
 
-#: templates/includes/expiring_contracts.html:8
-msgid "Expiring Contracts"
-msgstr "عقودات علي إنتهاء"
-
 #: templates/includes/expiring_contracts.html:10
 msgid "Contracts Expiring with in 30 days"
 msgstr "عقودات تنتهي خلال 30 يوم او اقل"
@@ -2573,14 +2768,6 @@ msgstr "عقد علي إنتهاء"
 #: templates/includes/upcoming_payments.html:66
 msgid "No payments within the next 7 days"
 msgstr "لا توجد دفعات خلال ال 7 أيام القادمة"
-
-#: templates/includes/language_menu.html:22
-msgid "English"
-msgstr ""
-
-#: templates/includes/language_menu.html:30
-msgid "Arabic"
-msgstr ""
 
 #: templates/includes/notifications.html:6
 msgid "Notifications"
