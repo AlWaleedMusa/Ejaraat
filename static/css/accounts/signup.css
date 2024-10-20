@@ -1,16 +1,4 @@
-@media (max-width: 992px) {
-    #id_password_helptext a {
-        color: white;
-    }
-}
-
-@media (min-width: 992px) {
-    #id_password_helptext a {
-        color: var(--secondary-color);
-    }
-}
-
-.login-container {
+.signup-container {
     margin-top: -60px;
 }
 
@@ -25,7 +13,7 @@
     padding: 40px;
 }
 
-.login-btn {
+.signup-btn {
     background-color: var(--primary-color);
     border: none;
     color: white;
@@ -35,7 +23,7 @@
     transition: background-color 0.3s ease;
 }
 
-.login-btn:hover {
+.signup-btn:hover {
     background-color: var(--secondary-color);
 }
 
@@ -59,10 +47,6 @@
     text-decoration: underline;
 }
 
-.form-control {
-    border-radius: 20px;
-}
-
 .google-btn {
     background-color: #d34836;
     border: none;
@@ -75,26 +59,4 @@
 
 .google-btn:hover {
     background-color: #f55a4e;
-}
-
-.container {
-    max-width: 1200px;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-.btn-block {
-    display: block;
-    width: 100%;
-}
-
-.text-muted {
-    font-size: 0.875rem;
-}
-
-.asteriskField {
-    display: none;
 }
