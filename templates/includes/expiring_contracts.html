@@ -27,7 +27,9 @@
 
                             <!-- days left -->
                             <div class="amount-section">
-                                <h6 class="text-danger fw-normal"> {% trans "After" %} {{ rental.expiring_contracts.1 }} {% trans "Day" %}{{ rental.expiring_contracts.1|pluralize }} </h6>
+                                <h6 class="text-danger fw-normal">
+                                    {% blocktrans count days=rental.expiring_contracts.1 %}After {{ days }} Day{% plural %}After {{ days }} Days{% endblocktrans %}
+                                </h6>
                             </div>
 
                             <!-- Badges -->

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 02:53+0300\n"
+"POT-Creation-Date: 2024-10-20 03:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2554,22 +2554,25 @@ msgstr "عقودات علي إنتهاء"
 msgid "Contracts Expiring with in 30 days"
 msgstr "عقودات تنتهي خلال 30 يوم او اقل"
 
-#: templates/includes/expiring_contracts.html:31
-msgid "After"
-msgstr "بعد"
+#: templates/includes/expiring_contracts.html:32
+#, python-format
+msgid "After %(days)s Day"
+msgid_plural "After %(days)s Days"
+msgstr[0] "بعد يوم واحد"
+msgstr[1] "بعد يومان"
+msgstr[2] "بعد %(days)s أيام"
+msgstr[3] "بعد %(days)s أيام"
+msgstr[4] "بعد %(days)s يوم"
+msgstr[5] "بعد %(days)s يوم"
 
-#: templates/includes/expiring_contracts.html:31
-msgid "Day"
-msgstr "يوم"
-
-#: templates/includes/expiring_contracts.html:36
+#: templates/includes/expiring_contracts.html:38
 msgid "Expiring Contract"
-msgstr "عقد علي انتهاء"
+msgstr "عقد علي إنتهاء"
 
-#: templates/includes/expiring_contracts.html:43
+#: templates/includes/expiring_contracts.html:45
 #: templates/includes/upcoming_payments.html:66
 msgid "No payments within the next 7 days"
-msgstr "لا توجد دفعات خلال ال 7 ايام القادمة"
+msgstr "لا توجد دفعات خلال ال 7 أيام القادمة"
 
 #: templates/includes/language_menu.html:22
 msgid "English"
