@@ -22,6 +22,9 @@ def landing(request):
     Returns:
         HttpResponse: The rendered landing page.
     """
+    if request.user.is_authenticated:
+        return redirect("home")
+    
     return render(request, "core/landing.html")
 
 
