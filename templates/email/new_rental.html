@@ -1,0 +1,91 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" class="lang-{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans "New Rental Notification" %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        html[dir="rtl"] body {
+            font-family: Cairo, sans-serif;
+        }
+        html[dir="ltr"] body {
+            font-family: Roboto, sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #dddddd;
+        }
+        .header img {
+            width: 250px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #dddddd;
+            font-size: 12px;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="http://ejaraat.live/static/images/logo.png" alt="Ejaraat logo">
+            <h1>{% trans "New Rental Notification" %}</h1>
+        </div>
+        <div class="content">
+            <p>{% blocktrans %}Dear {{ user }},{% endblocktrans %}</p>
+            <p>{% trans "We are excited to inform you that a new rental has been successfully processed." %}</p>
+            <p><strong>{% trans "Rental Details:" %}</strong></p>
+            <ul>
+                <li><strong>{% trans "Property:" %}</strong> {{ property.name }}</li>
+                <li><strong>{% trans "Location:" %}</strong> {{ property.address }}</li>
+                <li><strong>{% trans "Start Date:" %}</strong> {{ rental.start_date }}</li>
+                <li><strong>{% trans "End Date:" %}</strong> {{ rental.end_date }}</li>
+                <li><strong>{% trans "Price:" %}</strong> {{ rental.price }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</li>
+                <li><strong>{% trans "Contract:" %}</strong> {% if rental.contract %} <a href="{{ rental.contract.url }}" target="_blank">{% trans "View" %}</a> {% else %} {% trans "N/A" %} {% endif %}</li>
+            </ul>
+
+            <p><strong>{% trans "Tenant Details:" %}</strong></p>
+            <ul>
+                <li><strong>{% trans "Tenant Name:" %}</strong> {{ tenant.name }}</li>
+                <li><strong>{% trans "Tenant Phone:" %}</strong> {{ tenant.phone_number }}</li>
+                <li><strong>{% trans "Tenant ID:" %}</strong> {% if tenant.id_image %} <a href="{{ tenant.id_image.url }}" target="_blank">{% trans "View" %}</a> {% else %} {% trans "N/A" %} {% endif %}</li>
+            </ul>
+            {% blocktrans %}
+                <p>If you have any questions, feel free to contact us.</p>
+                <p>Thank you for choosing our service!</p>
+                <p>Best regards</p>
+                <p>The Ejaraat Team</p>
+            {% endblocktrans %}
+            <p><a href="http://ejaraat.live">Ejaraat</a></p>
+        </div>
+        <div class="footer">
+            {% blocktrans %}
+                <p>&copy; {{ current_year }} Ejaraat. All rights reserved.</p>
+            {% endblocktrans %}
+        </div>
+    </div>
+</body>
+</html>

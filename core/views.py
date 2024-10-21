@@ -6,6 +6,9 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
 from django.http import JsonResponse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 
 from .forms import PropertyForm, RentPropertyForm
 from .models import *
@@ -207,7 +210,19 @@ def rent_property(request, pk):
                     instance.is_rented = True
                     instance.save()
                     rent_property.save()
+
+                    send_mail(
+                        _("Property Rented"),
+                        _("Your property has been rented"),
+                        settings.DEFAULT_FROM_EMAIL,
+                        [request.user.email],
+                        html_message=render_to_string(
+                            "email/new_rental.html",
+                            {"tenant": tenant, "property": instance, "rental": rent_property, "user": request.user},
+                        )
+                    )
                     return redirect("all_properties")
+                
                 else:
                     raise ValueError(
                         "Phone number must start with '+', Format: +249912345678"
@@ -344,6 +359,17 @@ def mark_as_paid(request, pk):
         instance.status = "paid"
         instance.save()
 
+        send_mail(
+            _("Payment Received"),
+            _("Your payment has been received"),
+            settings.DEFAULT_FROM_EMAIL,
+            [request.user.email],
+            html_message=render_to_string(
+                "email/payment_received.html",
+                {"tenant": instance.tenant, "property": instance.property, "rental": instance, "user": request.user},
+            )
+        )
+
         rented_properties = Property.objects.filter(
             user=request.user, is_rented=True
         ).order_by("property_rentals__end_date")
@@ -388,6 +414,17 @@ def empty_property(request, pk):
             else datetime.today().date()
         ),
         contract=contract_url,
+    )
+
+    send_mail(
+        _("Property Vacated"),
+        _("Your tenant has vacated the property"),
+        settings.DEFAULT_FROM_EMAIL,
+        [request.user.email],
+        html_message=render_to_string(
+            "email/vacated_property.html",
+            {"tenant": tenant, "property": property, "rental": rental, "user": request.user},
+        )
     )
 
     rental.delete()
