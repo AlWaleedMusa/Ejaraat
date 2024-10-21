@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 10:49+0300\n"
+"POT-Creation-Date: 2024-10-21 05:28+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -258,6 +258,30 @@ msgstr "تم إضافة عقار جديد"
 #: core/signals.py:103
 msgid "Payment overdue for property"
 msgstr "الدفع متأخر عن العقار"
+
+#: core/views.py:215
+msgid "Property Rented"
+msgstr "تم تأجير العقار"
+
+#: core/views.py:216
+msgid "Your property has been rented"
+msgstr "تم تأجير العقار"
+
+#: core/views.py:363
+msgid "Payment Received"
+msgstr "تم استلام الدفع"
+
+#: core/views.py:364
+msgid "Your payment has been received"
+msgstr "تم استلام الدفع"
+
+#: core/views.py:420 templates/email/vacated_property.html:55
+msgid "Property Vacated"
+msgstr "تم إخلاء العقار"
+
+#: core/views.py:421
+msgid "Your tenant has vacated the property"
+msgstr "قام المستأجر بإخلاء العقار"
 
 #: env/lib/python3.10/site-packages/click/_termui_impl.py:518
 #, python-brace-format
@@ -2227,10 +2251,7 @@ msgstr ""
 "a>"
 
 #: templates/account/login.html:121
-#, fuzzy, python-format
-#| msgid ""
-#| " You dont have an account? <a href=\"%(signup_url)s\" class=\"text-"
-#| "white\" style=\"text-decoration: underline\">Sign Up</a> "
+#, python-format
 msgid ""
 " You don't have an account? <a href=\"%(signup_url)s\" class=\"text-white\" "
 "style=\"text-decoration: underline\">Sign Up</a> "
@@ -2706,6 +2727,143 @@ msgid ""
 msgstr ""
 "&copy; 2024 Ejaraat. جميع الحقوق محفوظة. | سياسة الخصوصية | شروط الخدمة"
 
+#: templates/email/new_rental.html:8 templates/email/new_rental.html:55
+#: templates/email/payment_received.html:8
+#: templates/email/vacated_property.html:8
+msgid "New Rental Notification"
+msgstr "إشعار إيجار جديد"
+
+#: templates/email/new_rental.html:58 templates/email/payment_received.html:58
+#: templates/email/vacated_property.html:58
+#, python-format
+msgid "Dear %(user)s,"
+msgstr "عزيزي %(user)s،"
+
+#: templates/email/new_rental.html:59
+msgid ""
+"We are excited to inform you that a new rental has been successfully "
+"processed."
+msgstr "لقد تمت معالجة إيجار جديد بنجاح."
+
+#: templates/email/new_rental.html:60 templates/email/payment_received.html:60
+msgid "Rental Details:"
+msgstr "تفاصيل الإيجار:"
+
+#: templates/email/new_rental.html:62 templates/email/payment_received.html:62
+#: templates/email/vacated_property.html:62
+msgid "Property:"
+msgstr "العقار:"
+
+#: templates/email/new_rental.html:63 templates/email/payment_received.html:63
+#: templates/email/vacated_property.html:63
+msgid "Location:"
+msgstr "الموقع:"
+
+#: templates/email/new_rental.html:64 templates/email/payment_received.html:64
+#: templates/email/vacated_property.html:64
+msgid "Start Date:"
+msgstr "بداية العقد:"
+
+#: templates/email/new_rental.html:65 templates/email/payment_received.html:65
+#: templates/email/vacated_property.html:65
+msgid "End Date:"
+msgstr "نهاية العقد:"
+
+#: templates/email/new_rental.html:66 templates/email/payment_received.html:66
+#: templates/email/vacated_property.html:66
+msgid "Price:"
+msgstr "السعر:"
+
+#: templates/email/new_rental.html:67
+msgid "Contract:"
+msgstr "عقد الإيجار:"
+
+#: templates/email/new_rental.html:67 templates/email/new_rental.html:74
+#: templates/email/payment_received.html:74
+#: templates/email/vacated_property.html:73
+msgid "View"
+msgstr "عرض"
+
+#: templates/email/new_rental.html:67 templates/email/new_rental.html:74
+#: templates/email/payment_received.html:74
+#: templates/email/vacated_property.html:73
+#: templates/includes/view_property.html:80
+#: templates/includes/view_property.html:123
+msgid "N/A"
+msgstr "لا يوجد"
+
+#: templates/email/new_rental.html:70 templates/email/payment_received.html:70
+#: templates/email/vacated_property.html:69
+msgid "Tenant Details:"
+msgstr "تفاصيل المستأجر:"
+
+#: templates/email/new_rental.html:72 templates/email/payment_received.html:72
+#: templates/email/vacated_property.html:71
+msgid "Tenant Name:"
+msgstr "إسم المستأجر:"
+
+#: templates/email/new_rental.html:73 templates/email/payment_received.html:73
+#: templates/email/vacated_property.html:72
+msgid "Tenant Phone:"
+msgstr "هاتف المستأجر:"
+
+#: templates/email/new_rental.html:74 templates/email/payment_received.html:74
+#: templates/email/vacated_property.html:73
+msgid "Tenant ID:"
+msgstr "هويه المستأجر:"
+
+#: templates/email/new_rental.html:76 templates/email/payment_received.html:76
+#: templates/email/vacated_property.html:75
+msgid ""
+"\n"
+"                <p>If you have any questions, feel free to contact us.</p>\n"
+"                <p>Thank you for choosing our service!</p>\n"
+"                <p>Best regards</p>\n"
+"                <p>The Ejaraat Team</p>\n"
+"            "
+msgstr ""
+"\n"
+"                <p>إذا كان لديك أي أسئلة، فلا تتردد في الاتصال بنا.</p>\n"
+"                <p>شكراً لاختيارك لخدمتنا!</p>\n"
+"                <p>أطيب التحيات</p>\n"
+"                <p>فريق Ejaraat</p>\n"
+"            "
+
+#: templates/email/new_rental.html:85 templates/email/payment_received.html:85
+#: templates/email/vacated_property.html:84
+#, python-format
+msgid ""
+"\n"
+"                <p>&copy; %(current_year)s Ejaraat. All rights reserved.</"
+"p>\n"
+"            "
+msgstr ""
+"\n"
+"                <p>&copy; %(current_year)s Ejaraat. جميع الحقوق محفوظة.</p>\n"
+"            "
+
+#: templates/email/payment_received.html:55
+msgid "Payment Received Notification"
+msgstr "إشعار بإستلام الدفع"
+
+#: templates/email/payment_received.html:59
+msgid ""
+"We are excited to inform you that a payment has been successfully received "
+"for a rental."
+msgstr "لقد تم استلام دفعة بنجاح لإيجار."
+
+#: templates/email/payment_received.html:67
+msgid "Payment Plan:"
+msgstr "نوع خطه الدفع:"
+
+#: templates/email/vacated_property.html:59
+msgid "We are sending to inform you that a tenant has vacated a property."
+msgstr "نحن نرسل لإعلامك بأن المستأجر قد ترك العقار."
+
+#: templates/email/vacated_property.html:60
+msgid "Property Details:"
+msgstr "تفاصيل العقار:"
+
 #: templates/forms/add_property_form.html:13
 #: templates/modals/available_properties_modal.html:69
 msgid "Add Property"
@@ -2871,11 +3029,6 @@ msgstr "تاريخ إنتهاء الإيجار"
 #: templates/includes/view_property.html:80
 msgid "Damage deposit"
 msgstr "تأمين"
-
-#: templates/includes/view_property.html:80
-#: templates/includes/view_property.html:123
-msgid "N/A"
-msgstr "لا يوجد"
 
 #: templates/includes/view_property.html:85
 msgid "Payment status (Current month)"
