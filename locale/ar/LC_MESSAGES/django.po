@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-21 05:28+0300\n"
+"POT-Creation-Date: 2024-10-21 05:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2670,12 +2670,12 @@ msgid "Pro"
 msgstr "مميز"
 
 #: templates/core/landing.html:175
-msgid "$19.99 / month"
-msgstr "شهرياً 19.99$"
+msgid "$9.99 / month"
+msgstr "شهرياً 9.99$"
 
 #: templates/core/landing.html:176
-msgid "Manage up to 20 properties"
-msgstr "إدارة ما يصل إلى 20 عقار"
+msgid "Manage up to 5 properties"
+msgstr "إدارة ما يصل إلى 5 عقار"
 
 #: templates/core/landing.html:177
 msgid "Priority Support"
@@ -3138,3 +3138,6 @@ msgstr "الحالة"
 #: templates/modals/occupied_properties_modal.html:65
 msgid "There is no occupied properties"
 msgstr "لا توجد عقارات مشغولة"
+
+#~ msgid "Manage up to 20 properties"
+#~ msgstr "إدارة ما يصل إلى 20 عقار"
