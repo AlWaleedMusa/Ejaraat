@@ -54,7 +54,7 @@
 @media (min-width: 992px) {
     body {
         overflow-x: hidden;
-        overflow-y: hidden;
+        /* overflow-y: hidden; */
         min-width: 982px;
     }
 

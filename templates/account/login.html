@@ -28,8 +28,8 @@
     <div class="row justify-content-center w-100 gap-5">
         <!-- Card layout for large screens -->
         <div class="col-lg-5 d-none d-lg-block">
-            <div class="card shadow-sm p-4">
-                <div class="card-body d-flex justify-content-center flex-column align-items-center">
+            <div class="card login-card shadow-sm p-4">
+                <div class="card-body login-card-body d-flex justify-content-center flex-column align-items-center">
                     <img src="{% static 'images/logo.png' %}" alt="Logo" class="mb-4" style="width: 200px; height: 45px;">
                     {% if not SOCIALACCOUNT_ONLY %}
                         {% url 'account_login' as login_url %}

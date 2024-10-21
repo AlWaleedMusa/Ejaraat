@@ -38,23 +38,23 @@
             {% if property.is_rented %}
                 <li class="nav-item">
                     <button class="nav-link active" style="color: var(--primary-color)" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" role="tab" aria-selected="true">
-                        <i class="bi bi-house-fill pe-1"></i>{% trans "Overview" %}
+                        <i class="bi bi-house-fill p-1"></i>{% trans "Overview" %}
                     </button>
                 </li>
                 <li class="nav-item">
                     <button class="nav-link" style="color: var(--primary-color)" id="tenant-tab" data-bs-toggle="tab" data-bs-target="#tenant" role="tab">
-                        <i class="bi bi-person-fill pe-1"></i>{% trans "Tenant Info" %}
+                        <i class="bi bi-person-fill p-1"></i>{% trans "Tenant Info" %}
                     </button>
                 </li>
                 <li class="nav-item">
                     <button class="nav-link" style="color: var(--primary-color)" id="rental-history-tab" data-bs-toggle="tab" data-bs-target="#rental-history" role="tab">
-                        <i class="bi bi-clock-history pe-1"></i>{% trans "Rental History" %}
+                        <i class="bi bi-clock-history p-1"></i>{% trans "Rental History" %}
                     </button>
                 </li>
             {% else %}
                 <li class="nav-item">
                     <button class="nav-link active" id="rental-history-tab" data-bs-toggle="tab" data-bs-target="#rental-history" role="tab">
-                        <i class="bi bi-clock-history pe-1"></i>{% trans "Rental History" %}
+                        <i class="bi bi-clock-history p-1"></i>{% trans "Rental History" %}
                     </button>
                 </li>
             {% endif %}
