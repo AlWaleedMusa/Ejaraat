@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-21 05:49+0300\n"
+"POT-Creation-Date: 2024-10-21 20:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2926,9 +2926,8 @@ msgid "Expiring Contract"
 msgstr "عقد علي إنتهاء"
 
 #: templates/includes/expiring_contracts.html:45
-#: templates/includes/upcoming_payments.html:66
-msgid "No payments within the next 7 days"
-msgstr "لا توجد دفعات خلال ال 7 أيام القادمة"
+msgid "No expiring contracts within the next 30 days"
+msgstr "لا توجد عقود تنتهي خلال ال 30 يوم القادمة"
 
 #: templates/includes/notifications.html:6
 msgid "Notifications"
@@ -3002,6 +3001,10 @@ msgstr "لا توجد دفعات قادمة"
 #: templates/includes/upcoming_payments.html:36
 msgid "Was expected on"
 msgstr "كان متوقع في"
+
+#: templates/includes/upcoming_payments.html:66
+msgid "No payments within the next 7 days"
+msgstr "لا توجد دفعات خلال ال 7 أيام القادمة"
 
 #: templates/includes/view_property.html:18
 #: templates/modals/empty_property_modal.html:15
