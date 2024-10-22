@@ -3,7 +3,7 @@
 
 <div class="modal fade" id="occupiedPropertiesModal" tabindex="-1" aria-labelledby="occupiedPropertiesModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content" style="min-height: 200px;">
             {% if rented_properties %}
                 <div class="modal-header">
                     <h5 class="modal-title" id="occupiedPropertiesModalLabel">{% trans "Occupied Properties" %}</h5>
@@ -16,7 +16,7 @@
                                 <tr>
                                     <th scope="col" style="color: var(--dark-color)">{% trans "Property" %}</th>
                                     <th scope="col" style="color: var(--dark-color)">{% trans "End date" %}</th>
-                                    <th scope="col" style="color: var(--dark-color)">{% trans "Status" %}</th>
+                                    {% comment %} <th scope="col" style="color: var(--dark-color)">{% trans "Status" %}</th> {% endcomment %}
                                     <th scope="col" style="color: var(--dark-color)">{% trans "Options" %}</th>
                                 </tr>
                             </thead>
@@ -26,7 +26,7 @@
                                         <td style="color: #1960ab;">{{ property.name }}</td>
                                         {% for rental in property.property_rentals.all %}
                                             <td>{{ rental.end_date|date:"d M Y" }}</td>
-                                            <td>
+                                            {% comment %} <td>
                                                 {% if rental.status == "paid" %}
                                                     <span class="badge bg-success">{% trans "Paid" %}</span>
                                                 {% elif rental.status == "overdue" %}
@@ -34,7 +34,7 @@
                                                 {% else %}
                                                     <span class="badge bg-secondary">{% trans "Pending" %}</span>
                                                 {% endif %}
-                                            </td>
+                                            </td> {% endcomment %}
                                             <td>
                                                 <div class="d-lg-none d-block">
                                                     <div class="dropend text-center">

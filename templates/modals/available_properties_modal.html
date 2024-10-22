@@ -12,7 +12,7 @@
 
 <div class="modal fade" id="availablePropertiesModal" tabindex="-1" aria-labelledby="availablePropertiesModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content" style="min-height: 200px;">
             {% if available_properties %}            
                 <div class="modal-header green-modal-header">
                     <h5 class="modal-title text-white" id="availablePropertiesModalLabel">{% trans "Available Properties" %}</h5>
@@ -39,7 +39,7 @@
                                             <div class="d-lg-none d-block">
                                                 <div class="dropend text-center">
                                                     <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                                    <ul class="dropdown-menu">
+                                                    <ul class="dropdown-menu rounded-4">
                                                         <li>
                                                             <a class="dropdown-item text-success" hx-get="{% url "rent_property" property.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Rent" %}</a>
                                                         </li>
