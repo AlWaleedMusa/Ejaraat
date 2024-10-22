@@ -27,7 +27,7 @@ def landing(request):
     """
     if request.user.is_authenticated:
         return redirect("home")
-    
+
     return render(request, "core/landing.html")
 
 
@@ -171,7 +171,7 @@ def delete_property(request, pk):
 
     all_properties = Property.objects.filter(user=request.user)
     return render(
-        request, "includes/all_properties.html", {"all_properties": all_properties}
+        request, "core/all_properties.html", {"all_properties": all_properties}
     )
 
 
@@ -200,6 +200,7 @@ def rent_property(request, pk):
             try:
                 if phone_number.startswith("+"):
                     tenant, created = Tenant.objects.get_or_create(
+                        landlord=request.user,
                         name=name.title(),
                         phone_number=phone_number,
                         defaults={"id_image": form.cleaned_data.get("tenant_image")},
@@ -218,11 +219,16 @@ def rent_property(request, pk):
                         [request.user.email],
                         html_message=render_to_string(
                             "email/new_rental.html",
-                            {"tenant": tenant, "property": instance, "rental": rent_property, "user": request.user},
-                        )
+                            {
+                                "tenant": tenant,
+                                "property": instance,
+                                "rental": rent_property,
+                                "user": request.user,
+                            },
+                        ),
                     )
                     return redirect("all_properties")
-                
+
                 else:
                     raise ValueError(
                         "Phone number must start with '+', Format: +249912345678"
@@ -270,6 +276,7 @@ def edit_rental(request, pk):
 
             try:
                 if phone_number.startswith("+"):
+                    tenant.landlord = request.user
                     tenant.name = name
                     tenant.phone_number = phone_number
                     tenant.id_image = form.cleaned_data.get("tenant_image")
@@ -308,7 +315,7 @@ def all_properties(request):
     """
     my_properties = Property.objects.filter(user=request.user)
     context = {"all_properties": my_properties}
-    return render(request, "includes/all_properties.html", context)
+    return render(request, "core/all_properties.html", context)
 
 
 @login_required
@@ -332,13 +339,11 @@ def search_all_properties(request):
         Properties = Property.objects.all()
         return render(
             request,
-            "includes/all_properties.html",
+            "core/all_properties.html",
             {"all_properties": Properties},
         )
 
-    return render(
-        request, "includes/all_properties.html", {"all_properties": Properties}
-    )
+    return render(request, "core/all_properties.html", {"all_properties": Properties})
 
 
 @login_required
@@ -366,8 +371,13 @@ def mark_as_paid(request, pk):
             [request.user.email],
             html_message=render_to_string(
                 "email/payment_received.html",
-                {"tenant": instance.tenant, "property": instance.property, "rental": instance, "user": request.user},
-            )
+                {
+                    "tenant": instance.tenant,
+                    "property": instance.property,
+                    "rental": instance,
+                    "user": request.user,
+                },
+            ),
         )
 
         rented_properties = Property.objects.filter(
@@ -423,10 +433,44 @@ def empty_property(request, pk):
         [request.user.email],
         html_message=render_to_string(
             "email/vacated_property.html",
-            {"tenant": tenant, "property": property, "rental": rental, "user": request.user},
-        )
+            {
+                "tenant": tenant,
+                "property": property,
+                "rental": rental,
+                "user": request.user,
+            },
+        ),
     )
 
     rental.delete()
 
     return redirect("view_property", pk=property.id)
+
+
+def not_developed(request):
+    """
+    This view renders the not developed page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered not developed page.
+    """
+    return render(request, "core/not_developed.html")
+
+
+def all_tenants(request):
+    """
+    This view renders the all tenants page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered all tenants page.
+    """
+    all_tenants = Tenant.objects.filter(landlord=request.user)
+    print(all_tenants)
+    context = {"all_tenants": all_tenants}
+    return render(request, "core/all_tenants.html", context)

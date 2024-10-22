@@ -1,0 +1,17 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    {% for tenant in all_tenants %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">{{ tenant.name }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>Phone:</strong> {{ tenant.phone_number }}</p>
+                <p class="card-text"><strong>Id Image:</strong> {{ tenant.image_id}}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}
