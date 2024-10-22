@@ -345,7 +345,7 @@ html[dir="ltr"] .timeline {
     padding-left: 5px;
     overflow: auto;
     max-height: 45vh;
-    height: 14em;
+    height: 16em;
 }
 html[dir="rtl"] .timeline {
     position: relative;
@@ -353,7 +353,7 @@ html[dir="rtl"] .timeline {
     padding-right: 5px;
     overflow: auto;
     max-height: 45vh;
-    height: 14em;
+    height: 16em;
 }
 
 html[dir="ltr"] .timeline-item {
