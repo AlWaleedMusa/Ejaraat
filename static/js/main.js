@@ -80,6 +80,7 @@ closeNotifications.forEach((close) => {
     });
 });
 
+// Close recent activities container when close is pressed
 closeRecentActivities.addEventListener("click", () => {
     recentActivitiesContainer.classList.add("d-none");
 });
@@ -175,5 +176,12 @@ clock.addEventListener("click", () => {
         if (!clockContainer.contains(e.target) && !clock.contains(e.target)) {
             clockContainer.classList.add("d-none");
         }
+    });
+
+    const links = clockContainer.querySelectorAll("a");
+    links.forEach((link) => {
+        link.addEventListener("click", () => {
+            clockContainer.classList.add("d-none");
+        });
     });
 });
