@@ -474,3 +474,35 @@ def all_tenants(request):
     print(all_tenants)
     context = {"all_tenants": all_tenants}
     return render(request, "core/all_tenants.html", context)
+
+
+def search_all_tenants(request):
+    """
+    This view search all tenants owned by the user.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The list of all tenants owned by the user that match the search query.
+    """
+    q = request.GET.get("q", None)
+
+    if q:
+        Tenants = (
+            RentProperty.objects.filter(tenant__landlord=request.user)
+            .filter(
+                Q(tenant__name__icontains=q)
+                | Q(property__name__icontains=q)
+            )
+            .distinct()
+        )
+    else:
+        Tenants = RentProperty.objects.all()
+        return render(
+            request,
+            "core/all_tenants.html",
+            {"all_tenants": Tenants},
+        )
+
+    return render(request, "core/all_tenants.html", {"all_tenants": Tenants})

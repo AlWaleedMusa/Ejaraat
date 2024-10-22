@@ -1,0 +1,16 @@
+{% load i18n %}
+
+
+<form class="d-lg-inline-block px-lg-0 px-1">
+    <input
+        class="form-control rounded-5 w-100"
+        hx-get="{% url 'search_all_tenants' %}"
+        hx-target="#main-content"
+        hx-swap="innerHTML"
+        hx-trigger="keyup changed delay:500ms"
+        type="search"
+        placeholder="{% trans "Search by Name, Property"%}"
+        aria-label="Search"
+        name="q"
+    >
+</form>
