@@ -41,13 +41,13 @@ class Property(models.Model):
         on_delete=models.CASCADE,
         verbose_name="Landlord",
     )
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=20)
     property_type = models.CharField(
-        max_length=50, choices=TYPE_CHOICES, default=TYPE_CHOICES[1]
+        max_length=25, choices=TYPE_CHOICES, default=TYPE_CHOICES[1]
     )
     country = CountryField(blank_label=_("Select Country"))
-    city = models.CharField(max_length=50)
-    address = models.CharField(max_length=200)
+    city = models.CharField(max_length=25)
+    address = models.CharField(max_length=100)
     currency = models.CharField(
         max_length=3, null=True, blank=True, choices=CURRENCY_CHOICES
     )
@@ -92,7 +92,7 @@ class Tenant(models.Model):
     """
 
     landlord = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=14)
     id_image = models.ImageField(
         upload_to="tenants_ID",
