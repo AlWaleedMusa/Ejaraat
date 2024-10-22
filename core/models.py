@@ -55,7 +55,7 @@ class Property(models.Model):
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name} - {self.property_type}"
+        return f"{self.name} - belong to {self.user} / {self.property_type}"
 
     def get_translated_currency(self):
         """
@@ -151,7 +151,7 @@ class RentProperty(models.Model):
     contract = models.ImageField(upload_to="contracts", null=True, blank=True)
 
     def __str__(self):
-        return f"{self.property.name} - Rented to {self.tenant.name}"
+        return f"{self.property.name} - Rented to {self.tenant.name} by {self.property.user}"
 
     def get_payment_period(self):
         """
