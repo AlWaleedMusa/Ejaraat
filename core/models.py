@@ -91,6 +91,7 @@ class Tenant(models.Model):
     A tenant model
     """
 
+    landlord = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=14)
     id_image = models.ImageField(
@@ -101,7 +102,7 @@ class Tenant(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return f"{self.name} {self.landlord}'s Tenant" 
 
 
 class RentProperty(models.Model):
