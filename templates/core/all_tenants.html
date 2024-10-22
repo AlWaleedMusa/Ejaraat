@@ -1,17 +1,146 @@
 {% extends "layouts/base.html" %}
 {% load static %}
 {% load i18n %}
+{% load custome_filters %}
 
 {% block content %}
-    {% for tenant in all_tenants %}
-        <div class="card mb-3">
-            <div class="card-header">
-                <h5 class="card-title">{{ tenant.name }}</h5>
-            </div>
-            <div class="card-body">
-                <p class="card-text"><strong>Phone:</strong> {{ tenant.phone_number }}</p>
-                <p class="card-text"><strong>Id Image:</strong> {{ tenant.image_id}}</p>
+<style>
+    .table-container {
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .table thead th {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 15px;
+    }
+    .table tbody tr {
+        transition: background-color 0.3s ease;
+    }
+    .table tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+    .table tbody td {
+        vertical-align: middle;
+        padding: 15px;
+        border-top: 1px solid #ddd;
+    }
+    .btn-view {
+        background-color: var(--secondary-color);
+        border: none;
+        color: white;
+        border-radius: 50px;
+        padding: 5px 15px;
+        transition: background-color 0.3s ease;
+    }
+    .btn-view:hover {
+        background-color: var(--primary-color);
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mt-3">
+    {% include "includes/search_tenants.html" %}
+    <div>
+        {% comment %} <a class="btn cancel-button rounded-5">View all</a> {% endcomment %}
+        <a href="#" class="btn btn-warning rounded-5">Announcement</a>
+    </div>
+</div>
+
+    <!-- Mobile View -->
+    <section class="d-md-none d-block">
+        <div class="mt-4">
+            <div class="row">
+                {% for instance in all_tenants %}
+                    <div class="col-12 mb-4">
+                        <div class="card card-overview bg-light shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="card-title border-bottom pb-2 d-flex justify-content-between">
+                                    <h5>{{ instance.tenant.name|title }}</h5>
+                                    <h4><i class="bi bi-chat-dots"></i></h4>
+                                </div>
+                                <p class="card-text"><strong>{% trans "Contact Info:" %} </strong>{{ instance.tenant.phone_number }}</p>
+                                <p class="card-text"><strong>{% trans "Current Rental:" %} </strong>{{ instance.property.name }}</p>
+                                <p class="card-text"><strong>{% trans "Rent:" %} </strong>{{ instance.price|format_numbers }} {{ instance.property.get_translated_currency }}</p>
+                                <p class="card-text"><strong>{% trans "Payment Status:" %} </strong>
+                                    {% if instance.status == "paid" %}
+                                        <span class="badge bg-success rounded-5">{{ instance.get_status_display }}</span>
+                                    {% elif instance.status == "overdue" %}
+                                        <span class="badge bg-warning text-dark rounded-5">{{ instance.get_status_display }}</span>
+                                    {% else %}
+                                        <span class="badge bg-warning rounded-5">{{ instance.get_status_display }}</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <a hx-get="{% url "view_property" instance.property.id %}" hx-target="#main-content" class="btn blue-button rounded-5">{% trans "View Details" %}</a>
+                                {% if instance.status == "overdue" %}
+                                    <a href="#" class="btn green-button rounded-5">{% trans "Send a reminder" %}</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-    {% endfor %}
+    </section>
+    <!-- End of Mobile View -->
+
+    <!-- Big Screen View -->
+    <section class="d-md-block d-none">
+        <div class="table-container p-2 mt-4 over-flow-auto">
+            <table class="table table-sm table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th scope="col">{% trans "Name" %}</th>
+                        <th scope="col">{% trans "Contact Info" %}</th>
+                        <th scope="col">{% trans "Current Rental" %}</th>
+                        <th scope="col" >{% trans "Status" %}</th>
+                        <th scope="col">{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for instance in all_tenants %}
+                    <tr>
+                        <td>{{ instance.tenant.name }}</td>
+                        <td>{{ instance.tenant.phone_number }} <br> email@gmail.com</td>
+                        <td>
+                            <a
+                                hx-get="{% url "view_property" instance.property.id %}"
+                                hx-target="#main-content"
+                                style="color: var(--secondary-color)"
+                            >{{ instance.property.name }}
+                            </a>
+                        </td>
+                        <td>
+                            {% if instance.status == "paid" %}
+                                <span class="badge bg-success rounded-5">{{ instance.get_status_display }}</span>
+                            {% elif instance.status == "overdue" %}
+                                <span class="badge bg-warning text-dark rounded-5">{{ instance.get_status_display }}</span>
+                            {% else %}
+                                <span class="badge bg-warning rounded-5">{{ instance.get_status_display }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a hx-get="{% url "view_property" instance.property.id %}" hx-target="#main-content" class="btn btn-sm blue-button rounded-5">{% trans "View Details" %}</a>
+                            {% if instance.status == "overdue" %}
+                                <a href="#" class="btn btn-sm green-button rounded-5">{% trans "Send a reminder" %}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <!-- End of Big Screen View -->
 {% endblock content %}

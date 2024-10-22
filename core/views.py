@@ -57,6 +57,9 @@ def home(request):
         .order_by("-timestamp")[:10]
     )
 
+    recent_tenant = RentProperty.objects.filter(
+        tenant__landlord=request.user, property__user=request.user
+    ).order_by("-start_date")[:5]
     notifications = Notifications.objects.filter(user=request.user, is_read=False)
 
     expiring_contracts = get_expiring_contracts(rented_properties)
@@ -74,6 +77,7 @@ def home(request):
         "notifications": notifications,
         "monthly_revenue": monthly_revenue,
         "payment_status_counts": payment_status_counts,
+        "recent_tenants": recent_tenant,
     }
 
     return render(request, "core/home.html", context)
@@ -470,9 +474,8 @@ def all_tenants(request):
     Returns:
         HttpResponse: The rendered all tenants page.
     """
-    all_tenants = Tenant.objects.filter(landlord=request.user)
-    print(all_tenants)
-    context = {"all_tenants": all_tenants}
+    properties = RentProperty.objects.filter(tenant__landlord=request.user)
+    context = {"all_tenants": properties}
     return render(request, "core/all_tenants.html", context)
 
 

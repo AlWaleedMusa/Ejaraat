@@ -1,0 +1,40 @@
+{% load static %}
+{% load i18n %}
+{% load custome_filters %}
+
+
+<section>
+    <div class="table-container dashboard-table-container p-2 over-flow-auto">
+        <h5 class="p-2"><i class="bi bi-people"></i> {% trans "Recent Tenants" %}</h5>      
+        <table class="table dashboard-table table-sm table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">{% trans "Name" %}</th>
+                    <th scope="col">{% trans "Rental" %}</th>
+                    <th scope="col">{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for instance in recent_tenants %}
+                <tr>
+                    <td><h6>{{ instance.tenant.name }}</h6></td>
+                    <td><h6>{{ instance.property.name }}</h6></td>
+                    <td>
+                        <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu rounded-4 border-0 shadow-sm">
+                            <li>
+                                <a hx-get="{% url "view_property" instance.property.id %}" hx-target="#main-content" class="dropdown-item">{% trans "View Details" %}</a>
+                            </li>
+                            {% if instance.status == "overdue" %}
+                                <li>
+                                    <a href="#" class="dropdown-item">{% trans "Send a reminder" %}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>

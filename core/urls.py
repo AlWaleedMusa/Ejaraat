@@ -17,4 +17,5 @@ urlpatterns = [
     path("search_all_properties/", views.search_all_properties, name="search_all_properties"),
     path("not_developed/", views.not_developed, name="not_developed"),
     path("all_tenants/", views.all_tenants, name="all_tenants"),
+    path("search_all_tenants/", views.search_all_tenants, name="search_all_tenants"),
 ]
