@@ -59,47 +59,6 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.blue-button {
-    background-color: #0f3054;
-    color: white;
-}
-
-.blue-button:hover {
-    background-color: #0c2846;
-    color: white;
-}
-
-.green-button {
-    background-color: #28a745;
-    color: white;
-}
-
-.green-button:hover {
-    background-color: #24993f;
-    color: white;
-}
-
-.cancel-button {
-    background-color: gray;
-    color: white;
-}
-
-.cancel-button:hover {
-    background-color: rgb(104, 103, 103);
-    color: white;
-}
-
-.red-button {
-    background-color: #f32020;
-    color: white;
-}
-
-.red-button:hover {
-    background-color: #db1c1c;
-    color: white;
-}
-
-
 .ribbon-available {
     background-color: #28a745;
 }

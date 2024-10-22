@@ -51,7 +51,7 @@
         <div class="main-container-wrapper">
             {% comment %} big screen view {% endcomment %}
             <div id="main-content" class="container-fluid">
-                <div class="row gap-3">
+                <div class="row gap-2">
                     <div class="col-md-8" >
                         <div class="row row-cols-2">
                             {% comment %} available properties {% endcomment %}
@@ -93,13 +93,18 @@
                             <div class="col-md-8 col order-md-0 order-3">
                                 {% include "includes/expiring_contracts.html" %}
                             </div>
-                            <div class="col-md-3 order-md-0 col-12 order-1">
-                                <canvas id="rentPaymentChart"></canvas>
-                            </div>
+                            {% if payment_status_counts.paid or payment_status_counts.pending or payment_status_counts.overdue %}
+                                <div class="col-md-3 order-md-0 col-12 order-1">
+                                    <canvas id="rentPaymentChart"></canvas>
+                                </div>
+                            {% endif %}
                             <div class="col-fill order-md-0 order-2">
                                 {% include "includes/upcoming_payments.html" %}
                             </div>
-                            <div class="p-3 pt-0 border-0 d-md-none d-block order-md-0 order-4">
+                            <div class="col-fill order-md-0 order-4">
+                                {% include "includes/recent_tenants.html" %}
+                            </div>
+                            <div class="p-3 pt-0 border-0 d-md-none d-block order-md-0 order-5">
                                 <div class="card upgrade-plan shadow-sm p-3 border-0">
                                     <h5 class="text-white"><i class="bi bi-rocket"></i> {% trans "Upgrade Plan" %}</h5>
                                     <p class="text-white" style="font-size: 14px;">{% trans "Unlock more features by upgrading your plan." %}</p>
@@ -112,7 +117,7 @@
                         </div> {% endcomment %}
                     </div>
                     <div class="col">
-                        <div class="row row-cols-1 gap-3 position-fixed">
+                        <div class="row row-cols-1 px-2 gap-3 position-fixed">
                             {% comment %} monthly revenue in big screen {% endcomment %}
                             <div class="col d-lg-block d-none">
                                 <div class="card monthly-revenue shadow-sm p-3 border-0" style="background-color: var(--success-color); color: white">

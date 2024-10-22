@@ -48,11 +48,12 @@ body[dir="ltr"] {
 
 h1,
 h2,
-h6,
-h5,
-h4,
 h3,
-.close-notifications {
+h4,
+h5,
+h6,
+.close-notifications,
+.close-recent-activities {
     color: var(--dark-color);
     padding: 0;
     margin: 0;
@@ -67,3 +68,43 @@ a {
     overflow-y: auto;
     overflow-x: hidden;
 } */
+
+.blue-button {
+    background-color: #0f3054;
+    color: white;
+}
+
+.blue-button:hover {
+    background-color: #0c2846;
+    color: white;
+}
+
+.green-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.green-button:hover {
+    background-color: #24993f;
+    color: white;
+}
+
+.cancel-button {
+    background-color: gray;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: rgb(104, 103, 103);
+    color: white;
+}
+
+.red-button {
+    background-color: #f32020;
+    color: white;
+}
+
+.red-button:hover {
+    background-color: #db1c1c;
+    color: white;
+}

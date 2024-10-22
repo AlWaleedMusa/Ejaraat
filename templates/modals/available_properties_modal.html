@@ -46,9 +46,9 @@
                                                         <li>
                                                             <a class="dropdown-item" hx-get="{% url "edit_property" property.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "Edit Property" %}</a>
                                                         </li>
-                                                        <li>
+                                                        {% comment %} <li>
                                                             <a class="dropdown-item" hx-get="{% url "view_property" property.id %}" hx-target="#main-content" data-bs-dismiss="modal">{% trans "View History" %}</a>
-                                                        </li>
+                                                        </li> {% endcomment %}
                                                     </ul>
                                                 </div>
                                             </div>
