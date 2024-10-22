@@ -5,25 +5,36 @@
 <div id="nav-bar-wrapper w-100">
     <nav class="navbar navbar-expand-lg d-lg-none d-block px-3">
         <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center gap-4">
                 <a id="menu-toggle">
                     <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 7H19" stroke="var(--light-color)" stroke-width="2" stroke-linecap="round"/>
                         <path d="M5 12H19" stroke="var(--light-color)" stroke-width="2" stroke-linecap="round"/>
                         <path d="M5 17H19" stroke="var(--light-color)" stroke-width="2" stroke-linecap="round"/>
-                    </svg></a>
-                    <div class="notification-icon" style="position:relative">
-                        <h4>
-                            <i class="bi bi-bell"></i>
-                        </h4>
-                        <span class="notification-counter d-none"></span>
+                    </svg>
+                </a>
+                <div class="notification-icon" style="position:relative">
+                    <h4>
+                        <i class="bi bi-bell"></i>
+                    </h4>
+                    <span class="notification-counter d-none"></span>
+                </div>
+                <div style="position: relative">
+                    <h4>
+                        <i class="bi bi-clock bi-clock-nav"></i>
+                    </h4>
+                </div>
+                <div class="navbar-recent-activities d-none card-overview shadow-sm p-3 border-0">
+                    <div>
+                        {% include "includes/recent_activities.html" %}
                     </div>
-                    <div class="notifications-container d-none card-overview shadow-sm p-3 border-0" >
-                        <div>
-                            {% include "includes/notifications.html" %}
-                        </div>
+                </div>
+                <div class="notifications-container d-none card-overview shadow-sm p-3 border-0">
+                    <div>
+                        {% include "includes/notifications.html" %}
                     </div>
-                {% include "includes/language_menu.html" %}
+                </div>
+                {% comment %} {% include "includes/language_menu.html" %} {% endcomment %}
                 {% comment %} <a href="#" class="ms-1" style="color:#1960ab;"><h4 class="p-0 m-0"><i class="bi bi-moon"></i></h4></a> {% endcomment %}
             </div>
             <a href="{% url "home" %}">

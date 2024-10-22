@@ -93,16 +93,23 @@
                             <div class="col-md-8 col order-md-0 order-3">
                                 {% include "includes/expiring_contracts.html" %}
                             </div>
-                            <div class="col-md-3 order-md-0 col-12 order-2">
+                            <div class="col-md-3 order-md-0 col-12 order-1">
                                 <canvas id="rentPaymentChart"></canvas>
                             </div>
-                            <div class="col-fill order-md-0 order-1">
+                            <div class="col-fill order-md-0 order-2">
                                 {% include "includes/upcoming_payments.html" %}
                             </div>
+                            <div class="p-3 pt-0 border-0 d-md-none d-block order-md-0 order-4">
+                                <div class="card upgrade-plan shadow-sm p-3 border-0">
+                                    <h5 class="text-white"><i class="bi bi-rocket"></i> {% trans "Upgrade Plan" %}</h5>
+                                    <p class="text-white" style="font-size: 14px;">{% trans "Unlock more features by upgrading your plan." %}</p>
+                                    <a href="#" class="btn btn-light rounded-5 mt-3">{% trans "Upgrade Now" %}</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-md-none d-block mt-3 border-0" >
+                        {% comment %} <div class="d-md-none d-block mt-3 border-0" >
                             {% include "includes/recent_activities.html" %}
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                     <div class="col">
                         <div class="row row-cols-1 gap-3 position-fixed">
@@ -125,7 +132,7 @@
                                 </div>
                             {% comment %} end of recent activities {% endcomment %}
 
-                            <div class="p-3 pt-0 border-0">
+                            <div class="p-3 pt-0 border-0 d-md-block d-none">
                                 <div class="card upgrade-plan shadow-sm p-3 border-0">
                                     <h5 class="text-white"><i class="bi bi-rocket"></i> {% trans "Upgrade Plan" %}</h5>
                                     <p class="text-white" style="font-size: 14px;">{% trans "Unlock more features by upgrading your plan." %}</p>
@@ -155,7 +162,7 @@
     const ctx = document.getElementById("rentPaymentChart").getContext("2d");
     var fontFamily = document.documentElement.getAttribute('dir') === 'rtl' ? 'Cairo' : 'Roboto';
     const rentPaymentChart = new Chart(ctx, {
-        type: "pie",
+        type: "doughnut",
         data: {
             labels: [
             '{% trans "Paid" %}',
@@ -165,9 +172,9 @@
             datasets: [
                 {
                     data: [
-                        {{ payment_status_counts.paid}}, // Rent payments marked as Paid
-                        {{ payment_status_counts.pending}}, // Rent payments marked as Pending
-                        {{ payment_status_counts.overdue}}, // Rent payments marked as Overdue
+                        {{ payment_status_counts.paid}},
+                        {{ payment_status_counts.pending}},
+                        {{ payment_status_counts.overdue}},
                     ],
                     backgroundColor: [
                         "rgba(86, 171, 47)",

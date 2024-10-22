@@ -26,7 +26,7 @@ function closeSidebarOnClickOutside(event) {
     // Check if the click happened outside the sidebar and the menu toggle button
     if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
         sidebar.classList.remove("d-block"); // Close the sidebar
-        document.removeEventListener("click", closeSidebarOnClickOutside); // Remove the event listener
+        document.removeEventListener("click", closeSidebarOnClickOutside);
     }
 }
 
@@ -39,6 +39,7 @@ const recentActivitiesContainer = document.querySelector(
     ".recent-activities-container"
 );
 const closeNotifications = document.querySelectorAll(".close-notifications");
+const closeRecentActivities = document.querySelector(".close-recent-activities");
 
 bellIcon.forEach((icon) => {
     icon.addEventListener("click", () => {
@@ -79,6 +80,10 @@ closeNotifications.forEach((close) => {
     });
 });
 
+closeRecentActivities.addEventListener("click", () => {
+    recentActivitiesContainer.classList.add("d-none");
+});
+
 // Notifications counter
 const notificationsCount = document.querySelectorAll(".notification-counter");
 
@@ -115,7 +120,7 @@ document.body.addEventListener("htmx:wsAfterMessage", (event) => {
         notificationsContainer.forEach((container) => {
             container.innerHTML = message.notifications_html;
             container.classList.add("d-none");
-            attachCloseButtonListener(); // Reattach close listener after DOM update
+            attachCloseButtonListener();
         });
     } else if ((message.type = "payment_status_chart")) {        
         paymentCharts(
@@ -135,10 +140,21 @@ function paymentCharts(paid, pending, overdue) {
 function attachCloseButtonListener() {
     const closeNotifications = document.querySelectorAll(
         ".close-notifications"
-    ); // Adjust selector if needed
+    );
+    const closeRecentActivities = document.querySelector(
+        ".close-recent-activities"
+    );
+
+    closeRecentActivities.addEventListener("click", function () {
+        const container = this.closest(".navbar-recent-activities");
+        if (container) {
+            container.classList.add("d-none");
+        }
+    });
+
     closeNotifications.forEach((close) => {
         close.addEventListener("click", function () {
-            const container = this.closest(".notifications-container"); // Assuming the container has this class
+            const container = this.closest(".notifications-container");
             if (container) {
                 container.classList.add("d-none");
             }
@@ -147,3 +163,17 @@ function attachCloseButtonListener() {
 }
 
 attachCloseButtonListener();
+
+
+const clock = document.querySelector(".bi-clock-nav");
+const clockContainer = document.querySelector(".navbar-recent-activities");
+
+clock.addEventListener("click", () => {
+    clockContainer.classList.toggle("d-none");
+
+    window.addEventListener("click", (e) => {
+        if (!clockContainer.contains(e.target) && !clock.contains(e.target)) {
+            clockContainer.classList.add("d-none");
+        }
+    });
+});
