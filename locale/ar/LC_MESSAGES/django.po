@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-21 20:17+0300\n"
+"POT-Creation-Date: 2024-10-21 21:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,7 +107,7 @@ msgstr "رسوم تأمين"
 msgid "Current payment status"
 msgstr "حالة الدفع الحالية"
 
-#: core/forms.py:113 templates/includes/all_properties.html:50
+#: core/forms.py:113 templates/core/all_properties.html:50
 #: templates/modals/available_properties_modal.html:44
 #: templates/modals/available_properties_modal.html:56
 msgid "Rent"
@@ -2727,6 +2727,14 @@ msgid ""
 msgstr ""
 "&copy; 2024 Ejaraat. جميع الحقوق محفوظة. | سياسة الخصوصية | شروط الخدمة"
 
+#: templates/core/not_developed.html:10
+msgid "Not Developed"
+msgstr "لم يتم التطوير"
+
+#: templates/core/not_developed.html:11
+msgid "This page is not developed yet. Please come back later."
+msgstr "هذه الصفحة لم تطور بعد. يرجى العودة لاحقًا."
+
 #: templates/email/new_rental.html:8 templates/email/new_rental.html:55
 #: templates/email/payment_received.html:8
 #: templates/email/vacated_property.html:8
@@ -2886,21 +2894,21 @@ msgstr "تعديل الإيجار"
 msgid "Rent Property"
 msgstr "أجّر العقار"
 
-#: templates/includes/all_properties.html:28
+#: templates/core/all_properties.html:28
 msgid "Available"
 msgstr "متوفر"
 
-#: templates/includes/all_properties.html:42
+#: templates/core/all_properties.html:42
 msgid "Available to Rent"
 msgstr "متاح للإيجار"
 
-#: templates/includes/all_properties.html:49
+#: templates/core/all_properties.html:49
 #: templates/modals/available_properties_modal.html:50
 #: templates/modals/available_properties_modal.html:57
 msgid "View History"
 msgstr "تاريخ الإيجارات"
 
-#: templates/includes/all_properties.html:52
+#: templates/core/all_properties.html:52
 #: templates/modals/occupied_properties_modal.html:47
 #: templates/modals/occupied_properties_modal.html:53
 msgid "View Details"
