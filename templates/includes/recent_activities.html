@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 
 
 <div id="recent-activities">
@@ -6,68 +7,70 @@
         <h5>{% trans "Recent Activities" %}</h5>
         <i class="close-recent-activities bi bi-x-lg" style='cursor: pointer;'></i>
     </div>
-    <div class="activities-header d-md-inline-block d-none">
+    <div class="activities-header d-md-inline-block d-none w-100">
         <h5><i class="bi bi-clock"></i> {% trans "Recent Activities" %}</h5>
         <p class="text-muted m-0" style="font-size: 14px;">{% trans "Recent activities will be logged here" %}</p>
     </div>
     
-    <!-- Timeline for Recent Activities -->
-    <div class="timeline">
-        {% for activity in recent_activities %}
-            {% comment %} adding notification {% endcomment %}
-            {% if activity.activity_type == "add" %}
-                <div class="timeline-item mb-4">
-                    <div class="timeline-icon bg-secondary text-white" >
-                        <i class="bi bi-building-add"></i>
+    {% if recent_activities %}
+        <!-- Timeline for Recent Activities -->
+        <div class="timeline w-100">
+            {% for activity in recent_activities %}
+                {% comment %} adding notification {% endcomment %}
+                {% if activity.activity_type == "add" %}
+                    <div class="timeline-item mb-4">
+                        <div class="timeline-icon bg-secondary text-white" >
+                            <i class="bi bi-building-add"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <p class="text-muted p-0 m-0">
+                                {{ activity.get_activity_type_display }}
+                                <a style="word-wrap: break-word; word-break: break-word" hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                    {{ activity.property.name }}
+                                </a>
+                            </p>
+                            <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
+                        </div>
                     </div>
-                    <div class="timeline-content">
-                        <p class="text-muted p-0 m-0">
-                            {{ activity.get_activity_type_display }}
-                            <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
-                                {{ activity.property.name }}
-                            </a>
-                        </p>
-                        <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
-                    </div>
-                </div>
-            {% comment %} end of adding notification {% endcomment %}
+                {% comment %} end of adding notification {% endcomment %}
 
-            {% comment %} rent notifications {% endcomment %}
-            {% elif activity.activity_type == "rent" %}
-                <div class="timeline-item mb-4">
-                    <div class="timeline-icon text-white" style="background-color: var(--primary-color)">
-                        <i class="bi bi-house-fill"></i>
+                {% comment %} rent notifications {% endcomment %}
+                {% elif activity.activity_type == "rent" %}
+                    <div class="timeline-item mb-4">
+                        <div class="timeline-icon text-white" style="background-color: var(--primary-color)">
+                            <i class="bi bi-house-fill"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <p class="text-muted p-0 m-0">
+                                {{ activity.get_activity_type_display }}
+                                <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                    {{ activity.property.name }}
+                                </a>
+                            </p>
+                            <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
+                        </div>
                     </div>
-                    <div class="timeline-content">
-                        <p class="text-muted p-0 m-0">
-                            {{ activity.get_activity_type_display }}
-                            <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
-                                {{ activity.property.name }}
-                            </a>
-                        </p>
-                        <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
-                    </div>
-                </div>
-            {% comment %} end of rent notifications {% endcomment %}
+                {% comment %} end of rent notifications {% endcomment %}
 
-            {% comment %} payment notifications {% endcomment %}
-            {% elif activity.activity_type == "payment" %}
-                <div class="timeline-item mb-4">
-                    <div class="timeline-icon text-white" style="background-color: var(--success-color)">
-                        <i class="bi bi-cash-stack"></i>
+                {% comment %} payment notifications {% endcomment %}
+                {% elif activity.activity_type == "payment" %}
+                    <div class="timeline-item mb-4">
+                        <div class="timeline-icon text-white" style="background-color: var(--success-color)">
+                            <i class="bi bi-cash-stack"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <p class="text-muted p-0 m-0">
+                                {{ activity.get_activity_type_display }}
+                                <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                    {{ activity.property.name }}
+                                </a>
+                            </p>
+                            <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
+                        </div>
                     </div>
-                    <div class="timeline-content">
-                        <p class="text-muted p-0 m-0">
-                            {{ activity.get_activity_type_display }}
-                            <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
-                                {{ activity.property.name }}
-                            </a>
-                        </p>
-                        <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
-                    </div>
-                </div>
-            {% comment %} end of payment notifications {% endcomment %}
-            {% endif %}
-        {% endfor %}
-    </div>
+                {% comment %} end of payment notifications {% endcomment %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>

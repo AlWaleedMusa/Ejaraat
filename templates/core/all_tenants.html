@@ -112,7 +112,7 @@
                     {% for instance in all_tenants %}
                     <tr>
                         <td>{{ instance.tenant.name }}</td>
-                        <td>{{ instance.tenant.phone_number }} <br> email@gmail.com</td>
+                        <td>{{ instance.tenant.phone_number }}</td>
                         <td>
                             <a
                                 hx-get="{% url "view_property" instance.property.id %}"

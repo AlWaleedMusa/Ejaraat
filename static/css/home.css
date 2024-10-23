@@ -335,7 +335,7 @@ html[dir="rtl"] .monthly-revenue img {
 }
 
 /* Notifications */
-.notifications-container {
+.notifications-container, .navbar-recent-activities {
     position: absolute;
     z-index: 2000;
     background-color: var(--light-color);

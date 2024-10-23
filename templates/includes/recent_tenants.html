@@ -5,8 +5,9 @@
 
 <section>
     <div class="table-container dashboard-table-container p-2 over-flow-auto">
-        <h5 class="p-2"><i class="bi bi-people"></i> {% trans "Recent Tenants" %}</h5>      
-        <table class="table dashboard-table table-sm table-hover table-responsive">
+        <h5 class="p-2"><i class="bi bi-people"></i> {% trans "Recent Tenants" %}</h5>   
+        {% if recent_tenants %}
+            <table class="table dashboard-table table-sm table-hover table-responsive">
             <thead>
                 <tr>
                     <th scope="col">{% trans "Name" %}</th>
@@ -35,6 +36,9 @@
                 </tr>
                 {% endfor %}
             </tbody>
-        </table>
+            </table>
+        {% else %}
+            <p class="text-muted px-1" style="font-size: 14px;">{% trans "There is no tenants at the moment" %}</p>
+        {% endif %}
     </div>
 </section>

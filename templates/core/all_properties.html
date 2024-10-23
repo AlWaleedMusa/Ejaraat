@@ -1,19 +1,23 @@
 {% load i18n %}
+{% load static %}
 {% load custome_filters %}
 
 
 {% comment %} <h3 class="px-1">
     {% trans "My Properties" %}
     </h3> {% endcomment %}
+
+{% if all_properties %}
+
     <div class="d-flex justify-content-between align-items-center">
         {% comment %} search form {% endcomment %}
         {% include "includes/search_properties.html" %}
         {% comment %} end of search form {% endcomment %}
         <a hx-get="{% url "add_property" %}" hx-target="#main-content" class="btn"><i class="bi bi-plus-circle-fill fs-2" style="color: #28a745"></i></a>
     </div>
-    
-    
-<div class="over-flow-auto">
+
+
+    <div class="over-flow-auto">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         {% for property in all_properties %}
             <div class="col p-3">
@@ -25,7 +29,7 @@
                             </div>
                         {% endif %}
                     {% comment %} end of ribbon {% endcomment %}
-    
+
                     <div class="card-body property-details">
                         <div class="card-title border-bottom">
                             <h5>{{ property.name|title }}</h5>
@@ -61,4 +65,16 @@
             {% comment %} end of confirm delete {% endcomment %}
         {% endfor %}
     </div>
-</div>
+    </div>
+{% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center d-flex flex-column justify-content-center align-items-center" style="margin-top: 90px;">
+                <img src="{% static "images/house.svg" %}" alt="House image" style="opacity: 0.3">
+                <h1 class="mt-5">{% trans "Nothing's here..." %}</h1>
+                <p>{% trans "Looks like you haven't added any properties yet." %}</p>
+                <a hx-get="{% url "add_property" %}" hx-target="#main-content" class="btn btn-success rounded-5">Add Now</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
