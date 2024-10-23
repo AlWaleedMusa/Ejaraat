@@ -102,7 +102,7 @@ class Tenant(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name} {self.landlord}'s Tenant" 
+        return f"{self.name} / {self.landlord}'s Tenant" 
 
 
 class RentProperty(models.Model):
@@ -276,7 +276,7 @@ class RentHistory(models.Model):
     def __str__(self):
         property_name = self.property.name
         tenant_name = self.tenant.name if self.tenant else "Unknown Tenant"
-        return f"RentHistory for {property_name} by {tenant_name}"
+        return f"RentHistory for {property_name} rented by {tenant_name}"
 
 
 class RecentActivity(models.Model):
