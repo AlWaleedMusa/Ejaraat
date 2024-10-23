@@ -9,7 +9,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            {% trans "Confirm Payment for property ?" %} <span style="color: var(--secondary-color);">{{ rental.property.name }}</span>
+            {% trans "Confirm Payment for property ?" %} <span style="color: var(--secondary-color);">{{ rental.property.name|title }}</span>
             {% trans "until" %} 
             {% if rental.get_next_payment %}
                 <span style="color: var(--secondary-color);">{{ rental.get_next_payment.0|date:"d M Y" }}</span>?

@@ -26,7 +26,7 @@
                             <p class="text-muted p-0 m-0">
                                 {{ activity.get_activity_type_display }}
                                 <a style="word-wrap: break-word; word-break: break-word" hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
-                                    {{ activity.property.name }}
+                                    {{ activity.property.name|title }}
                                 </a>
                             </p>
                             <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
@@ -44,7 +44,7 @@
                             <p class="text-muted p-0 m-0">
                                 {{ activity.get_activity_type_display }}
                                 <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
-                                    {{ activity.property.name }}
+                                    {{ activity.property.name|title }}
                                 </a>
                             </p>
                             <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>
@@ -62,7 +62,7 @@
                             <p class="text-muted p-0 m-0">
                                 {{ activity.get_activity_type_display }}
                                 <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
-                                    {{ activity.property.name }}
+                                    {{ activity.property.name|title }}
                                 </a>
                             </p>
                             <small class="text-muted">{{ activity.timestamp|date:"d M Y - h:i A" }}</small>

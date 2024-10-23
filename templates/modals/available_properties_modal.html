@@ -32,7 +32,7 @@
                             <tbody>
                                 {% for property in available_properties %}
                                     <tr>
-                                        <td style="color: #1960ab;">{{ property.name }}</td>
+                                        <td style="color: #1960ab;">{{ property.name|title }}</td>
                                         <td>{{ property.get_country_display }}</td>
                                         <td class="d-none d-lg-block">{{ property.get_property_type_display }}</td>
                                         <td>

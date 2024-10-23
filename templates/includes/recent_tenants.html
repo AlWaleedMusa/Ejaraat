@@ -18,8 +18,8 @@
             <tbody>
                 {% for instance in recent_tenants %}
                 <tr>
-                    <td><h6>{{ instance.tenant.name }}</h6></td>
-                    <td><h6>{{ instance.property.name }}</h6></td>
+                    <td><h6>{{ instance.tenant.name|title }}</h6></td>
+                    <td><h6>{{ instance.property.name|title }}</h6></td>
                     <td>
                         <i class="bi bi-three-dots fs-3" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false"></i>
                         <ul class="dropdown-menu rounded-4 border-0 shadow-sm">

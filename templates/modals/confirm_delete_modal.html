@@ -9,7 +9,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          {% trans "Are you sure you wish to delete this property?" %} <span style="color: var(--primary-color)">{{ property.name }}</span>
+          {% trans "Are you sure you wish to delete this property?" %} <span style="color: var(--primary-color)">{{ property.name|title }}</span>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary rounded-5" data-bs-dismiss="modal">{% trans "Cancel" %}</button>

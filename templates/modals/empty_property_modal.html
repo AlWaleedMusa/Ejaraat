@@ -8,7 +8,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          {% trans "Are you sure you wish to empty this property" %} <span class="text-danger">{{ property.name }}.</span> {% trans "All current data will be saved as Rental history" %}
+          {% trans "Are you sure you wish to empty this property" %} <span class="text-danger">{{ property.name|title }}.</span> {% trans "All current data will be saved as Rental history" %}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>

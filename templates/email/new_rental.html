@@ -59,17 +59,17 @@
             <p>{% trans "We are excited to inform you that a new rental has been successfully processed." %}</p>
             <p><strong>{% trans "Rental Details:" %}</strong></p>
             <ul>
-                <li><strong>{% trans "Property:" %}</strong> {{ property.name }}</li>
+                <li><strong>{% trans "Property:" %}</strong> {{ property.name|title }}</li>
                 <li><strong>{% trans "Location:" %}</strong> {{ property.address }}</li>
-                <li><strong>{% trans "Start Date:" %}</strong> {{ rental.start_date }}</li>
-                <li><strong>{% trans "End Date:" %}</strong> {{ rental.end_date }}</li>
+                <li><strong>{% trans "Start Date:" %}</strong> {{ rental.start_date|date:"d M Y" }}</li>
+                <li><strong>{% trans "End Date:" %}</strong> {{ rental.end_date|date:"d M Y" }}</li>
                 <li><strong>{% trans "Price:" %}</strong> {{ rental.price }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</li>
                 <li><strong>{% trans "Contract:" %}</strong> {% if rental.contract %} <a href="{{ rental.contract.url }}" target="_blank">{% trans "View" %}</a> {% else %} {% trans "N/A" %} {% endif %}</li>
             </ul>
 
             <p><strong>{% trans "Tenant Details:" %}</strong></p>
             <ul>
-                <li><strong>{% trans "Tenant Name:" %}</strong> {{ tenant.name }}</li>
+                <li><strong>{% trans "Tenant Name:" %}</strong> {{ tenant.name|title }}</li>
                 <li><strong>{% trans "Tenant Phone:" %}</strong> {{ tenant.phone_number }}</li>
                 <li><strong>{% trans "Tenant ID:" %}</strong> {% if tenant.id_image %} <a href="{{ tenant.id_image.url }}" target="_blank">{% trans "View" %}</a> {% else %} {% trans "N/A" %} {% endif %}</li>
             </ul>

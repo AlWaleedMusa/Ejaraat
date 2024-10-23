@@ -7,7 +7,7 @@
     <div>
         {% for rental in property.property_rentals.all %}
             <div class="d-flex justify-content-between align-items-center">
-                <h2>{{ property.name }} - {{ property.get_property_type_display }}</h2>
+                <h2>{{ property.name|title }} - {{ property.get_property_type_display }}</h2>
                 <div class="dropdown">
                     <i class="bi bi-three-dots fs-3" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false"></i>
                     <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
@@ -123,7 +123,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <p><strong>{% trans "Name" %}:</strong> {{ rent_property.tenant.name }}</p>
+                                    <p><strong>{% trans "Name" %}:</strong> {{ rent_property.tenant.name|title }}</p>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <p><strong>{% trans "Phone Number" %}:</strong> {{ rent_property.tenant.phone_number }}</p>
@@ -166,7 +166,7 @@
                                 <tbody>
                                     {% for rental_history in rental_histories %}
                                         <tr>
-                                            <td>{{ rental_history.tenant.name }}</td>
+                                            <td>{{ rental_history.tenant.name|title }}</td>
                                             <td>{{ rental_history.start_date|date:"d M Y" }}</td>
                                             <td>{{ rental_history.end_date|date:"d M Y" }}</td>
                                             <td><a href="#" class="text-decoration-underline">{% trans "More" %}</a></td>
@@ -195,7 +195,7 @@
                                     <tbody>
                                         {% for rental_history in rental_histories %}
                                             <tr>
-                                                <td>{{ rental_history.tenant.name }}</td>
+                                                <td>{{ rental_history.tenant.name|title }}</td>
                                                 <td>{{ rental_history.start_date|date:"d M Y" }}</td>
                                                 <td>{{ rental_history.end_date|date:"d M Y" }}</td>
                                                 <td><a href="#" class="text-decoration-underline">{% trans "More" %}</a></td>

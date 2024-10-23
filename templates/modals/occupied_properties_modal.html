@@ -23,7 +23,7 @@
                             <tbody>
                                 {% for property in rented_properties %}
                                     <tr>
-                                        <td style="color: #1960ab;">{{ property.name }}</td>
+                                        <td style="color: #1960ab;">{{ property.name|title }}</td>
                                         {% for rental in property.property_rentals.all %}
                                             <td>{{ rental.end_date|date:"d M Y" }}</td>
                                             {% comment %} <td>

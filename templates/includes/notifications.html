@@ -25,7 +25,7 @@
                     </div>
                     <div class="timeline-content">
                         <p class="text-muted p-0 m-0">
-                            {{ notification.message }} <a hx-get="{% url "view_property" notification.property.id%}" hx-target="#main-content" style="color: var(--primary-color)">{{notification.property.name}}</a>
+                            {{ notification.message }} <a hx-get="{% url "view_property" notification.property.id%}" hx-target="#main-content" style="color: var(--primary-color)">{{ notification.property.name|title }}</a>
                         </p>
                         <small class="text-muted">{{ notification.timestamp|date:"d M Y - h:i A" }}</small>
                     </div>
