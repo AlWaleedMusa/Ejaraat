@@ -132,13 +132,25 @@ def get_monthly_revenue(properties):
         float: The total monthly revenue for the given properties.
     """
     today = date.today()
+    temp = 0
     monthly_revenue = 0
 
     for property in properties:
         for rental in property.property_rentals.all():
             if rental.start_date <= today and rental.end_date >= today:
+
+                rental_payment = int(rental.payment)
+                if rental_payment == 1:
+                    temp = rental.price * 30
+                elif rental_payment == 7:
+                    temp = rental.price * 4
+                elif rental_payment == 30:
+                    temp = rental.price
+                elif rental_payment == 365:
+                    temp = rental.price / 12
+
                 # converted_price = convert_currency(
-                    # rental.price, rental.property.currency
+                #     temp, rental.property.currency
                 # )
                 monthly_revenue += 1 #converted_price
 
@@ -222,27 +234,31 @@ def get_payment_status_chart(user):
     """
     from .models import RentProperty
 
-    payment_status_counts = RentProperty.objects.filter(property__user=user).values('status').annotate(count=Count('status'))
+    payment_status_counts = (
+        RentProperty.objects.filter(property__user=user)
+        .values("status")
+        .annotate(count=Count("status"))
+    )
 
     # Prepare the data for the chart
     data = {
-        'paid': 0,
-        'pending': 0,
-        'overdue': 0,
+        "paid": 0,
+        "pending": 0,
+        "overdue": 0,
     }
-    
+
     # Populate the data dictionary based on query results
     for entry in payment_status_counts:
-        if entry['status'] == 'paid':
-            data['paid'] = entry['count']
-        elif entry['status'] == 'pending':
-            data['pending'] = entry['count']
-        elif entry['status'] == 'overdue':
-            data['overdue'] = entry['count']
+        if entry["status"] == "paid":
+            data["paid"] = entry["count"]
+        elif entry["status"] == "pending":
+            data["pending"] = entry["count"]
+        elif entry["status"] == "overdue":
+            data["overdue"] = entry["count"]
 
     # Pass the data to the frontend
     return {
-        'paid': data['paid'],
-        'pending': data['pending'],
-        'overdue': data['overdue']
+        "paid": data["paid"],
+        "pending": data["pending"],
+        "overdue": data["overdue"],
     }
