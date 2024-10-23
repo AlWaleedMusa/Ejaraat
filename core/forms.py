@@ -9,6 +9,9 @@ from .models import Property, RentProperty
 
 
 class PropertyForm(forms.ModelForm):
+    """
+    Property form
+    """
 
     class Meta:
         model = Property
@@ -44,7 +47,7 @@ class PropertyForm(forms.ModelForm):
             "hx-swap": "innerHTML",
         }
         self.helper.add_input(
-            Submit("submit", _("Save") if action == "edit" else _("Add"))
+            Submit("submit", _("Save") if action == "edit" else _("Add") , css_class="btn blue-button rounded-5 border-0 outline-0")
         )
 
         self.helper.layout = Layout(
@@ -64,7 +67,9 @@ class PropertyForm(forms.ModelForm):
 
 
 class RentPropertyForm(forms.ModelForm):
-    """ """
+    """
+    Rent property form
+    """
 
     tenant_name = forms.CharField(max_length=100, label=_("Tenant Name"))
     tenant_phone_number = forms.CharField(
@@ -110,7 +115,7 @@ class RentPropertyForm(forms.ModelForm):
             "hx-swap": "innerHTML",
         }
         self.helper.add_input(
-            Submit("submit", _("Save") if action == "edit" else _("Rent"))
+            Submit("submit", _("Save") if action == "edit" else _("Rent"), css_class="btn blue-button rounded-5 border-0 outline-0")
         )
 
         if tenant:
