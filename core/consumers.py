@@ -1,6 +1,6 @@
 import json
 
-from django.template.loader import get_template
+from django.template.loader import render_to_string
 
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
@@ -49,8 +49,7 @@ class RecentActivitiesConsumer(WebsocketConsumer):
     # Method to send the recent activities
     def send_recent_activities(self, event):
         if event["recent_activities"]:
-            activities_html = get_template("includes/recent_activities.html").render(
-                context={"recent_activities": event["recent_activities"]}
+            activities_html = render_to_string("includes/recent_activities.html", {"recent_activities": event["recent_activities"]}
             )
             self.send(
                 text_data=json.dumps(
@@ -61,8 +60,7 @@ class RecentActivitiesConsumer(WebsocketConsumer):
     # Method to send overdue notifications
     def send_overdue_notifications(self, event):
         if event["notifications"]:
-            notifications_html = get_template("includes/notifications.html").render(
-                context={"notifications": event["notifications"]}
+            notifications_html = render_to_string("includes/notifications.html", {"notifications": event["notifications"]}
             )
             self.send(
                 text_data=json.dumps(
