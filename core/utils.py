@@ -149,10 +149,14 @@ def get_monthly_revenue(properties):
                 elif rental_payment == 365:
                     temp = rental.price / 12
 
-                # converted_price = convert_currency(
-                #     temp, rental.property.currency
-                # )
-                monthly_revenue += 1 #converted_price
+                try:
+                    converted_price = convert_currency(
+                        temp, rental.property.currency
+                    )
+                except Exception as e:
+                    converted_price = temp
+
+                monthly_revenue += converted_price
 
     return monthly_revenue
 
