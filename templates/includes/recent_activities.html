@@ -25,7 +25,7 @@
                         <div class="timeline-content">
                             <p class="text-muted p-0 m-0">
                                 {{ activity.get_activity_type_display }}
-                                <a style="word-wrap: break-word; word-break: break-word" hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color); word-wrap: break-word; word-break: break-word">
                                     {{ activity.property.name|title }}
                                 </a>
                             </p>
@@ -43,7 +43,7 @@
                         <div class="timeline-content">
                             <p class="text-muted p-0 m-0">
                                 {{ activity.get_activity_type_display }}
-                                <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color); word-wrap: break-word; word-break: break-word">
                                     {{ activity.property.name|title }}
                                 </a>
                             </p>
@@ -61,7 +61,7 @@
                         <div class="timeline-content">
                             <p class="text-muted p-0 m-0">
                                 {{ activity.get_activity_type_display }}
-                                <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color)">
+                                <a hx-get="{% url "view_property" activity.property.id %}" hx-target="#main-content" style="color: var(--secondary-color); word-wrap: break-word; word-break: break-word">
                                     {{ activity.property.name|title }}
                                 </a>
                             </p>
