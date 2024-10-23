@@ -71,7 +71,7 @@
                                     <p><i class="bi bi-calendar-event px-2"></i> <strong>{% trans "Rent start date" %}:</strong> {{ rent_property.start_date|date:"d M Y" }}</p>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <p><i class="bi bi-calendar-event px-2"></i> <strong>{% trans "Rent end date" %}:</strong>{{ rent_property.end_date|date:"d M Y" }}</p>
+                                    <p><i class="bi bi-calendar-event px-2"></i> <strong>{% trans "Rent end date" %}:</strong> {{ rent_property.end_date|date:"d M Y" }}</p>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     {% if rent_property.damage_deposit %}
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <p>
-                                        <strong><i class="bi bi-currency-dollar px-2"></i>{% trans "Payment status (Current month)" %}:</strong>
+                                        <strong><i class="bi bi-currency-dollar px-2"></i>{% trans "Payment status (Current month)" %}: </strong>
                                         {% if rent_property.status == "pending" %}
                                             <span class="badge bg-secondary">{{ rent_property.get_status_display }}</span>
                                         {% elif rent_property.status == "overdue" %}
@@ -99,6 +99,16 @@
                                             {% trans "in" %} {{ rent_property.get_next_payment.1 }} {% trans "day" %}{{ rent_property.get_next_payment.1|pluralize }}
                                         {% else %}
                                             {% trans "No more Payments" %}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <p>
+                                        <i class="bi bi-file-text px-2"></i> <strong>{% trans "Contract" %}:</strong>
+                                        {% if rent_property.contract %}
+                                            <a href="{{ rent_property.contract.url }}" target="_blank" class="text-primary text-decoration-underline">{% trans "View Contract" %}</a>
+                                        {% else %}
+                                                {% trans "N/A" %}
                                         {% endif %}
                                     </p>
                                 </div>
@@ -121,7 +131,7 @@
                                 <div class="col-md-6 mb-3">
                                     <p><strong>{% trans "ID image" %}:</strong> 
                                         {% if rent_property.tenant.id_image %}
-                                            <a href="{{ rent_property.tenant.id_image.url }}" target="_blank" class="btn btn-dark btn-sm">{% trans "View ID Image" %}</a>
+                                            <a href="{{ rent_property.tenant.id_image.url }}" target="_blank" class="text-primary text-decoration-underline">{% trans "View ID Image" %}</a>
                                         {% else %}
                                             {% trans "N/A" %}
                                         {% endif %}
