@@ -90,7 +90,7 @@
                             {% comment %} end of monthly revenue in mobile {% endcomment %}
                         </div>
                         <div class="row gap-3 mt-3">
-                            <div class="col-md-8 col order-md-0 order-3">
+                            <div class="col order-md-0 order-3">
                                 {% include "includes/expiring_contracts.html" %}
                             </div>
                             {% if payment_status_counts.paid or payment_status_counts.pending or payment_status_counts.overdue %}
