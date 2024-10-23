@@ -23,8 +23,7 @@
             {% include "modals/empty_property_modal.html" %}
         {% endfor %}
         
-        <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }}<br> 
-            <span class="ms-4">{{ property.address }}</span>
+        <p class="text-muted"><i class="bi bi-geo-alt-fill pe-1"></i> {{ property.get_country_display }}, {{ property.city }} - {{ property.address }}
         </p>
 
         {% for rental in property.property_rentals.all %}
