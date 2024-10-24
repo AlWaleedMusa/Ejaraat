@@ -37,7 +37,7 @@
                         </div>
                         {% if property.is_rented %}
                             {% for rental in property.property_rentals.all %}
-                                <h5 class="text-success py-2">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h5>
+                                <h4 class="text-success py-2">{{ rental.price|format_numbers }} {{ property.get_translated_currency }}/{{ rental.get_payment_period }}</h4>
                             {% endfor %}
                         {% else %}
                             <h5 class="text-success fw-light py-2">{% trans "Available to Rent" %}</h5>
