@@ -6,6 +6,43 @@ import requests
 
 from django.template.loader import get_template
 from django.db.models import Count
+from django.core.cache import cache
+from django.utils.translation import get_language
+
+from functools import wraps
+
+
+def cache_page_by_language(timeout):
+    """
+    Cache the view response based on the user's language.
+
+    This decorator caches the view response based on the user's language. It generates a cache key
+    using the language code and the user ID, and stores the response in the cache with the given
+    timeout.
+
+    Args:
+        timeout (int): The cache timeout in seconds.
+
+    Returns:
+        function: A decorator function that caches the view response based on the user's language.
+    """
+
+    def decorator(view_func):
+        @wraps(view_func)
+        def wrapped_view(request, *args, **kwargs):
+            # Generate cache key with language code
+            lang = get_language()
+            cache_key = f"{lang}:user_{request.user.id}"
+            response = cache.get(cache_key)
+            if response:
+                return response
+            response = view_func(request, *args, **kwargs)
+            cache.set(cache_key, response, timeout)
+            return response
+
+        return wrapped_view
+
+    return decorator
 
 
 def get_expiring_contracts(properties):

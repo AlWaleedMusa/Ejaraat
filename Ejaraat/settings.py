@@ -24,6 +24,17 @@ INTERNAL_IPS = [
 ]
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',  # Change to your Redis instance's location
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +54,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "debug_toolbar",
+    "django_redis",
 ]
 
 MIDDLEWARE = [
