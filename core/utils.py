@@ -215,7 +215,11 @@ def clear_notification_service(user):
     from .models import Notifications
 
     Notifications.objects.filter(user=user).update(is_read=True)
-    notifications = Notifications.objects.filter(user=user, is_read=False)
+    notifications = (
+        Notifications.objects.filter(user=user, is_read=False)
+        .select_related("property")
+        .only("id", "message", "timestamp", "property__name", "property__id")
+    )
     notifications_html = get_template("includes/notifications.html").render(
         context={"notifications": notifications}
     )
