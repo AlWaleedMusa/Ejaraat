@@ -31,6 +31,7 @@ def landing(request):
     return render(request, "core/landing.html")
 
 
+@cache_page_by_language(60 * 15)
 @login_required
 def home(request):
     """
@@ -43,24 +44,41 @@ def home(request):
     Returns:
         HttpResponse: The rendered home page.
     """
-    available_properties = Property.objects.filter(
-        user=request.user, is_rented=False
-    ).order_by("created_at")
+    available_properties = (
+        Property.objects.filter(user=request.user, is_rented=False)
+        .only("id", "name", "created_at")
+        .order_by("created_at")
+    )
 
-    rented_properties = Property.objects.filter(
-        user=request.user, is_rented=True
-    ).order_by("property_rentals__end_date")
+    rented_properties = (
+        Property.objects.filter(user=request.user, is_rented=True)
+        .only("id", "name")
+        .prefetch_related("property_rentals")
+        .order_by("property_rentals__end_date")
+    )
 
     recent_activities = (
         RecentActivity.objects.filter(user=request.user)
         .exclude(activity_type="overdue")
+        .select_related("property")
+        .only("id", "activity_type", "timestamp", "property__name", "property__id")
         .order_by("-timestamp")[:10]
     )
 
-    recent_tenant = RentProperty.objects.filter(
-        tenant__landlord=request.user, property__user=request.user
-    ).order_by("-start_date")[:5]
-    notifications = Notifications.objects.filter(user=request.user, is_read=False)
+    recent_tenant = (
+        RentProperty.objects.filter(
+            tenant__landlord=request.user, property__user=request.user
+        )
+        .select_related("tenant", "property")
+        .only("id", "status", "start_date", "property__name", "tenant__name")
+        .order_by("-start_date")[:5]
+    )
+    notifications = (
+        Notifications.objects.filter(user=request.user, is_read=False)
+        .select_related("property")
+        .only("id", "message", "timestamp", "property__name", "property__id")
+        .order_by("-timestamp")[:10]
+    )
 
     expiring_contracts = get_expiring_contracts(rented_properties)
     upcoming_payments = get_upcoming_payments(rented_properties)
@@ -80,7 +98,8 @@ def home(request):
         "recent_tenants": recent_tenant,
     }
 
-    return render(request, "core/home.html", context)
+    response = render(request, "core/home.html", context)
+    return response
 
 
 @login_required
@@ -494,10 +513,7 @@ def search_all_tenants(request):
     if q:
         Tenants = (
             RentProperty.objects.filter(tenant__landlord=request.user)
-            .filter(
-                Q(tenant__name__icontains=q)
-                | Q(property__name__icontains=q)
-            )
+            .filter(Q(tenant__name__icontains=q) | Q(property__name__icontains=q))
             .distinct()
         )
     else:
