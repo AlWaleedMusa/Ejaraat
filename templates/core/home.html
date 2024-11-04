@@ -54,27 +54,9 @@
                 <div class="row gap-2">
                     <div class="col-md-8" >
                         <div class="row row-cols-2">
-                            {% comment %} available properties {% endcomment %}
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#availablePropertiesModal">
-                                    <div class="card card-overview shadow-sm p-3 border-0">
-                                        <h5><i class="bi bi-house-door"></i> {% trans "Available Properties" %}</h5>
-                                        <h3 class="card-value pt-3">{{ available_properties.count }}</h3>
-                                    </div>
-                                </a>
-                            </div>
-                            {% comment %} end of available properties {% endcomment %}
-
-                            {% comment %} occupied properties {% endcomment %}
-                            <div class="col">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#occupiedPropertiesModal">
-                                    <div class="card card-overview shadow-sm p-3 border-0">
-                                        <h5><i class="bi bi-house-fill"></i> {% trans "Occupied Properties" %}</h5>
-                                        <h3 class="card-value pt-3">{{ rented_properties.count }}</h3>
-                                    </div>
-                                </a>
-                            </div>
-                            {% comment %} end of occupied properties {% endcomment %}
+                            {% comment %} overview cards {% endcomment %}
+                            {% include "includes/overview_cards.html" %}
+                            {% comment %} end of overview cards {% endcomment %}
                             
                             {% comment %} monthly revenue in mobile {% endcomment %}
                             <div class="col-12 mt-3 d-lg-none d-block" >
