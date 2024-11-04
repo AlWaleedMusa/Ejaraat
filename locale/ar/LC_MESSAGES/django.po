@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-23 03:41+0300\n"
+"POT-Creation-Date: 2024-11-04 21:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,95 +19,95 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: core/forms.py:17
+#: core/forms.py:20
 msgid "Property Name"
 msgstr "إسم العقار"
 
-#: core/forms.py:18
+#: core/forms.py:21
 msgid "Property Type"
 msgstr "نوع العقار"
 
-#: core/forms.py:19
+#: core/forms.py:22
 msgid "Property Address"
 msgstr "عنوان العقار"
 
-#: core/forms.py:20 templates/modals/available_properties_modal.html:27
+#: core/forms.py:23 templates/modals/available_properties_modal.html:27
 msgid "Country"
 msgstr "البلد"
 
-#: core/forms.py:21
+#: core/forms.py:24
 msgid "City"
 msgstr "المدينه"
 
-#: core/forms.py:22
+#: core/forms.py:25
 msgid "Currency"
 msgstr "العُمله"
 
-#: core/forms.py:25
+#: core/forms.py:28
 msgid "Enter property name"
 msgstr "إسم العقار"
 
-#: core/forms.py:27
+#: core/forms.py:30
 msgid "Enter property address"
 msgstr "عنوان العقار"
 
-#: core/forms.py:29
+#: core/forms.py:32
 msgid "Enter city"
 msgstr "المدينه"
 
-#: core/forms.py:47 core/forms.py:113
+#: core/forms.py:50 core/forms.py:118
 msgid "Save"
 msgstr "حفظ"
 
-#: core/forms.py:47
+#: core/forms.py:50
 msgid "Add"
 msgstr "إضافة"
 
-#: core/forms.py:69
+#: core/forms.py:74
 msgid "Tenant Name"
 msgstr "إسم المستأجر"
 
-#: core/forms.py:72
+#: core/forms.py:77
 msgid "Tenant Phone Number"
 msgstr "رقم الهاتف"
 
-#: core/forms.py:73
+#: core/forms.py:78
 msgid "Format: +249912345678"
 msgstr "الصيغه: +249912345678"
 
-#: core/forms.py:75
+#: core/forms.py:80
 msgid "Tenant ID Image"
 msgstr "صورة الهوية"
 
-#: core/forms.py:86
+#: core/forms.py:91
 msgid "Rent Payment Type"
 msgstr "دفعات الإيجار"
 
-#: core/forms.py:87
+#: core/forms.py:92
 msgid "Price"
 msgstr "السعر"
 
-#: core/forms.py:88
+#: core/forms.py:93
 msgid "Start Rent"
 msgstr "تاريخ بدء الإيجار"
 
-#: core/forms.py:89
+#: core/forms.py:94
 msgid "End Rent"
 msgstr "تاريخ انتهاء الإيجار"
 
-#: core/forms.py:90
+#: core/forms.py:95
 msgid "Contract Image"
 msgstr "صورة عقد الإيجار"
 
-#: core/forms.py:91
+#: core/forms.py:96
 msgid "Damage Deposit"
 msgstr "رسوم تأمين"
 
-#: core/forms.py:92
+#: core/forms.py:97
 msgid "Current payment status"
 msgstr "حالة الدفع الحالية"
 
-#: core/forms.py:113 templates/core/all_properties.html:52
+#: core/forms.py:118 templates/core/all_properties.html:56
 #: templates/modals/available_properties_modal.html:44
 #: templates/modals/available_properties_modal.html:57
 msgid "Rent"
@@ -193,7 +193,7 @@ msgstr "شهري"
 msgid "Yearly"
 msgstr "سنوي"
 
-#: core/models.py:125 templates/core/home.html:195
+#: core/models.py:125 templates/core/home.html:175
 #: templates/includes/upcoming_payments.html:52
 msgid "Paid"
 msgstr "مدفوع"
@@ -202,12 +202,12 @@ msgstr "مدفوع"
 msgid "Unpaid"
 msgstr "غير مدفوع"
 
-#: core/models.py:127 templates/core/home.html:196
+#: core/models.py:127 templates/core/home.html:176
 #: templates/includes/upcoming_payments.html:54
 msgid "Pending"
 msgstr "معلقه"
 
-#: core/models.py:128 templates/core/home.html:197
+#: core/models.py:128 templates/core/home.html:177
 #: templates/includes/upcoming_payments.html:58
 msgid "Overdue"
 msgstr "متأخر"
@@ -228,7 +228,7 @@ msgstr "شهرياً"
 msgid "year"
 msgstr "سنوياً"
 
-#: core/models.py:169 templates/includes/view_property.html:99
+#: core/models.py:169 templates/includes/view_property.html:98
 msgid "day"
 msgstr "يومياً"
 
@@ -256,27 +256,27 @@ msgstr "تم إضافة عقار جديد"
 msgid "Payment overdue for property"
 msgstr "الدفع متأخر عن العقار"
 
-#: core/views.py:220
+#: core/views.py:239
 msgid "Property Rented"
 msgstr "تم تأجير العقار"
 
-#: core/views.py:221
+#: core/views.py:240
 msgid "Your property has been rented"
 msgstr "تم تأجير العقار"
 
-#: core/views.py:372
+#: core/views.py:391
 msgid "Payment Received"
 msgstr "تم استلام الدفع"
 
-#: core/views.py:373
+#: core/views.py:392
 msgid "Your payment has been received"
 msgstr "تم استلام الدفع"
 
-#: core/views.py:434 templates/email/vacated_property.html:55
+#: core/views.py:453 templates/email/vacated_property.html:55
 msgid "Property Vacated"
 msgstr "تم إخلاء العقار"
 
-#: core/views.py:435
+#: core/views.py:454
 msgid "Your tenant has vacated the property"
 msgstr "قام المستأجر بإخلاء العقار"
 
@@ -307,8 +307,8 @@ msgstr ""
 
 #: env/lib/python3.10/site-packages/click/core.py:1387
 #: templates/core/all_tenants.html:109
-#: templates/includes/view_property.html:163
-#: templates/includes/view_property.html:192
+#: templates/includes/view_property.html:162
+#: templates/includes/view_property.html:191
 #: templates/modals/available_properties_modal.html:29
 #: templates/modals/occupied_properties_modal.html:21
 msgid "Options"
@@ -994,7 +994,7 @@ msgid "Slug (up to %(max_length)s)"
 msgstr ""
 
 #: env/lib/python3.10/site-packages/django/db/models/fields/__init__.py:2441
-#: templates/includes/view_property.html:145
+#: templates/includes/view_property.html:144
 msgid "Text"
 msgstr "رساله نصيه"
 
@@ -1882,6 +1882,25 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
+#: env/lib/python3.10/site-packages/kombu/transport/qpid.py:1311
+#, python-format
+msgid "Attempting to connect to qpid with SASL mechanism %s"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/kombu/transport/qpid.py:1316
+#, python-format
+msgid "Connected to qpid with SASL mechanism %s"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/kombu/transport/qpid.py:1334
+#, python-format
+msgid "Unable to connect to qpid with SASL mechanism %s"
+msgstr ""
+
+#: env/lib/python3.10/site-packages/timezone_field/rest_framework.py:10
+msgid "A valid timezone is required."
+msgstr ""
+
 #: templates/account/account_inactive.html:5
 #: templates/account/account_inactive.html:9
 msgid "Account Inactive"
@@ -2484,26 +2503,34 @@ msgid ""
 "email address</a>."
 msgstr ""
 
-#: templates/core/all_properties.html:28
+#: templates/core/all_properties.html:32
 msgid "Available"
 msgstr "متوفر"
 
-#: templates/core/all_properties.html:44
+#: templates/core/all_properties.html:48
 msgid "Available to Rent"
 msgstr "متاح للإيجار"
 
-#: templates/core/all_properties.html:51
+#: templates/core/all_properties.html:55
 #: templates/modals/available_properties_modal.html:58
 msgid "View History"
 msgstr "تاريخ الإيجارات"
 
-#: templates/core/all_properties.html:54 templates/core/all_tenants.html:86
+#: templates/core/all_properties.html:58 templates/core/all_tenants.html:86
 #: templates/core/all_tenants.html:135
-#: templates/includes/recent_tenants.html:26
+#: templates/includes/recent_tenants.html:27
 #: templates/modals/occupied_properties_modal.html:49
 #: templates/modals/occupied_properties_modal.html:55
 msgid "View Details"
 msgstr "التفاصيل"
+
+#: templates/core/all_properties.html:83
+msgid "Nothing's here..."
+msgstr "لا يوجد شيء هنا..."
+
+#: templates/core/all_properties.html:84
+msgid "Looks like you haven't added any properties yet."
+msgstr "لا يوجد شيء هنا... يبدو أنك لم تضف أي عقار بعد."
 
 #: templates/core/all_tenants.html:56
 msgid "Notify All"
@@ -2526,13 +2553,13 @@ msgid "Payment Status:"
 msgstr "حالة الدفع الحالية:"
 
 #: templates/core/all_tenants.html:88 templates/core/all_tenants.html:137
-#: templates/includes/recent_tenants.html:30
+#: templates/includes/recent_tenants.html:31
 msgid "Send a reminder"
 msgstr "إرسال تذكير"
 
 #: templates/core/all_tenants.html:105
-#: templates/includes/recent_tenants.html:12
-#: templates/includes/view_property.html:126
+#: templates/includes/recent_tenants.html:13
+#: templates/includes/view_property.html:125
 msgid "Name"
 msgstr "الإسم"
 
@@ -2552,41 +2579,31 @@ msgstr "الحالة"
 msgid "Hi"
 msgstr "مرحباً"
 
-#: templates/core/home.html:71 templates/includes/overview_cards.html:11
-#: templates/modals/available_properties_modal.html:18
-msgid "Available Properties"
-msgstr "العقارات المتاحة"
-
-#: templates/core/home.html:84 templates/includes/overview_cards.html:19
-#: templates/modals/occupied_properties_modal.html:9
-msgid "Occupied Properties"
-msgstr "العقارات المشغولة"
-
-#: templates/core/home.html:96 templates/core/home.html:141
+#: templates/core/home.html:76 templates/core/home.html:121
 msgid "Monthly Revenue"
 msgstr "الإيرادات الشهرية"
 
-#: templates/core/home.html:97 templates/core/home.html:142
-msgid "Monthly revenue in USD"
+#: templates/core/home.html:77 templates/core/home.html:122
+msgid "Estimate Monthly Revenue in USD"
 msgstr " الإيرادات الشهرية بالدولار"
 
-#: templates/core/home.html:99 templates/core/home.html:144
+#: templates/core/home.html:79 templates/core/home.html:124
 msgid "$"
 msgstr "$"
 
-#: templates/core/home.html:124 templates/core/home.html:162
+#: templates/core/home.html:104 templates/core/home.html:142
 msgid "Upgrade Plan"
 msgstr "تحديث الخطة"
 
-#: templates/core/home.html:125 templates/core/home.html:163
+#: templates/core/home.html:105 templates/core/home.html:143
 msgid "Unlock more features by upgrading your plan."
 msgstr "إفتح المزيد من الميزات عن طريق تحديث خطتك."
 
-#: templates/core/home.html:126 templates/core/home.html:164
+#: templates/core/home.html:106 templates/core/home.html:144
 msgid "Upgrade Now"
 msgstr "حدّث الآن"
 
-#: templates/core/home.html:232
+#: templates/core/home.html:212
 msgid "Rent Payment Status Breakdown"
 msgstr "تفاصيل حالة دفع الإيجارات"
 
@@ -2857,9 +2874,9 @@ msgstr "عرض"
 #: templates/email/new_rental.html:67 templates/email/new_rental.html:74
 #: templates/email/payment_received.html:74
 #: templates/email/vacated_property.html:73
-#: templates/includes/view_property.html:80
-#: templates/includes/view_property.html:111
-#: templates/includes/view_property.html:136
+#: templates/includes/view_property.html:79
+#: templates/includes/view_property.html:110
+#: templates/includes/view_property.html:135
 msgid "N/A"
 msgstr "لا يوجد"
 
@@ -2984,17 +3001,26 @@ msgstr "لا توجد عقود تنتهي خلال ال 30 يوم القادمة
 msgid "Notifications"
 msgstr "الإشعارات"
 
-#: templates/includes/overview_cards.html:5
-#: templates/includes/view_property.html:41
-msgid "Overview"
-msgstr "المُلخص"
+#: templates/includes/notifications.html:9
+msgid "clear"
+msgstr "مسح الكل"
 
-#: templates/includes/recent_activities.html:6
-#: templates/includes/recent_activities.html:10
+#: templates/includes/overview_cards.html:9
+#: templates/modals/available_properties_modal.html:18
+msgid "Available Properties"
+msgstr "العقارات المتاحة"
+
+#: templates/includes/overview_cards.html:22
+#: templates/modals/occupied_properties_modal.html:9
+msgid "Occupied Properties"
+msgstr "العقارات المشغولة"
+
+#: templates/includes/recent_activities.html:7
+#: templates/includes/recent_activities.html:11
 msgid "Recent Activities"
 msgstr "الأنشطة الأخيرة"
 
-#: templates/includes/recent_activities.html:11
+#: templates/includes/recent_activities.html:12
 msgid "Recent activities will be logged here"
 msgstr "الأنشطة الأخيرة ستكون مسجلة هنا"
 
@@ -3002,13 +3028,17 @@ msgstr "الأنشطة الأخيرة ستكون مسجلة هنا"
 msgid "Recent Tenants"
 msgstr "المستأجرين"
 
-#: templates/includes/recent_tenants.html:13
+#: templates/includes/recent_tenants.html:14
 msgid "Rental"
 msgstr "العقار"
 
-#: templates/includes/recent_tenants.html:14
+#: templates/includes/recent_tenants.html:15
 msgid "Actions"
 msgstr "خيارات"
+
+#: templates/includes/recent_tenants.html:41
+msgid "There is no tenants at the moment"
+msgstr "لا يوجد مستأجرين حالياً"
 
 #: templates/includes/search_properties.html:12
 msgid "Search by Name, Country"
@@ -3079,85 +3109,89 @@ msgstr "لا توجد دفعات خلال ال 7 أيام القادمة"
 msgid "Empty"
 msgstr "إخلاء العقار"
 
-#: templates/includes/view_property.html:46
+#: templates/includes/view_property.html:40
+msgid "Overview"
+msgstr "المُلخص"
+
+#: templates/includes/view_property.html:45
 msgid "Tenant Info"
 msgstr "تفاصيل المستأجر"
 
-#: templates/includes/view_property.html:51
-#: templates/includes/view_property.html:57
+#: templates/includes/view_property.html:50
+#: templates/includes/view_property.html:56
 msgid "Rental History"
 msgstr "تاريخ الإيجارات"
 
-#: templates/includes/view_property.html:71
+#: templates/includes/view_property.html:70
 msgid "Rent start date"
 msgstr "تاريخ بدء الإيجار"
 
-#: templates/includes/view_property.html:74
+#: templates/includes/view_property.html:73
 msgid "Rent end date"
 msgstr "تاريخ إنتهاء الإيجار"
 
-#: templates/includes/view_property.html:78
-#: templates/includes/view_property.html:80
+#: templates/includes/view_property.html:77
+#: templates/includes/view_property.html:79
 msgid "Damage deposit"
 msgstr "تأمين"
 
-#: templates/includes/view_property.html:85
+#: templates/includes/view_property.html:84
 msgid "Payment status (Current month)"
 msgstr "حالة الدفع (الشهر الحالي)"
 
-#: templates/includes/view_property.html:97
+#: templates/includes/view_property.html:96
 msgid "Next Payment"
 msgstr "الدفعة القادمة"
 
-#: templates/includes/view_property.html:99
+#: templates/includes/view_property.html:98
 msgid "in"
 msgstr "بعد"
 
-#: templates/includes/view_property.html:101
+#: templates/includes/view_property.html:100
 msgid "No more Payments"
 msgstr "لا توجد دفعات أخري"
 
-#: templates/includes/view_property.html:107
+#: templates/includes/view_property.html:106
 msgid "Contract"
 msgstr "عقد الإيجار:"
 
-#: templates/includes/view_property.html:109
+#: templates/includes/view_property.html:108
 msgid "View Contract"
 msgstr "عرض"
 
-#: templates/includes/view_property.html:129
+#: templates/includes/view_property.html:128
 msgid "Phone Number"
 msgstr "رقم الهاتف"
 
-#: templates/includes/view_property.html:132
+#: templates/includes/view_property.html:131
 msgid "ID image"
 msgstr "صورة الهوية"
 
-#: templates/includes/view_property.html:134
+#: templates/includes/view_property.html:133
 msgid "View ID Image"
 msgstr "عرض"
 
-#: templates/includes/view_property.html:142
+#: templates/includes/view_property.html:141
 msgid "Call"
 msgstr "مكالمة هاتفية"
 
-#: templates/includes/view_property.html:160
-#: templates/includes/view_property.html:189
+#: templates/includes/view_property.html:159
+#: templates/includes/view_property.html:188
 msgid "Tenant"
 msgstr "المستأجر"
 
-#: templates/includes/view_property.html:161
-#: templates/includes/view_property.html:190
+#: templates/includes/view_property.html:160
+#: templates/includes/view_property.html:189
 msgid "From"
 msgstr "من"
 
-#: templates/includes/view_property.html:162
-#: templates/includes/view_property.html:191
+#: templates/includes/view_property.html:161
+#: templates/includes/view_property.html:190
 msgid "To"
 msgstr "الي"
 
-#: templates/includes/view_property.html:172
-#: templates/includes/view_property.html:201
+#: templates/includes/view_property.html:171
+#: templates/includes/view_property.html:200
 msgid "More"
 msgstr "المزيد"
 
