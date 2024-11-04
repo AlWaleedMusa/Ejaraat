@@ -6,7 +6,7 @@
         <h5>{% trans "Notifications" %}</h5>
         <div class="d-flex align-items-center gap-2">
             {% if notifications %}
-                <button ws-send name="data" value="clear" class="btn btn-sm btn-light rounded-4" style="color: var(--dark-color);">clear</button>
+                <button ws-send name="data" value="clear" class="btn btn-sm btn-light rounded-4" style="color: var(--dark-color);">{% trans "clear" %}</button>
             {% endif %}
             <i class="close-notifications bi bi-x-lg" style='cursor: pointer;'></i>
         </div>
