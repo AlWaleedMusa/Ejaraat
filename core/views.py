@@ -31,7 +31,6 @@ def landing(request):
     return render(request, "core/landing.html")
 
 
-@cache_page_by_language(60 * 15)
 @login_required
 def home(request):
     """
