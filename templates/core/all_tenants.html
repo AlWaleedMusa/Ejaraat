@@ -127,7 +127,7 @@
                             {% elif instance.status == "overdue" %}
                                 <span class="badge bg-warning text-dark rounded-5">{{ instance.get_status_display }}</span>
                             {% else %}
-                                <span class="badge bg-warning rounded-5">{{ instance.get_status_display }}</span>
+                                <span class="badge bg-secondary rounded-5">{{ instance.get_status_display }}</span>
                             {% endif %}
                         </td>
                         <td>
