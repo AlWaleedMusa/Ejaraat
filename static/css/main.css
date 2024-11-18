@@ -108,3 +108,44 @@ a {
     background-color: #db1c1c;
     color: white;
 }
+
+.warning-bar {
+    background-color: var(--primary-color);
+    height: 40px;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+html[dir="ltr"] .warning-bar p {
+    animation: infinite-scrolling-en linear 25s infinite;
+}
+
+html[dir="rtl"] .warning-bar p {
+    animation: infinite-scrolling-ar linear 25s infinite;
+}
+
+@keyframes infinite-scrolling-en {
+    100% {
+        transform: translateX(-100%);
+    }
+
+    0% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes infinite-scrolling-ar {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}

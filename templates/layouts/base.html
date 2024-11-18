@@ -53,8 +53,12 @@
 
     </head>
     <body hx-ext="ws" ws-connect="/ws/recent-activities/">
+        <div class="warning-bar">
+            {% blocktrans %}            
+                <p><strong><i class="bi bi-exclamation-triangle"></i> Notice: </strong>This site is currently under development and is undergoing a trial run. We appreciate your patience and feedback as we work to improve it!</p>
+            {% endblocktrans %}
+        </div>
         {% block content %}
-        
         {% endblock content %}
         {% comment %} Javascript {% endcomment %}
         <script

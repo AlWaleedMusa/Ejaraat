@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-04 21:55+0200\n"
+"POT-Creation-Date: 2024-11-18 19:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -256,27 +256,27 @@ msgstr "تم إضافة عقار جديد"
 msgid "Payment overdue for property"
 msgstr "الدفع متأخر عن العقار"
 
-#: core/views.py:239
+#: core/views.py:238
 msgid "Property Rented"
 msgstr "تم تأجير العقار"
 
-#: core/views.py:240
+#: core/views.py:239
 msgid "Your property has been rented"
 msgstr "تم تأجير العقار"
 
-#: core/views.py:391
+#: core/views.py:390
 msgid "Payment Received"
 msgstr "تم استلام الدفع"
 
-#: core/views.py:392
+#: core/views.py:391
 msgid "Your payment has been received"
 msgstr "تم استلام الدفع"
 
-#: core/views.py:453 templates/email/vacated_property.html:55
+#: core/views.py:452 templates/email/vacated_property.html:55
 msgid "Property Vacated"
 msgstr "تم إخلاء العقار"
 
-#: core/views.py:454
+#: core/views.py:453
 msgid "Your tenant has vacated the property"
 msgstr "قام المستأجر بإخلاء العقار"
 
@@ -3194,6 +3194,22 @@ msgstr "الي"
 #: templates/includes/view_property.html:200
 msgid "More"
 msgstr "المزيد"
+
+#: templates/layouts/base.html:64
+msgid ""
+"            \n"
+"                <p><strong><i class=\"bi bi-exclamation-triangle\"></i> "
+"Notice: </strong>This site is currently under development and is undergoing "
+"a trial run. We appreciate your patience and feedback as we work to improve "
+"it!</p>\n"
+"            "
+msgstr ""
+"            \n"
+"                <p><strong><i class=\"bi bi-exclamation-triangle\"></i> "
+"تنبيه: </strong>هذا الموقع قيد التطوير حالياً ويخضع لتجربة تجريبية. نحن "
+"نقدر صبرك وتعليقاتك بينما نعمل على تحسينه!</p>\n"
+"            "
+
 
 #: templates/modals/available_properties_modal.html:26
 #: templates/modals/occupied_properties_modal.html:17
