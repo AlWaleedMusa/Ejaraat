@@ -6,6 +6,7 @@ Ejaraat is an innovative web application tailored for property owners seeking to
 - **Scalable Property Management**: Manage properties of any size, from individual units to large portfolios.
 - **User-Friendly Interface**: Designed for ease of use, ensuring property owners can navigate and manage their assets effortlessly.
 - **Comprehensive Tools**: Track rentals, manage tenant information, and monitor property performance all in one place.
+- **Multilingual**: Full support for English and Arabic.
 
 ## Project Purpose
 Ejaraat addresses the need for a centralized platform that simplifies property management. The platform is designed to help landlords reduce manual work, gain valuable insights into property performance, and streamline tenant communication.
@@ -20,9 +21,9 @@ Ejaraat addresses the need for a centralized platform that simplifies property m
 - **Django**: Full stack framework.
 - **PostgreSQL**: Database for storing application data.
 - **Bootstrap**: Frontend framework for UI design.
-- **Python 3.10.12**: Core language.
+- **Python 3.10**: Core language.
 
-## Build/Deploy Instructions
+## Build Instructions
 ### Prerequisites:
 - Python 3.x installed.
 - Virtual environment setup (optional but recommended).
@@ -31,11 +32,11 @@ Ejaraat addresses the need for a centralized platform that simplifies property m
 ### Local Setup:
 1. Clone the repository:
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/AlWaleedMusa/Ejaraat.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd ejaraat
+   cd Ejaraat
    ```
 3. Install dependencies:
    ```bash
@@ -78,8 +79,16 @@ Live version of the application: [Visit Ejaraat](http://ejaraat.live)
 - Integration with payment gateways for seamless rent collection.
 - Implementation of a tenant communication system.
 
-## Screenshots/Demos
-![Login](static/images/dashboard.png)
+## Screenshots
+![Sign up](static/images/signup.png)
+
+![Sign up](static/images/mobile-signup.png)
+
+![Dashboard](static/images/dashboard.png)
+
+![mobile-Dashboard](static/images/mobile-dashboard.png)
+
+
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
